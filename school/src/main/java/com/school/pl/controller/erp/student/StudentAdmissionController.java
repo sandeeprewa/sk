@@ -22,7 +22,7 @@ public class StudentAdmissionController {
 	@Autowired
 	StudentAdmissionFacade studentAdmissionFacade;
 	
-	//adding Validator
+	
 	@InitBinder
     protected void initBinder(WebDataBinder binder) {
            binder.setValidator(new StudentAdmissionValidator());
