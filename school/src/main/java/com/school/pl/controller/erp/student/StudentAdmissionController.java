@@ -16,7 +16,7 @@ import com.school.pl.controller.erp.student.validation.StudentAdmissionValidator
 
 
 @RestController
-@RequestMapping("/student/")
+@RequestMapping("/v1/student/")
 public class StudentAdmissionController {
 
 	@Autowired
