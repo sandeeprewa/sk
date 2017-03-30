@@ -10,6 +10,7 @@ public class StudentAdmissionRecord {
 	private String firstName;
 	private String lastName;  
 	private String class_Stu;
+	
 	private String section;
 	private String fatherName;
 	private String motherName;
@@ -179,6 +180,11 @@ public class StudentAdmissionRecord {
 	}
 	public MultipartFile getFathersImage() {
 		return fathersImage;
+	}public String getClass_Stu() {
+		return class_Stu;
+	}
+	public void setClass_Stu(String class_Stu) {
+		this.class_Stu = class_Stu;
 	}
 	public void setFathersImage(MultipartFile fathersImage) {
 		this.fathersImage = fathersImage;
