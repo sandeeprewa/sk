@@ -1,5 +1,7 @@
 package com.school.pl.controller.erp.student.dto;
 
+import java.sql.Timestamp;
+
 import org.springframework.web.multipart.MultipartFile;
 
 
@@ -34,6 +36,14 @@ public class StudentAdmissionRecord {
     private	MultipartFile fathersImage;
     private MultipartFile mothersImage;
     
+    private Timestamp timeStamp;
+    
+	public Timestamp getTimeStamp() {
+		return timeStamp;
+	}
+	public void setTimeStamp(Timestamp timeStamp) {
+		this.timeStamp = timeStamp;
+	}
 	public String getFirstName() {
 		return firstName;
 	}
