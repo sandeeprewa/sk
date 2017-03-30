@@ -9,7 +9,7 @@ public class StudentAdmissionRecord {
 	
 	private String firstName;
 	private String lastName;  
-	private String stu_class;
+	private String class_Stu;
 	private String section;
 	private String fatherName;
 	private String motherName;
@@ -56,12 +56,7 @@ public class StudentAdmissionRecord {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public String getStu_class() {
-		return stu_class;
-	}
-	public void setStu_class(String stu_class) {
-		this.stu_class = stu_class;
-	}
+
 	public String getSection() {
 		return section;
 	}
