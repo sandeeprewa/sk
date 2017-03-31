@@ -6,7 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 
 public class StudentAdmissionRecord {
-	
+
 	private String firstName;
 	private String lastName;  
 	private String class_Stu;
