@@ -1,2 +1,2 @@
 
-w r u doing 
+what r u doing 
