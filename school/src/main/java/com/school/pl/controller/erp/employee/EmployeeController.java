@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,42 +18,29 @@ import com.school.pl.controller.erp.employee.dto.EmployeeRecord;
 @RestController 
 @RequestMapping("/v1/employee")
 public class EmployeeController {
-	 public static	String ROOT_PATH = System.getProperty("catalina.home");
 	
+	@Autowired
+	EmployeeFacade employeeFacade;
 	
-	@RequestMapping("/test")
-	public String test(){
-		return "HItest";
-	}
 	@RequestMapping(method = RequestMethod.POST)
 	public EmployeeRecord createEmployee(@RequestBody EmployeeRecord employeeRecord){
-		MultipartFile file = employeeRecord.getFile1();
-		try {
-			saveIntoLocalServerDirectory(file);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return employeeRecord;
+		return employeeFacade.createNewEmployeeRecord(employeeRecord);
 	}
 
+	@RequestMapping(value = "/{employeeId}" ,method = RequestMethod.GET)
+	public EmployeeRecord getEmployee(@PathVariable String employeeId){
+		return employeeFacade.getEmployeeRecord(employeeId);
+	}
 
-	@SuppressWarnings("unused")
-	private String saveIntoLocalServerDirectory(MultipartFile multipartFile) throws IOException{
-		System.out.println(ROOT_PATH);
-		byte[] bytes = multipartFile.getBytes();
-		String name = multipartFile.getName();
-		System.out.println( name);
-		File dir = new File(ROOT_PATH + File.separator + "tmpFilesOK");
-		if (!dir.exists())
-		     dir.mkdirs();
-	
-		// Create the file on server
-		File serverFile = new File(dir.getAbsolutePath()+ File.separator + name);
-		BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
-		stream.write(bytes);
-		stream.close();
-		return serverFile.getAbsolutePath();
+	@RequestMapping(value="/{employeeRecordID}", method = RequestMethod.PUT)
+	public EmployeeRecord updateEmployee(@PathVariable String employeeRecordID ,@RequestBody EmployeeRecord employeeRecord){
+		return employeeFacade.updateEmployeeRecord(employeeRecordID ,employeeRecord);
 	}
 	
+	@RequestMapping(value ="/{employeeRecordId}", method =RequestMethod.DELETE)
+	public EmployeeRecord deleteEmployee(@PathVariable String employeeRecordId){
+		return employeeFacade.deleteEmployeeRecord(employeeRecordId);
+	}
+	
+	//Filter to be implemented
 }
