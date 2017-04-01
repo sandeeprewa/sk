@@ -6,11 +6,15 @@ import org.springframework.stereotype.Service;
 
 import com.school.dl.erp.student.StudentAdmissionDao;
 
-@Service("studentAdmissionServiceImpl")
+@Service("studentAdmissionServiceImpl") 
 public class StudentAdmissionServiceImpl implements StudentAdmissionService {
 	
 	@Autowired
 	@Qualifier("studentAdmissionDaoImpl")
 	StudentAdmissionDao studentAdmissionDao;
+	
 
+	public void teset(){
+		
+	}
 }

@@ -54,7 +54,7 @@ public class StudentAdmissionErrorHandler {
 	}
 	
 	@ResponseBody
-	@ExceptionHandler(value = StudentAdmissionFailureExnception.class)
+	@ExceptionHandler(value = StudentAlreadyRegisteredException.class)
 	@ResponseStatus
 	public RestError handleStudentAlreadyRegisteredException(StudentAlreadyRegisteredException exception){
 		restError = new RestError();

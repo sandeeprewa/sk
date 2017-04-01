@@ -17,5 +17,7 @@ public class StudentAdmissionDaoImpl implements StudentAdmissionDao {
 		this.simpleHibernateTemplate = new SimpleHibernateTemplate<StudentAdmissionRecord>(sessionFactory);
 	}
 	
-	
+	public void test(){
+		
+	}
 }

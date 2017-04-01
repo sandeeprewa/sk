@@ -12,10 +12,10 @@ import com.school.sl.erp.student.StudentAdmissionService;
 @Component
 public class StudentAdmissionFacade {
 			
-	@Autowired
+/*	@Autowired
 	@Qualifier("studentAdmissionServiceImpl")
 	StudentAdmissionService studentAdmissionService;
-
+*/
 	public StudentAdmissionRecord admitNewStudent(
 			StudentAdmissionRecord admissionRecord) {
 		// TODO Auto-generated method stub
