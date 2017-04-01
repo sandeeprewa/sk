@@ -1,13 +1,8 @@
 package com.school.pl.controller.erp.student.error;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 
 public class StudentAdmissionFieldValidationException extends RuntimeException {
 		
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	private String key;

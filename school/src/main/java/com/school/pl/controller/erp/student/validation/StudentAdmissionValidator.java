@@ -9,25 +9,23 @@ import com.school.pl.controller.erp.student.error.StudentAdmissionFieldValidatio
 public class StudentAdmissionValidator implements Validator{
 
 	public boolean supports(Class<?> clazz) {
-		// TODO Auto-generated method stub
-		return false;
+		return StudentAdmissionRecord.class.equals(clazz);
 	}
 
 	public void validate(Object target, Errors errors) {
-		// TODO Auto-generated method stub
 		StudentAdmissionRecord studentAdmissionRecord = (StudentAdmissionRecord)target;
-		//custome validation for each validation
 		validateFirstName(studentAdmissionRecord.getFirstName());
-//		validateLastName();
-//		validatePhoneNumber();
-		
+		validateLastName(studentAdmissionRecord.getLastName());
+		//further can be implemented
 	}
 	
 	private void validateFirstName(String firstName){
-			if(!(firstName == null || firstName == "")){
-				//that's fine
-			}else{
-				throw new StudentAdmissionFieldValidationException("firstName","name.invalid.message");
-			}
+		if(ValidationUtil.isEmpty(firstName))
+		throw new StudentAdmissionFieldValidationException("firstName","firstname.invalid.message");
+	}
+	
+	private void validateLastName(String lastName){
+		if(ValidationUtil.isEmpty(lastName))
+			throw new StudentAdmissionFieldValidationException("lastName","lastname.invalid.message");			
 	}
 }

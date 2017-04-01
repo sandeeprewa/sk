@@ -8,11 +8,10 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.school.pl.controller.erp.student.dto.StudentAdmissionRecord;
-import com.school.pl.controller.erp.student.error.StudentAdmissionFieldValidationException;
+import com.school.pl.controller.erp.student.error.StudentAdmissionFailureExnception;
 import com.school.pl.controller.erp.student.validation.StudentAdmissionValidator;
 
 
@@ -31,28 +30,9 @@ public class StudentAdmissionController {
 
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public StudentAdmissionRecord admitNewStudent(@Validated @RequestBody StudentAdmissionRecord admissionRecord){
-		return null;
+	public StudentAdmissionRecord admitNewStudent(@Validated @RequestBody StudentAdmissionRecord admissionRecord) 
+			throws StudentAdmissionFailureExnception{
+		return studentAdmissionFacade.admitNewStudent(admissionRecord);
 	}
-	
-	@ResponseBody
-	@RequestMapping(method = RequestMethod.GET ,value ="/test" )	
-	public String test(){
-		return "testing";
-	}
-	
-	@ResponseBody
-	@RequestMapping(method = RequestMethod.GET ,value ="/exceptionTest" )	
-	public String testEx(){
-		if(true)
-		throw new StudentAdmissionFieldValidationException("firstName","name.invalid.message");
-		return "testing";
-	}
-	
-	@ResponseBody
-	@RequestMapping(method = RequestMethod.GET )	
-	public String test11(){
-		return "testing";
-	}
-	
+		
 }
