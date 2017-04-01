@@ -12,4 +12,5 @@ public class StudentAdmissionFacade {
 	@Autowired
 	@Qualifier("studentAdmissionServiceImpl")
 	StudentAdmissionService studentAdmissionService;
+
 }

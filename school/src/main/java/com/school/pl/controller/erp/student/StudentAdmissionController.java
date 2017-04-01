@@ -1,6 +1,5 @@
 package com.school.pl.controller.erp.student;
 
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -9,9 +8,11 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.school.pl.controller.erp.student.dto.StudentAdmissionRecord;
+import com.school.pl.controller.erp.student.error.StudentAdmissionFieldValidationException;
 import com.school.pl.controller.erp.student.validation.StudentAdmissionValidator;
 
 
@@ -33,4 +34,25 @@ public class StudentAdmissionController {
 	public StudentAdmissionRecord admitNewStudent(@Validated @RequestBody StudentAdmissionRecord admissionRecord){
 		return null;
 	}
+	
+	@ResponseBody
+	@RequestMapping(method = RequestMethod.GET ,value ="/test" )	
+	public String test(){
+		return "testing";
+	}
+	
+	@ResponseBody
+	@RequestMapping(method = RequestMethod.GET ,value ="/exceptionTest" )	
+	public String testEx(){
+		if(true)
+		throw new StudentAdmissionFieldValidationException("firstName","name.invalid.message");
+		return "testing";
+	}
+	
+	@ResponseBody
+	@RequestMapping(method = RequestMethod.GET )	
+	public String test11(){
+		return "testing";
+	}
+	
 }

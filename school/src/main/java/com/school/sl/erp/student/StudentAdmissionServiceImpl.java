@@ -12,4 +12,5 @@ public class StudentAdmissionServiceImpl implements StudentAdmissionService {
 	@Autowired
 	@Qualifier("studentAdmissionDaoImpl")
 	StudentAdmissionDao studentAdmissionDao;
+
 }

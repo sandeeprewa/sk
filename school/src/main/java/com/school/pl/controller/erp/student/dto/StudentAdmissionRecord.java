@@ -10,8 +10,8 @@ public class StudentAdmissionRecord {
 	private String firstName;
 	private String lastName;  
 	private String class_Stu;
-	
 	private String section;
+	
 	private String fatherName;
 	private String motherName;
 	private String fatherOccupation;
