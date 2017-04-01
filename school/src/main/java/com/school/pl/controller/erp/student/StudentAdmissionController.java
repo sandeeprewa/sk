@@ -41,16 +41,6 @@ public class StudentAdmissionController {
 		return studentAdmissionFacade.getAdmissionRecordByStudentId(studentId);
 	}
 	
-	@RequestMapping(value = "fname/{studentFirstName}", method = RequestMethod.GET)
-	public List<StudentAdmissionRecord> getStudentAdmissionRecordByStudentName(@PathVariable String studentFirstName) throws StudentDoesNotExistException {
-		return studentAdmissionFacade.getAdmissionRecordByStudentFirstName(studentFirstName);
-	}
-	
-	@RequestMapping(value = "lname/{studentLastName}", method = RequestMethod.GET)
-	public List<StudentAdmissionRecord> getStudentAdmissionRecordByStudentLastName(@PathVariable String studentLastName)throws StudentDoesNotExistException {
-		return studentAdmissionFacade.getAdmissionRecordByStudentLastName(studentLastName);
-	}
-	
 	@RequestMapping(method = RequestMethod.POST)
 	public StudentAdmissionRecord admitNewStudent(@Validated @RequestBody StudentAdmissionRecord admissionRecord) 
 			throws StudentAdmissionFailureExnception, StudentAlreadyRegisteredException{
@@ -68,4 +58,23 @@ public class StudentAdmissionController {
 		return studentAdmissionFacade.deleteStudentAdmissionRecordById(studentId);
 	}
 	
+	/*
+	 * Filter purpose
+	 * Better way it can be implmented
+	 */
+	@RequestMapping(value = "fname/{studentFirstName}", method = RequestMethod.GET)
+	public List<StudentAdmissionRecord> getStudentAdmissionRecordByStudentName(@PathVariable String studentFirstName) throws StudentDoesNotExistException {
+		return studentAdmissionFacade.getAdmissionRecordByStudentFirstName(studentFirstName);
+	}
+	
+	@RequestMapping(value = "lname/{studentLastName}", method = RequestMethod.GET)
+	public List<StudentAdmissionRecord> getStudentAdmissionRecordByStudentLastName(@PathVariable String studentLastName)throws StudentDoesNotExistException {
+		return studentAdmissionFacade.getAdmissionRecordByStudentLastName(studentLastName);
+	}
+
+	@RequestMapping(value = "dob/{dateOfBirth}", method = RequestMethod.GET)
+	public List<StudentAdmissionRecord> getStudentAdmissionRecordByStudentDateOfBirth(@PathVariable String dateOfBirth)
+	throws StudentDoesNotExistException{
+		return studentAdmissionFacade.getAdmissionRecordByStudentDateOfBirth(dateOfBirth);
+	}
 }

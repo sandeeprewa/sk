@@ -51,4 +51,10 @@ public class StudentAdmissionFacade {
 		return null;
 	}
 
+	public List<StudentAdmissionRecord> getAdmissionRecordByStudentDateOfBirth(
+			String dateOfBirth) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
