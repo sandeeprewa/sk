@@ -1,4 +1,4 @@
-package com.school.pl.controller.erp.student.error.errorhandler;
+package com.school.pl.controller.erp.student.error.handler;
 
 import java.util.Locale;
 
