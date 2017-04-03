@@ -11,6 +11,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.http.MediaType;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -34,6 +35,15 @@ public class RootApplicationConfiguration extends WebMvcConfigurerAdapter {
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
     }
+	
+
+	@Bean(name = "multipartResolver")
+	public CommonsMultipartResolver createMultipartResolver() {
+	    CommonsMultipartResolver resolver=new CommonsMultipartResolver();
+	    resolver.setDefaultEncoding("utf-8");
+	    return resolver;
+	}
+
 	
 	@Override
 	public void addResourceHandlers(final ResourceHandlerRegistry registry) {

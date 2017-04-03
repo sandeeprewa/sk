@@ -7,13 +7,17 @@
 <html>
 <head>
 			<script src="includes/js/jquery-1.8.2.min.js"></script>
-			<script src="includes/js/script.js"></script>
+			<script src="testingJs/testing.js"></script>
 
 </head>
 <body>
-	
-	Name :<input type="text" name="employeeName" />
+	<form id="testForm">
+	Name :<input type= "text" name="name"/>
 	File :<input type= "file" name="file1"/>
-	<input type="button" id="dd" >Submit</button>
+	</form>
+	<input type="button" id="formData" value ="Submit form data"/>
+	<input type="button" id="imageAndText" value = 'Submit Image and Text'/>
+	<input type="button" id="complexObject" value='Complex Object' />
+	<input type="button" id="complexObjectAndImage" value ='ComplexOBject and Image'/>	
 </body>
 </html>
