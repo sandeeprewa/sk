@@ -31,7 +31,7 @@ function makeCall(){
 	jQuery.ajax(
 		{    
 			type: "POST",
-			url: "testOnlyData",
+			url: "../testOnlyData",
 			data: JSON.stringify(markers),
 			
 			beforeSend: function(xhr) {
@@ -50,7 +50,7 @@ function makeCall(){
 function submitFormData(){
 	
 	 $.ajax({
-         url: 'submitFormData',
+         url: '../submitFormData',
          type: "POST",
          data: new FormData(document.getElementById('testForm')),
          enctype: 'multipart/form-data',
@@ -65,7 +65,7 @@ function submitImageAndText(){
 	
 	
 		 $.ajax({
-	         url: 'imageAndText',
+	         url: '../imageAndText',
 	         type: "POST",
 	         data: new FormData(document.getElementById('testForm')),
 	         enctype: 'multipart/form-data',
@@ -86,7 +86,7 @@ function submitComplexObject(){
 	jQuery.ajax(
 			{    
 				type: "POST",
-				url: "./test/post",
+				url: "../test/post",
 				data: JSON.stringify(markers),
 				
 				beforeSend: function(xhr) {
@@ -121,7 +121,7 @@ function submitComplexObjectAndImage(){
 	$("#inputText").val(JSON.stringify(markers));
 	console.log($("#inputText").val());
 	$.ajax({
-         url: 'submitImageAndComplexObject',
+         url: '../submitImageAndComplexObject',
          type: "POST",
          data: new FormData(document.getElementById('testForm')),
          enctype: 'multipart/form-data',
