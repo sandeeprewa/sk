@@ -105,26 +105,29 @@ function submitComplexObject(){
 
 function submitComplexObjectAndImage(){
 	var markers = { 
+			"name":"as",
 			"country":{
 				"countryName":"india"
 			},
 			"quality" : "GOOD"
-	};
+	}
 
-var d =new FormData(document.getElementById('testForm'));	
+	$('input[name="name"]').val(markers);
 	
-d.append('country',"india");
-d.append('quality',"GOOD");
+	var d = new FormData();
 	
-	
-	 $.ajax({
-        url: 'submitImageAndComplexObject',
-        type: "POST",
-        data: d,
-        enctype: 'multipart/form-data',
-        processData: false,
-        contentType: false,
-   }) 
+	d.append("file1", $("#imageFileId").val());
+	d.append("name", JSON.stringify(markers));
+	$("#inputText").val(JSON.stringify(markers));
+	console.log($("#inputText").val());
+	$.ajax({
+         url: 'submitImageAndComplexObject',
+         type: "POST",
+         data: new FormData(document.getElementById('testForm')),
+         enctype: 'multipart/form-data',
+         processData: false,
+         contentType: false,
+    }) 
 
    
 }
