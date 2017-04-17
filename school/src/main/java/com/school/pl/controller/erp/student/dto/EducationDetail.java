@@ -1,36 +1,17 @@
 package com.school.pl.controller.erp.student.dto;
 
-import org.springframework.web.multipart.MultipartFile;
-
 public class EducationDetail {
 
-	private String studentClass;
-	private String studentSection;
-	private String studentSubject;
+	private String studentCurrentClass;
+	private String studentCurrentSection;
+	private String studentCurrentSubject;
 	private String lastSchoolName;
 	private String lastSchoolAddress;
-	private String lastSchoolClass;    //last attended class
-	private String lastSchoolSubject;  //if aplicable
+	private String lastSchoolClass;    
+	private String lastSchoolSubject;  
 	private String lastSchoolPercentage;
 	
-	public String getStudentClass() {
-		return studentClass;
-	}
-	public void setStudentClass(String studentClass) {
-		this.studentClass = studentClass;
-	}
-	public String getStudentSection() {
-		return studentSection;
-	}
-	public void setStudentSection(String studentSection) {
-		this.studentSection = studentSection;
-	}
-	public String getStudentSubject() {
-		return studentSubject;
-	}
-	public void setStudentSubject(String studentSubject) {
-		this.studentSubject = studentSubject;
-	}
+	
 	public String getLastSchoolName() {
 		return lastSchoolName;
 	}
@@ -60,6 +41,24 @@ public class EducationDetail {
 	}
 	public void setLastSchoolPercentage(String lastSchoolPercentage) {
 		this.lastSchoolPercentage = lastSchoolPercentage;
+	}
+	public String getStudentCurrentSubject() {
+		return studentCurrentSubject;
+	}
+	public void setStudentCurrentSubject(String studentCurrentSubject) {
+		this.studentCurrentSubject = studentCurrentSubject;
+	}
+	public String getStudentCurrentSection() {
+		return studentCurrentSection;
+	}
+	public void setStudentCurrentSection(String studentCurrentSection) {
+		this.studentCurrentSection = studentCurrentSection;
+	}
+	public String getStudentCurrentClass() {
+		return studentCurrentClass;
+	}
+	public void setStudentCurrentClass(String studentCurrentClass) {
+		this.studentCurrentClass = studentCurrentClass;
 	}
 	
 }

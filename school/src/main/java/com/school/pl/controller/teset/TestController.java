@@ -27,6 +27,12 @@ public class TestController {
 	@Autowired
 	HttpServletRequest  request;
 	
+	@RequestMapping(value ="/tesetget", method = RequestMethod.GET)
+	public String testGET(){
+		return "HI Testing";
+	}
+	
+	
 	@RequestMapping(value = "/test/post", method = RequestMethod.POST)
 	public String handle(@RequestBody World world){
 		System.out.println(world.getName());

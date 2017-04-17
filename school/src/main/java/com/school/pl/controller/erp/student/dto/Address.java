@@ -2,13 +2,15 @@ package com.school.pl.controller.erp.student.dto;
 
 public class Address {
 	
-	private String houseNo;
+	private String houseNumber;
 	private String village;
 	private String city;
 	private State state;
-	private String pinNo;
+	private String pinNumber;
 	private Nation country;
 	private String addressDetails;
+	
+	
 	
 	
 

@@ -14,8 +14,8 @@ public class StudentAdmissionValidator implements Validator{
 
 	public void validate(Object target, Errors errors) {
 		StudentAdmissionRecord studentAdmissionRecord = (StudentAdmissionRecord)target;
-		validateFirstName(studentAdmissionRecord.getFirstName());
-		validateLastName(studentAdmissionRecord.getLastName());
+//		validateFirstName(studentAdmissionRecord.getFirstName());
+//		validateLastName(studentAdmissionRecord.getLastName());
 		//further can be implemented
 	}
 	
