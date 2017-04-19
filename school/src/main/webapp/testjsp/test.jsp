@@ -22,5 +22,7 @@
 	<input type="button" id="imageAndText" value = 'Submit Image and Text'/>
 	<input type="button" id="complexObject" value='Complex Object' />
 	<input type="button" id="complexObjectAndImage" value ='ComplexOBject and Image'/>	
+	<input type="button" id="getRequestId" value ="Secure throgh Basic Header"/>
+	
 </body>
 </html>

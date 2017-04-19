@@ -22,7 +22,9 @@ $(document).ready(function (){
 	$("#complexObjectAndImage").click(function(){
 		 submitComplexObjectAndImage();
 	});
-	
+	$("#getRequestId").click(function(){
+		secureViaBasicAuth();
+	});	
 });
 
 function makeCall(){
@@ -111,11 +113,8 @@ function submitComplexObjectAndImage(){
 			},
 			"quality" : "GOOD"
 	}
-
 	$('input[name="name"]').val(markers);
-	
 	var d = new FormData();
-	
 	d.append("file1", $("#imageFileId").val());
 	d.append("name", JSON.stringify(markers));
 	$("#inputText").val(JSON.stringify(markers));
@@ -128,6 +127,25 @@ function submitComplexObjectAndImage(){
          processData: false,
          contentType: false,
     }) 
+}
 
-   
+function secureViaBasicAuth(){
+
+	jQuery.ajax(
+			{    
+				type: "GET",
+				url: "../tesetget",				
+				beforeSend: function(xhr) {
+					xhr.setRequestHeader("Accept", "application/json");
+					xhr.setRequestHeader("Content-Type", "application/json");
+					xhr.setRequestHeader ("Authorization", "Basic " + btoa("sa" + ":" + "hariom"))
+				},
+				success: function(data){
+					alert(data);
+				},
+				failure: function(errMsg) {
+					alert(errMsg);
+				}			
+		});
+
 }
