@@ -4,12 +4,12 @@ import java.sql.Timestamp;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import com.academics.school.pl.controller.erp.student.dto.Category;
-import com.academics.school.pl.controller.erp.student.dto.Disablity;
-import com.academics.school.pl.controller.erp.student.dto.Gender;
-import com.academics.school.pl.controller.erp.student.dto.Nation;
-import com.academics.school.pl.controller.erp.student.dto.Religion;
-import com.academics.school.pl.controller.erp.student.dto.State;
+import com.academics.school.pl.controller.registration.dto.Category;
+import com.academics.school.pl.controller.registration.dto.Disablity;
+import com.academics.school.pl.controller.registration.dto.Gender;
+import com.academics.school.pl.controller.registration.dto.Nation;
+import com.academics.school.pl.controller.registration.dto.Religion;
+import com.academics.school.pl.controller.registration.dto.State;
 
 public class EmployeeRecord {
 	
