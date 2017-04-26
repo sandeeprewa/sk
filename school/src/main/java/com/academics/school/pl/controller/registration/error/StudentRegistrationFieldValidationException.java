@@ -1,14 +1,14 @@
 package com.academics.school.pl.controller.registration.error;
 
 
-public class StudentAdmissionFieldValidationException extends RuntimeException {
+public class StudentRegistrationFieldValidationException extends RuntimeException {
 		
 	private static final long serialVersionUID = 1L;
 	
 	private String key;
 	private String msg;
 	
-	public StudentAdmissionFieldValidationException(String key, String msg){
+	public StudentRegistrationFieldValidationException(String key, String msg){
 		super(msg);
 		this.key = key;
 		this.msg = msg;
