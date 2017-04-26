@@ -1,7 +1,7 @@
 package com.academics.school.pl.controller.registration.dto;
 
 public class ParentDetail {
-		
+	
 	private String fatherName;
 	private String fatherMobileNumber;
 	private String fatherEmail;

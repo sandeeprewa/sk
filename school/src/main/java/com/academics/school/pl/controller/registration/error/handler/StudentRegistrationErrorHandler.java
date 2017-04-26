@@ -22,7 +22,7 @@ import com.academics.school.pl.rest.global.error.RestError;
 import com.academics.school.pl.rest.global.error.RestErrorMessage;
 
 @ControllerAdvice
-public class StudentAdmissionErrorHandler {
+public class StudentRegistrationErrorHandler {
 	
 	private RestError restError = null;
 	@Autowired

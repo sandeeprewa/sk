@@ -1,64 +1,36 @@
 package com.academics.school.pl.controller.registration.dto;
 
 public class EducationDetail {
-
-	private String studentCurrentClass;
-	private String studentCurrentSection;
-	private String studentCurrentSubject;
-	private String lastSchoolName;
-	private String lastSchoolAddress;
-	private String lastSchoolClass;    
-	private String lastSchoolSubject;  
-	private String lastSchoolPercentage;
 	
+	private String previousSchoolName;
+	private String previousSchoolAddress;
+	private String previousSchoolClass;
+	private String previousClassPercentage;
 	
-	public String getLastSchoolName() {
-		return lastSchoolName;
+	public String getPreviousSchoolName() {
+		return previousSchoolName;
 	}
-	public void setLastSchoolName(String lastSchoolName) {
-		this.lastSchoolName = lastSchoolName;
+	public void setPreviousSchoolName(String previousSchoolName) {
+		this.previousSchoolName = previousSchoolName;
 	}
-	public String getLastSchoolAddress() {
-		return lastSchoolAddress;
+	public String getPreviousSchoolAddress() {
+		return previousSchoolAddress;
 	}
-	public void setLastSchoolAddress(String lastSchoolAddress) {
-		this.lastSchoolAddress = lastSchoolAddress;
+	public void setPreviousSchoolAddress(String previousSchoolAddress) {
+		this.previousSchoolAddress = previousSchoolAddress;
 	}
-	public String getLastSchoolClass() {
-		return lastSchoolClass;
+	public String getPreviousSchoolClass() {
+		return previousSchoolClass;
 	}
-	public void setLastSchoolClass(String lastSchoolClass) {
-		this.lastSchoolClass = lastSchoolClass;
+	public void setPreviousSchoolClass(String previousSchoolClass) {
+		this.previousSchoolClass = previousSchoolClass;
 	}
-	public String getLastSchoolSubject() {
-		return lastSchoolSubject;
+	public String getPreviousClassPercentage() {
+		return previousClassPercentage;
 	}
-	public void setLastSchoolSubject(String lastSchoolSubject) {
-		this.lastSchoolSubject = lastSchoolSubject;
+	public void setPreviousClassPercentage(String previousClassPercentage) {
+		this.previousClassPercentage = previousClassPercentage;
 	}
-	public String getLastSchoolPercentage() {
-		return lastSchoolPercentage;
-	}
-	public void setLastSchoolPercentage(String lastSchoolPercentage) {
-		this.lastSchoolPercentage = lastSchoolPercentage;
-	}
-	public String getStudentCurrentSubject() {
-		return studentCurrentSubject;
-	}
-	public void setStudentCurrentSubject(String studentCurrentSubject) {
-		this.studentCurrentSubject = studentCurrentSubject;
-	}
-	public String getStudentCurrentSection() {
-		return studentCurrentSection;
-	}
-	public void setStudentCurrentSection(String studentCurrentSection) {
-		this.studentCurrentSection = studentCurrentSection;
-	}
-	public String getStudentCurrentClass() {
-		return studentCurrentClass;
-	}
-	public void setStudentCurrentClass(String studentCurrentClass) {
-		this.studentCurrentClass = studentCurrentClass;
-	}
+	
 	
 }

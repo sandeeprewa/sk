@@ -6,52 +6,52 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-import com.academics.school.pl.controller.registration.dto.StudentAdmissionRecord;
+import com.academics.school.pl.controller.registration.dto.StudentRegistrationRecord;
 import com.academics.school.sl.registration.StudentAdmissionService;
 
 @Component
-public class StudentAdmissionFacade {
+public class StudentRegistrationFacade {
 			
 /*	@Autowired
 	@Qualifier("studentAdmissionServiceImpl")
 	StudentAdmissionService studentAdmissionService;
 */
-	public StudentAdmissionRecord admitNewStudent(
-			StudentAdmissionRecord admissionRecord) {
+	public StudentRegistrationRecord createRegistrationStudentRecord(
+			StudentRegistrationRecord admissionRecord) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public  StudentAdmissionRecord updateStudentAdmissionRecord(
-			StudentAdmissionRecord admissionRecord) {
+	public  StudentRegistrationRecord updateStudentRegistrationRecord(
+			StudentRegistrationRecord admissionRecord) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public StudentAdmissionRecord getAdmissionRecordByStudentId(String studentId) {
+	public StudentRegistrationRecord getRegistrationRecordByRegistrationId(String studentId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public StudentAdmissionRecord deleteStudentAdmissionRecordById(
+	public StudentRegistrationRecord deleteStudentRegistrationRecordById(
 			String studentId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public List<StudentAdmissionRecord> getAdmissionRecordByStudentLastName(
+	public List<StudentRegistrationRecord> getAdmissionRecordByStudentLastName(
 			String studentName) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public List<StudentAdmissionRecord> getAdmissionRecordByStudentFirstName(
+	public List<StudentRegistrationRecord> getAdmissionRecordByStudentFirstName(
 			String studentName) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public List<StudentAdmissionRecord> getAdmissionRecordByStudentDateOfBirth(
+	public List<StudentRegistrationRecord> getAdmissionRecordByStudentDateOfBirth(
 			String dateOfBirth) {
 		// TODO Auto-generated method stub
 		return null;
