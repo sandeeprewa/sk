@@ -70,6 +70,18 @@ public class TestController {
 		return "hii";
 	}
 	
+	@RequestMapping(value ="/submitImageAndComplexObject1", method = RequestMethod.POST)
+	public String tese11t(@Valid @ModelAttribute Pic1 login) throws JsonParseException, JsonMappingException, IOException{
+		System.out.println(login.getName());
+		MultipartFile multipartFile = login.getFile1();
+		transfer(multipartFile);
+		ComplexObjectImage complexObject = new ObjectMapper().readValue(login.getName(), ComplexObjectImage.class);
+		System.out.println(complexObject.getCountry().getCountryName());
+		System.out.println(complexObject.getQuality().toString());
+		return "hii";
+	}
+	
+	
 /*	@SuppressWarnings("unused")
 	private String saveIntoLocalServerDirectory(MultipartFile multipartFile) throws IOException{
 		String ROOT_PATH = System.getProperty("catalina.home");

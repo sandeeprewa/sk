@@ -2,6 +2,8 @@ package com.academics.school.pl.controller.registration.error.handler;
 
 import java.util.Locale;
 
+import javax.validation.ConstraintViolationException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
@@ -10,7 +12,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.academics.school.pl.controller.registration.error.StudentAdmissionFailureExnception;
 import com.academics.school.pl.controller.registration.error.StudentAdmissionFieldValidationException;
 import com.academics.school.pl.controller.registration.error.StudentAlreadyRegisteredException;
 import com.academics.school.pl.controller.registration.error.StudentDoesNotExistException;
@@ -25,6 +26,7 @@ import com.academics.school.pl.rest.global.error.RestErrorMessage;
 public class StudentRegistrationErrorHandler {
 	
 	private RestError restError = null;
+
 	@Autowired
 	MessageSource messageSource;
 	
@@ -43,9 +45,9 @@ public class StudentRegistrationErrorHandler {
 	}
 	
 	@ResponseBody
-	@ExceptionHandler(value = StudentAdmissionFailureExnception.class)
+	@ExceptionHandler(value = StudentAdmissionFieldValidationException.class)
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
-	public RestError handleStudentAdmissionFailureExnception(StudentAdmissionFailureExnception exception){
+	public RestError handleStudentAdmissionFailureExnception(StudentAdmissionFieldValidationException exception){
 		restError = new RestError();
 		restError.setHttpStatus(HttpStatus.BAD_REQUEST.toString());
 		restError.setCode(Code.FEES_NOT_PAID.toString());
@@ -96,5 +98,15 @@ public class StudentRegistrationErrorHandler {
 		restError.setMessage(messageSource.getMessage(RestErrorMessage.STUDENT_DOES_NOT_EXIST, null, Locale.US));
 		return restError;
 	}
-	
+
+	@ResponseBody
+	@ExceptionHandler(value = ConstraintViolationException.class)
+	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
+	public RestError handleConstraintViloationException(ConstraintViolationException e){
+		restError = new RestError();
+		restError.setHttpStatus(HttpStatus.BAD_REQUEST.toString());
+		restError.setCode(Code.FEES_NOT_PAID.toString());
+		restError.setMessage(messageSource.getMessage(RestErrorMessage.INPUT_IS_INVALID, null, Locale.US));
+		return restError;
+	}
 }

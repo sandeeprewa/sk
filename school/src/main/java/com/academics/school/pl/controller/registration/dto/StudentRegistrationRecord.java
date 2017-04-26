@@ -2,6 +2,8 @@ package com.academics.school.pl.controller.registration.dto;
 
 import java.sql.Timestamp;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class StudentRegistrationRecord {
 
 	private PersonalDetail personalDetail;
@@ -10,6 +12,30 @@ public class StudentRegistrationRecord {
     private Address currentAddress;
     private Address permanentAddress;
     private Timestamp timeStamp;
+	private MultipartFile studentImage;
+	private MultipartFile birthCertificate;
+	private MultipartFile castCertificate;
+	private MultipartFile disablityCertificate;
+
+	public MultipartFile getDisablityCertificate() {
+		return disablityCertificate;
+	}
+
+	public void setDisablityCertificate(MultipartFile disablityCertificate) {
+		this.disablityCertificate = disablityCertificate;
+	}
+
+	public MultipartFile getStudentImage() {
+		return studentImage;
+	}
+
+	public MultipartFile getBirthCertificate() {
+		return birthCertificate;
+	}
+
+	public MultipartFile getCastCertificate() {
+		return castCertificate;
+	}
 
 	public PersonalDetail getPersonalDetail() {
 		return personalDetail;
@@ -57,5 +83,20 @@ public class StudentRegistrationRecord {
 
 	public void setTimeStamp(Timestamp timeStamp) {
 		this.timeStamp = timeStamp;
+	}
+
+	public void setStudentImage(MultipartFile studentImage) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setBirthCertificate(MultipartFile birthCertificate) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setCastCertificate(MultipartFile castCertificate) {
+		// TODO Auto-generated method stub
+		
 	}
 }

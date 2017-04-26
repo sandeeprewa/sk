@@ -3,6 +3,9 @@ package com.academics.school.pl.controller.registration;
 import java.io.IOException;
 import java.util.List;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.academics.school.pl.controller.registration.dto.FakeStudentRegistrationDTO;
 import com.academics.school.pl.controller.registration.dto.StudentRegistrationRecord;
 import com.academics.school.pl.controller.registration.error.StudentAdmissionFieldValidationException;
@@ -34,13 +38,8 @@ public class StudentRegistrationController {
 	@Autowired
 	StudentRegistrationFacade studentRegistrationFacade;
 	
-	@InitBinder
-    protected void initBinder(WebDataBinder binder) {
-           binder.setValidator(new StudentRegisterationRecordValidator());
-    }
-
 	@RequestMapping(value = "{registrationId}", method = RequestMethod.GET)
-	public StudentRegistrationRecord getStudentAdmissionRecord(@PathVariable String registrationId) 
+	public StudentRegistrationRecord getStudentAdmissionRecord(@Valid @NotNull @PathVariable String registrationId) 
 			throws StudentIdDoesNotExistException {
 		return studentRegistrationFacade.getRegistrationRecordByRegistrationId(registrationId);
 	}
@@ -49,6 +48,7 @@ public class StudentRegistrationController {
 	public StudentRegistrationRecord createNewStudentRegistrationRecord(@RequestBody FakeStudentRegistrationDTO fakeRegistrationRecord) 
 			throws StudentAdmissionFieldValidationException, StudentAlreadyRegisteredException, JsonParseException, JsonMappingException, IOException{
 		StudentRegistrationRecord studentRegistrationRecord = buildStudentRegistrationRecord(fakeRegistrationRecord);
+		validate(studentRegistrationRecord);
 		return studentRegistrationFacade.createRegistrationStudentRecord(studentRegistrationRecord);
 	}
 	
@@ -76,10 +76,15 @@ public class StudentRegistrationController {
 	
 	private StudentRegistrationRecord buildStudentRegistrationRecord(FakeStudentRegistrationDTO
 			   fakeRegistrationRecord) throws JsonParseException, JsonMappingException, IOException {
-			return (StudentRegistrationRecord)new ObjectMapper().readValue(fakeRegistrationRecord.getRegistrationJson(), StudentRegistrationRecord.class);
-		}
+			StudentRegistrationRecord studentRegistrationRecord = (StudentRegistrationRecord)new ObjectMapper()
+							.readValue(fakeRegistrationRecord.getRegistrationJson(),StudentRegistrationRecord.class);
+			studentRegistrationRecord.setStudentImage(fakeRegistrationRecord.getStudentImage());
+			studentRegistrationRecord.setBirthCertificate(fakeRegistrationRecord.getBirthCertificate());
+			studentRegistrationRecord.setCastCertificate(fakeRegistrationRecord.getCastCertificate());
+			return studentRegistrationRecord;
+	}
 
-	private StudentRegisterationRecordValidator getStudentRegistrationRecordValidator(){
-		return new StudentRegisterationRecordValidator();
+	private void validate(StudentRegistrationRecord studentRegistrationRecord){
+		StudentRegisterationRecordValidator.validate(studentRegistrationRecord);
 	}
 }

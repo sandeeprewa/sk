@@ -16,13 +16,10 @@ public class StudentRegisterationRecordValidator implements Validator{
 		StudentRegistrationRecord studentAdmissionRecord = (StudentRegistrationRecord)target;
 	}
 	
-	private void validateFirstName(String firstName){
-		if(ValidationUtil.isEmpty(firstName))
-		throw new StudentAdmissionFieldValidationException("firstName","firstname.invalid.message");
-	}
-	
-	private void validateLastName(String lastName){
-		if(ValidationUtil.isEmpty(lastName))
-			throw new StudentAdmissionFieldValidationException("lastName","lastname.invalid.message");			
+	/*
+	 * Manual validation
+	 */
+	public static void validate(StudentRegistrationRecord studentRegistrationRecord){
+			
 	}
 }
