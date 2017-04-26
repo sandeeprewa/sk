@@ -8,14 +8,11 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.academics.school.pl.controller.registration.dto.FakeStudentRegistrationDTO;
 import com.academics.school.pl.controller.registration.dto.SearchRegistrationRequestDTO;
 import com.academics.school.pl.controller.registration.dto.StudentRegistrationRecord;
@@ -68,7 +65,7 @@ public class StudentRegistrationController {
 	/*
 	 * Filter purpose
 	 * Better way it can be implemented
-	 * 
+	 * Only For User
 	 */
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
 	public List<StudentRegistrationRecord> getStudentAdmissionRecordByStudentName(@RequestBody SearchRegistrationRequestDTO searchRegistrationRequestDTO) 
