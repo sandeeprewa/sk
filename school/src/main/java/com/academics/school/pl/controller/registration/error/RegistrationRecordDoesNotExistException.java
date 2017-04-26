@@ -1,10 +1,10 @@
 package com.academics.school.pl.controller.registration.error;
 
-public class StudentDoesNotExistException extends Exception {
+public class RegistrationRecordDoesNotExistException extends Exception {
 
 	private static final long serialVersionUID = -44848021738565875L;
 
-	StudentDoesNotExistException(String msg){
+	RegistrationRecordDoesNotExistException(String msg){
 		super(msg);
 	}
 }

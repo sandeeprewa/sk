@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
+import com.academics.school.pl.controller.registration.dto.SearchRegistrationRequestDTO;
 import com.academics.school.pl.controller.registration.dto.StudentRegistrationRecord;
 import com.academics.school.sl.registration.StudentAdmissionService;
 
@@ -53,6 +54,12 @@ public class StudentRegistrationFacade {
 
 	public List<StudentRegistrationRecord> getAdmissionRecordByStudentDateOfBirth(
 			String dateOfBirth) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<StudentRegistrationRecord> getRegistrationRecordBasedOnDiffParameter(
+			SearchRegistrationRequestDTO searchRegistrationRequestDTO) {
 		// TODO Auto-generated method stub
 		return null;
 	}

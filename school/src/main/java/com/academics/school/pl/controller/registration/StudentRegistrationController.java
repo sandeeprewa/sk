@@ -17,10 +17,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.academics.school.pl.controller.registration.dto.FakeStudentRegistrationDTO;
+import com.academics.school.pl.controller.registration.dto.SearchRegistrationRequestDTO;
 import com.academics.school.pl.controller.registration.dto.StudentRegistrationRecord;
+import com.academics.school.pl.controller.registration.error.RegistrationRecordDoesNotExistException;
 import com.academics.school.pl.controller.registration.error.StudentAdmissionFieldValidationException;
 import com.academics.school.pl.controller.registration.error.StudentAlreadyRegisteredException;
-import com.academics.school.pl.controller.registration.error.StudentDoesNotExistException;
 import com.academics.school.pl.controller.registration.error.StudentIDEditException;
 import com.academics.school.pl.controller.registration.error.StudentIdDoesNotExistException;
 import com.academics.school.pl.controller.registration.validation.StudentRegisterationRecordValidator;
@@ -47,7 +48,7 @@ public class StudentRegistrationController {
 	@RequestMapping(method = RequestMethod.POST)
 	public StudentRegistrationRecord createNewStudentRegistrationRecord(@RequestBody FakeStudentRegistrationDTO fakeRegistrationRecord) 
 			throws StudentAdmissionFieldValidationException, StudentAlreadyRegisteredException, JsonParseException, JsonMappingException, IOException{
-		StudentRegistrationRecord studentRegistrationRecord = buildStudentRegistrationRecord(fakeRegistrationRecord);
+		StudentRegistrationRecord studentRegistrationRecord = buildStudentRegistrationRecordDTO(fakeRegistrationRecord);
 		validate(studentRegistrationRecord);
 		return studentRegistrationFacade.createRegistrationStudentRecord(studentRegistrationRecord);
 	}
@@ -67,14 +68,15 @@ public class StudentRegistrationController {
 	/*
 	 * Filter purpose
 	 * Better way it can be implemented
+	 * 
 	 */
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
-	public List<StudentRegistrationRecord> getStudentAdmissionRecordByStudentName(@PathVariable String studentFirstName) 
-			throws StudentDoesNotExistException {
-		return studentRegistrationFacade.getAdmissionRecordByStudentFirstName(studentFirstName);
+	public List<StudentRegistrationRecord> getStudentAdmissionRecordByStudentName(@RequestBody SearchRegistrationRequestDTO searchRegistrationRequestDTO) 
+			throws RegistrationRecordDoesNotExistException {
+		return studentRegistrationFacade.getRegistrationRecordBasedOnDiffParameter(searchRegistrationRequestDTO);
 	}
 	
-	private StudentRegistrationRecord buildStudentRegistrationRecord(FakeStudentRegistrationDTO
+	private StudentRegistrationRecord buildStudentRegistrationRecordDTO(FakeStudentRegistrationDTO
 			   fakeRegistrationRecord) throws JsonParseException, JsonMappingException, IOException {
 			StudentRegistrationRecord studentRegistrationRecord = (StudentRegistrationRecord)new ObjectMapper()
 							.readValue(fakeRegistrationRecord.getRegistrationJson(),StudentRegistrationRecord.class);
