@@ -18,11 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.academics.school.pl.controller.registration.dto.FakeStudentRegistrationDTO;
 import com.academics.school.pl.controller.registration.dto.StudentRegistrationRecord;
-import com.academics.school.pl.controller.registration.error.StudentAdmissionFieldValidationException;
+import com.academics.school.pl.controller.registration.error.InputInsuffiecientException;
 import com.academics.school.pl.controller.registration.error.StudentAlreadyRegisteredException;
 import com.academics.school.pl.controller.registration.error.StudentDoesNotExistException;
 import com.academics.school.pl.controller.registration.error.StudentIDEditException;
 import com.academics.school.pl.controller.registration.error.StudentIdDoesNotExistException;
+import com.academics.school.pl.controller.registration.error.StudentRegistrationFieldValidationException;
 import com.academics.school.pl.controller.registration.validation.StudentRegisterationRecordValidator;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -46,7 +47,7 @@ public class StudentRegistrationController {
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public StudentRegistrationRecord createNewStudentRegistrationRecord(@RequestBody FakeStudentRegistrationDTO fakeRegistrationRecord) 
-			throws StudentAdmissionFieldValidationException, StudentAlreadyRegisteredException, JsonParseException, JsonMappingException, IOException{
+			throws StudentRegistrationFieldValidationException, StudentAlreadyRegisteredException, JsonParseException, JsonMappingException, IOException, StudentRegistrationFieldValidationException {
 		StudentRegistrationRecord studentRegistrationRecord = buildStudentRegistrationRecord(fakeRegistrationRecord);
 		validate(studentRegistrationRecord);
 		return studentRegistrationFacade.createRegistrationStudentRecord(studentRegistrationRecord);
@@ -84,7 +85,7 @@ public class StudentRegistrationController {
 			return studentRegistrationRecord;
 	}
 
-	private void validate(StudentRegistrationRecord studentRegistrationRecord){
+	private void validate(StudentRegistrationRecord studentRegistrationRecord) throws StudentRegistrationFieldValidationException {
 		StudentRegisterationRecordValidator.validate(studentRegistrationRecord);
 	}
 }

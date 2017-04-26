@@ -11,12 +11,11 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
-
-import com.academics.school.pl.controller.registration.error.StudentAdmissionFieldValidationException;
 import com.academics.school.pl.controller.registration.error.StudentAlreadyRegisteredException;
 import com.academics.school.pl.controller.registration.error.StudentDoesNotExistException;
 import com.academics.school.pl.controller.registration.error.StudentIDEditException;
 import com.academics.school.pl.controller.registration.error.StudentIdDoesNotExistException;
+import com.academics.school.pl.controller.registration.error.StudentRegistrationFieldValidationException;
 import com.academics.school.pl.rest.global.error.Code;
 import com.academics.school.pl.rest.global.error.FieldError;
 import com.academics.school.pl.rest.global.error.RestError;
@@ -29,30 +28,30 @@ public class StudentRegistrationErrorHandler {
 
 	@Autowired
 	MessageSource messageSource;
-	
+	/*
+	 * { 
+	 *     status : standard htp
+	 *     code : specific to app
+	 *     message : Validation Issue;
+	 *     Field Error :   {
+				field : "fname",
+				msg : "Fname is absent"
+				
+	 *        }
+	 * }
+	 * 
+	 */
 	@ResponseBody
-	@ExceptionHandler(value = StudentAdmissionFieldValidationException.class)
+	@ExceptionHandler(value = StudentRegistrationFieldValidationException.class)
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
-	public RestError handleStudentAdmissionFieldValidationException(StudentAdmissionFieldValidationException exception){
+	public RestError handleStudentAdmissionFieldValidationException(StudentRegistrationFieldValidationException exception){
 		restError = new RestError();
 		restError.setHttpStatus(HttpStatus.BAD_REQUEST.toString());
 		restError.setCode(Code.FEES_NOT_PAID.toString());
-		restError.setMessage(messageSource.getMessage(RestErrorMessage.VALIDATION_FAILURE,null,Locale.US));
-		restError.setFieldError(new FieldError(
-				 messageSource.getMessage(exception.getKey(),null,Locale.US)
+		restError.setMessage(messageSource.getMessage(RestErrorMessage.VALIDATION_FAILURE,null, Locale.US));
+		restError.setFieldError(new FieldError(exception.getKey()
 				,messageSource.getMessage(exception.getMsg(),null, Locale.US)));
 		return restError;	
-	}
-	
-	@ResponseBody
-	@ExceptionHandler(value = StudentAdmissionFieldValidationException.class)
-	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
-	public RestError handleStudentAdmissionFailureExnception(StudentAdmissionFieldValidationException exception){
-		restError = new RestError();
-		restError.setHttpStatus(HttpStatus.BAD_REQUEST.toString());
-		restError.setCode(Code.FEES_NOT_PAID.toString());
-		restError.setMessage(messageSource.getMessage(RestErrorMessage.ADMISSION_FAILURE, null, Locale.US));
-		return restError;
 	}
 	
 	@ResponseBody
@@ -109,4 +108,5 @@ public class StudentRegistrationErrorHandler {
 		restError.setMessage(messageSource.getMessage(RestErrorMessage.INPUT_IS_INVALID, null, Locale.US));
 		return restError;
 	}
+	
 }
