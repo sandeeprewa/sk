@@ -12,6 +12,7 @@ public class StudentRegistrationRecord {
     private Address currentAddress;
     private Address permanentAddress;
     private Timestamp timeStamp;
+    
 	private MultipartFile studentImage;
 	private MultipartFile birthCertificate;
 	private MultipartFile castCertificate;

@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+
+import com.academics.school.pl.controller.registration.error.RegistrationRecordDoesNotExistException;
 import com.academics.school.pl.controller.registration.error.StudentAlreadyRegisteredException;
 import com.academics.school.pl.controller.registration.error.StudentIDEditException;
 import com.academics.school.pl.controller.registration.error.StudentIdDoesNotExistException;
@@ -27,19 +29,7 @@ public class StudentRegistrationErrorHandler {
 
 	@Autowired
 	MessageSource messageSource;
-	/*
-	 * { 
-	 *     status : standard htp
-	 *     code : specific to app
-	 *     message : Validation Issue;
-	 *     Field Error :   {
-				field : "fname",
-				msg : "Fname is absent"
-				
-	 *        }
-	 * }
-	 * 
-	 */
+	
 	@ResponseBody
 	@ExceptionHandler(value = StudentRegistrationFieldValidationException.class)
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
