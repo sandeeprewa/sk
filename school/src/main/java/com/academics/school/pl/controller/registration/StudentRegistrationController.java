@@ -1,6 +1,8 @@
 package com.academics.school.pl.controller.registration;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -23,6 +25,7 @@ import com.academics.school.pl.controller.registration.error.StudentAlreadyRegis
 import com.academics.school.pl.controller.registration.error.StudentIDEditException;
 import com.academics.school.pl.controller.registration.error.StudentIdDoesNotExistException;
 import com.academics.school.pl.controller.registration.error.StudentRegistrationFieldValidationException;
+import com.academics.school.pl.controller.registration.validation.RegistrationRecordStatusDTOValidator;
 import com.academics.school.pl.controller.registration.validation.StudentRegisterationRecordValidator;
 import com.academics.school.pl.rest.security.PrivilageEnum;
 import com.academics.school.pl.rest.security.RequiredPrivilage;
@@ -88,10 +91,20 @@ public class StudentRegistrationController {
 	 */
 	@RequestMapping(value = "/status/", method = RequestMethod.PUT)
 	@RequiredPrivilage({PrivilageEnum.EDITOR})
-	public String changeRegistrationRecordStatus(@RequestBody RegistrationRecordStatusTrackerDTO statusDTO){
-		return "";
+	public List<StudentRegistrationRecord> changeRegistrationRecordStatus(@RequestBody RegistrationRecordStatusTrackerDTO[] inputStatusDTO){
+		ArrayList<RegistrationRecordStatusTrackerDTO> statusDTOList = new ArrayList<RegistrationRecordStatusTrackerDTO>(Arrays.asList(inputStatusDTO));
+		validateListOfRegistrationRecordStatusTrackerDTO(statusDTOList);
+		List<StudentRegistrationRecord> registeredRecord = studentRegistrationFacade.changeStatusOfRegistrationRecord(statusDTOList);
+		return registeredRecord;
 	}
 	
+	
+	
+	private void validateListOfRegistrationRecordStatusTrackerDTO(
+			ArrayList<RegistrationRecordStatusTrackerDTO> statusDTOList) {
+		RegistrationRecordStatusDTOValidator.validate(statusDTOList);
+	}
+
 	private StudentRegistrationRecord buildStudentRegistrationRecordDTO(FakeStudentRegistrationDTO
 			   fakeRegistrationRecord) throws JsonParseException, JsonMappingException, IOException {
 			StudentRegistrationRecord studentRegistrationRecord = (StudentRegistrationRecord)new ObjectMapper()

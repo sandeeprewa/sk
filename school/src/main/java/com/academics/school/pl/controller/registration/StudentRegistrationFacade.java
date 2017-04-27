@@ -1,11 +1,13 @@
 package com.academics.school.pl.controller.registration;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
+import com.academics.school.pl.controller.registration.dto.RegistrationRecordStatusTrackerDTO;
 import com.academics.school.pl.controller.registration.dto.SearchRegistrationRequestDTO;
 import com.academics.school.pl.controller.registration.dto.StudentRegistrationRecord;
 import com.academics.school.sl.registration.StudentAdmissionService;
@@ -60,6 +62,12 @@ public class StudentRegistrationFacade {
 
 	public List<StudentRegistrationRecord> getRegistrationRecordBasedOnDiffParameter(
 			SearchRegistrationRequestDTO searchRegistrationRequestDTO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<StudentRegistrationRecord> changeStatusOfRegistrationRecord(
+			ArrayList<RegistrationRecordStatusTrackerDTO> statusDTOList) {
 		// TODO Auto-generated method stub
 		return null;
 	}
