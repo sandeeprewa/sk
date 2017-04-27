@@ -22,50 +22,14 @@ public class StudentRegisterationRecordValidator implements Validator{
 	 */
 	public static void validate(StudentRegistrationRecord studentRegistrationRecord) throws StudentRegistrationFieldValidationException{
 		
-		String studentFirstName = studentRegistrationRecord.getPersonalDetail().getFirstName();
-		if(!ValidationUtil.isEmptyOrNull(studentFirstName))
-			throw new StudentRegistrationFieldValidationException("fname","input.fname.invalid");
-		else if(!ValidationUtil.containOnlyAlphnumericWords(studentFirstName))
-		   throw new StudentRegistrationFieldValidationException("fnameword","input.fnameword.invalid");
-		
-		
-        String studentLastName = studentRegistrationRecord.getPersonalDetail().getLastName();
-		if(!ValidationUtil.isEmptyOrNull(studentLastName))
-			throw new StudentRegistrationFieldValidationException("lname","input.lname.invalid");  
-		else if(!ValidationUtil.containOnlyAlphnumericWords(studentLastName))
-			   throw new StudentRegistrationFieldValidationException("lnameword","input.lnameword.invalid");
-		
-        String studentGender = studentRegistrationRecord.getPersonalDetail().getGender().getName();
-		if(!ValidationUtil.isEmptyOrNull(studentGender))
-			throw new StudentRegistrationFieldValidationException("gender","input.gender.invalid"); 
-		
-	    String studentMobileNumber = studentRegistrationRecord.getPersonalDetail().getMobileNumber();
-			if(!ValidationUtil.isEmptyOrNull(studentMobileNumber))
-				throw new StudentRegistrationFieldValidationException("mobileno","input.mobileno.invalid");
-		else if(!ValidationUtil.containOnlyNumbers(studentMobileNumber))
-				   throw new StudentRegistrationFieldValidationException("mobilenonumber","input.mobilenonumber.invalid");
-			
-		String email = studentRegistrationRecord.getPersonalDetail().getEmail();
-		if(!ValidationUtil.isEmptyOrNull(email))
-			throw new StudentRegistrationFieldValidationException("email","input.email.invalid"); 
-		else if(!ValidationUtil.isVaildEmail(email))
-			throw new StudentRegistrationFieldValidationException("incorrectemail","input.incorrectemail.invalid");
-
-	    String studentdateofbirth = studentRegistrationRecord.getPersonalDetail().getDateOfBirth();
-			    if(!ValidationUtil.isEmptyOrNull(studentdateofbirth))
-				   throw new StudentRegistrationFieldValidationException("dataofbirth","input.dateofbirth.invalid"); 
-				
-	    String studentAge = studentRegistrationRecord.getPersonalDetail().getAge();
-				if(!ValidationUtil.isEmptyOrNull(studentAge))
-				throw new StudentRegistrationFieldValidationException("age","input.age.invalid");
-			 else if(!ValidationUtil.containOnlyNumbers(studentAge))
-					   throw new StudentRegistrationFieldValidationException("agenumber","input.agenumber.invalid");
-
-		 String studentCatagory = studentRegistrationRecord.getPersonalDetail().getCatagory().getName();
-				if(!ValidationUtil.isEmptyOrNull(studentCatagory))
-				   throw new StudentRegistrationFieldValidationException("category","input.category.invalid");
-				else if(!ValidationUtil.containOnlyAlphnumericWords(studentCatagory))
-					   throw new StudentRegistrationFieldValidationException("categoryword","input.categoryword.invalid");
+		validateIsEmptyOrNullOrContainsOnlyAlphnumeric(studentRegistrationRecord.getPersonalDetail().getFirstName(), "fname");
+		validateIsEmptyOrNullOrContainsOnlyAlphnumeric(studentRegistrationRecord.getPersonalDetail().getLastName(),"lname");
+		validateIsEmptyOrNull(studentRegistrationRecord.getPersonalDetail().getGender().getName(), "gender");
+		validateIsEmptyOrNullOrContainsOnlyNumber(studentRegistrationRecord.getPersonalDetail().getMobileNumber(), "mobileno");
+		validateIsEmptyOrNullOrValidEmail(studentRegistrationRecord.getPersonalDetail().getEmail(), "email");
+		validateIsEmptyOrNull(studentRegistrationRecord.getPersonalDetail().getDateOfBirth(), "dataofbirth");
+		validateIsEmptyOrNullOrContainsOnlyNumber(studentRegistrationRecord.getPersonalDetail().getAge(), "age");
+		validateIsEmptyOrNullOrContainsOnlyAlphnumeric(studentRegistrationRecord.getPersonalDetail().getCatagory().getName(), "category");
 
 
 	    String studentDisablity = studentRegistrationRecord.getPersonalDetail().getDisablity().getName();
@@ -265,33 +229,46 @@ public class StudentRegisterationRecordValidator implements Validator{
 							  
 										   		   
 			String studentPermanentAddressDetails= studentRegistrationRecord.getPermanentAddress().getAddressDetails();
-								if(!ValidationUtil.isEmptyOrNull(studentCurrentAddressDetails))
+						if(!ValidationUtil.isEmptyOrNull(studentCurrentAddressDetails))
 									throw new StudentRegistrationFieldValidationException("permanentaddressdetails","input.permanentaddressdetails.invalid");
-								else if(!ValidationUtil.containOnlyAlphnumericWords(studentCurrentAddressDetails))
+						else if(!ValidationUtil.containOnlyAlphnumericWords(studentCurrentAddressDetails))
 									   throw new StudentRegistrationFieldValidationException("permanentaddressdetailsword","input.permanentaddressdetailsword.invalid");
 							  
 		
-								
-			
-					
+	}
+	
+	private static void validateIsEmptyOrNullOrValidEmail(String stringToBeValidated, String inputKey){
+		validateIsEmptyOrNull(stringToBeValidated, inputKey);
+		validatesValidEmail(stringToBeValidated, inputKey);
+	}
+	
+	private static void validateIsEmptyOrNullOrContainsOnlyNumber(String stringToBeValidated, String inputKey) {
+		validateIsEmptyOrNull(stringToBeValidated, inputKey);
+		validateContainsOnlyNumber(stringToBeValidated, inputKey);
+	}
 
-						
-						
-						
-						
-				   
-				   
-				   
-				   
-				   
-				   
-				   
-				   
-				   
-				   
-				   
-				   
-				   
-				   
+	private static void validateIsEmptyOrNullOrContainsOnlyAlphnumeric(String stringToBeValidated, String inputKey) {
+    	validateIsEmptyOrNull(stringToBeValidated, inputKey);
+    	validateContainsOnlyAlphnumeric(stringToBeValidated, inputKey);
+	}
+	
+	private static void validateContainsOnlyAlphnumeric(String stringToBeValidated, String inputKey){
+		 if(!ValidationUtil.containOnlyAlphnumericWords(stringToBeValidated))
+			   throw new StudentRegistrationFieldValidationException(inputKey + "word","input."+ inputKey + "word" +".invalid");
+	}
+	
+	private static void validateIsEmptyOrNull(String stringToBeValidated, String inputKey) {
+		if(!ValidationUtil.isEmptyOrNull(stringToBeValidated))
+			throw new StudentRegistrationFieldValidationException(inputKey,"input."+ inputKey +".invalid");
+	}
+	
+	private static void validateContainsOnlyNumber(String stringToBeValidated, String inputKey){
+		if(!ValidationUtil.containOnlyNumbers(stringToBeValidated))
+			throw new StudentRegistrationFieldValidationException(inputKey,"input."+ inputKey +".invalid");
+	}
+	
+	private static void validatesValidEmail(String stringToBeValidated, String inputKey){
+		if(!ValidationUtil.isVaildEmail(stringToBeValidated))
+			throw new StudentRegistrationFieldValidationException(inputKey,"input."+ inputKey +".invalid");
 	}
 }
