@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+
+import com.academics.school.pl.controller.registration.error.RegistrationRecordDoesNotExistException;
 import com.academics.school.pl.controller.registration.error.StudentAlreadyRegisteredException;
-import com.academics.school.pl.controller.registration.error.StudentDoesNotExistException;
 import com.academics.school.pl.controller.registration.error.StudentIDEditException;
 import com.academics.school.pl.controller.registration.error.StudentIdDoesNotExistException;
 import com.academics.school.pl.controller.registration.error.StudentRegistrationFieldValidationException;
@@ -28,19 +29,7 @@ public class StudentRegistrationErrorHandler {
 
 	@Autowired
 	MessageSource messageSource;
-	/*
-	 * { 
-	 *     status : standard htp
-	 *     code : specific to app
-	 *     message : Validation Issue;
-	 *     Field Error :   {
-				field : "fname",
-				msg : "Fname is absent"
-				
-	 *        }
-	 * }
-	 * 
-	 */
+	
 	@ResponseBody
 	@ExceptionHandler(value = StudentRegistrationFieldValidationException.class)
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
@@ -88,9 +77,9 @@ public class StudentRegistrationErrorHandler {
 	}
 	
 	@ResponseBody
-	@ExceptionHandler(value = StudentDoesNotExistException.class)
+	@ExceptionHandler(value = RegistrationRecordDoesNotExistException.class)
 	@ResponseStatus(code = HttpStatus.NOT_FOUND)
-	public RestError handleStudentDoesNotExistException(StudentDoesNotExistException exception){
+	public RestError handleStudentDoesNotExistException(RegistrationRecordDoesNotExistException exception){
 		restError = new RestError();
 		restError.setHttpStatus(HttpStatus.NOT_FOUND.toString());
 		restError.setCode(Code.FEES_NOT_PAID.toString());
