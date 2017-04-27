@@ -14,7 +14,7 @@ public class PersonalDetail {
 	private Disablity disablity;
 	private Nation nationality;
 	private Religion religion;
-    private String boodGroup;
+    private String bloodGroup;
     private String adhaarCardNo;
     
 	public String getFirstName() {
@@ -89,11 +89,11 @@ public class PersonalDetail {
 	public void setReligion(Religion religion) {
 		this.religion = religion;
 	}
-	public String getBoodGroup() {
-		return boodGroup;
+	public String getBloodGroup() {
+		return bloodGroup;
 	}
-	public void setBoodGroup(String boodGroup) {
-		this.boodGroup = boodGroup;
+	public void setBloodGroup(String bloodGroup) {
+		this.bloodGroup = bloodGroup;
 	}
 	public String getAdhaarCardNo() {
 		return adhaarCardNo;

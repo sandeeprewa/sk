@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.academics.school.pl.controller.registration.dto.FakeStudentRegistrationDTO;
 import com.academics.school.pl.controller.registration.dto.StudentRegistrationRecord;
-import com.academics.school.pl.controller.registration.error.InputInsuffiecientException;
+//import com.academics.school.pl.controller.registration.error.InputInsuffiecientException;
 import com.academics.school.pl.controller.registration.error.StudentAlreadyRegisteredException;
 import com.academics.school.pl.controller.registration.error.StudentDoesNotExistException;
 import com.academics.school.pl.controller.registration.error.StudentIDEditException;

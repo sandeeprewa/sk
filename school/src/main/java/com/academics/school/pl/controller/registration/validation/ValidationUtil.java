@@ -11,11 +11,12 @@ public class ValidationUtil {
 	
 	public static boolean isEmpty(String input){
 		//to be implemented
-		return true;
+		
+		return input=="";
 	}
 	
 	public static boolean isNull(String input){
-		return true;
+		return input==null;
 	}
 	
 	public static boolean isEmptyOrNull(String input){
