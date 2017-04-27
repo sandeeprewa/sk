@@ -4,6 +4,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
+import com.academics.school.pl.controller.registration.dto.Category;
 import com.academics.school.pl.controller.registration.dto.StudentRegistrationRecord;
 import com.academics.school.pl.controller.registration.error.StudentRegistrationFieldValidationException;
 
@@ -30,12 +31,10 @@ public class StudentRegisterationRecordValidator implements Validator{
 		validateIsEmptyOrNull(studentRegistrationRecord.getPersonalDetail().getDateOfBirth(), "dataofbirth");
 		validateIsEmptyOrNullOrContainsOnlyNumber(studentRegistrationRecord.getPersonalDetail().getAge(), "age");
 		validateIsEmptyOrNullOrContainsOnlyAlphnumeric(studentRegistrationRecord.getPersonalDetail().getCatagory().getName(), "category");
-
-
-	    String studentDisablity = studentRegistrationRecord.getPersonalDetail().getDisablity().getName();
-				if(!ValidationUtil.isEmptyOrNull(studentDisablity))
-					throw new StudentRegistrationFieldValidationException("disability","input.disability.invalid"); 
+		validateIsEmptyOrNullOrValidEnum(studentRegistrationRecord.getPersonalDetail().getDisablity().getName(),"disability" );
 				
+
+		
 		String studentNationality = studentRegistrationRecord.getPersonalDetail().getNationality().getName();
 				if(!ValidationUtil.isEmptyOrNull(studentNationality))
 					throw new StudentRegistrationFieldValidationException("nationality","input.nationality.invalid");
@@ -237,6 +236,15 @@ public class StudentRegisterationRecordValidator implements Validator{
 		
 	}
 	
+	private static void validateIsEmptyOrNullOrValidEnum(String stringToBeValidated, String inputKey) {
+		validateIsEmptyOrNull(stringToBeValidated, inputKey);
+		try{
+		Category category = Category.getCategoryFromText(stringToBeValidated);
+		}catch(Exception e){
+			throw new StudentRegistrationFieldValidationException(inputKey,"input."+ inputKey +".invalid");
+		}
+	}
+
 	private static void validateIsEmptyOrNullOrValidEmail(String stringToBeValidated, String inputKey){
 		validateIsEmptyOrNull(stringToBeValidated, inputKey);
 		validatesValidEmail(stringToBeValidated, inputKey);
