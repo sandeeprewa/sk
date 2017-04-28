@@ -20,13 +20,13 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
-import com.academics.school.wl.security.configuration.WebSecurityConfig;
+import com.academics.school.wl.configuration.security.WebSecurityConfig;
 
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = {"com.academics.school.*"})
 @PropertySource(value = {"classpath:application.properties"})
-@Import(value = {com.academics.school.wl.security.configuration.WebSecurityConfig.class})
+@Import(value = {com.academics.school.wl.configuration.security.WebSecurityConfig.class})
 public class RootApplicationConfiguration extends WebMvcConfigurerAdapter {
 
 

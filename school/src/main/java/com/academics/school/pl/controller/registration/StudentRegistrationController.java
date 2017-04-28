@@ -42,13 +42,10 @@ public class StudentRegistrationController {
 
 	@Autowired
 	StudentRegistrationFacade studentRegistrationFacade;
-	
-	@RequestMapping(value = "{registrationId}", method = RequestMethod.GET)
-	@RequiredPrivilage({PrivilageEnum.PUBLIC_USER})
-	public StudentRegistrationRecord getStudentAdmissionRecord(@Valid @NotNull @PathVariable String registrationId) 
-			throws StudentIdDoesNotExistException {
-		return studentRegistrationFacade.getRegistrationRecordByRegistrationId(registrationId);
-	}
+
+	/*
+	 * Create New Registration Record 
+	 */
 	
 	@RequestMapping(method = RequestMethod.POST)
 	@RequiredPrivilage({PrivilageEnum.PUBLIC_USER})
@@ -59,6 +56,19 @@ public class StudentRegistrationController {
 		return studentRegistrationFacade.createRegistrationStudentRecord(studentRegistrationRecord);
 	}
 	
+	/*
+	 * Getting registration record by registrationID
+	 */
+	@RequestMapping(value = "{registrationId}", method = RequestMethod.GET)
+	@RequiredPrivilage({PrivilageEnum.PUBLIC_USER})
+	public StudentRegistrationRecord getStudentAdmissionRecord(@Valid @NotNull @PathVariable String registrationId) 
+			throws StudentIdDoesNotExistException {
+		return studentRegistrationFacade.getRegistrationRecordByRegistrationId(registrationId);
+	}
+	
+	/*
+	 * Updating Existing Registration Record
+	 */
 	@RequestMapping(value = "{registrationId}" ,method = RequestMethod.PUT)
 	@RequiredPrivilage({PrivilageEnum.END_USER, PrivilageEnum.EDITOR})
 	public StudentRegistrationRecord updateAdmissionStudentRecord(@PathVariable String registrationId, 
@@ -67,12 +77,18 @@ public class StudentRegistrationController {
 		return studentRegistrationFacade.updateStudentRegistrationRecord(admissionRecord);
 	}
 
+	/*
+	 * Deletion of Registration Record
+	 */
 	@RequiredPrivilage({PrivilageEnum.EDITOR})
 	@RequestMapping(value = "{registrationId}", method = RequestMethod.DELETE)
 	public StudentRegistrationRecord deleteAdmissionStudentRecord(@PathVariable String registrationId){
 		return studentRegistrationFacade.deleteStudentRegistrationRecordById(registrationId);
 	}
 	
+	/*
+	 * Search of Registration Record based on Diff Parameter
+	 */
 	@RequiredPrivilage({PrivilageEnum.PUBLIC_USER})
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
 	public List<StudentRegistrationRecord> getStudentAdmissionRecordByStudentName(@RequestBody SearchRegistrationRequestDTO searchRegistrationRequestDTO) 
@@ -80,6 +96,9 @@ public class StudentRegistrationController {
 		return studentRegistrationFacade.getRegistrationRecordBasedOnDiffParameter(searchRegistrationRequestDTO);
 	}
 	
+	/*
+	 * Paying Fee
+	 */
 	@RequiredPrivilage({PrivilageEnum.PUBLIC_USER})
 	@RequestMapping(value = "/{registrationId}/fee", method = RequestMethod.POST)
 	public String payFee(@PathVariable String registrationId){
@@ -87,7 +106,7 @@ public class StudentRegistrationController {
 	}
 	
 	/*
-	 * Admin Facility
+	 * Admin Facility - Changing Status of Registration Record
 	 */
 	@RequestMapping(value = "/status/", method = RequestMethod.PUT)
 	@RequiredPrivilage({PrivilageEnum.EDITOR})
@@ -98,7 +117,14 @@ public class StudentRegistrationController {
 		return registeredRecord;
 	}
 	
-	
+	/*
+	 * Collecting Fee
+	 */
+	@RequestMapping(value = "/collect/{registrationId}/fee")
+	@RequiredPrivilage({PrivilageEnum.EDITOR})
+	public String collectFee(@PathVariable String registrationId){
+		return "collected";	
+	}
 	
 	private void validateListOfRegistrationRecordStatusTrackerDTO(
 			ArrayList<RegistrationRecordStatusTrackerDTO> statusDTOList) {
