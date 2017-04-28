@@ -26,7 +26,7 @@ public enum Nation {
 	}
 	
 	@JsonCreator
-	public static Nation getNationFromText(String nationValue1){
+	public static Nation getEnumFromText(String nationValue1){
 		for (Nation nationValue : Nation.values()) {
 			if(nationValue.getName().equals(nationValue1)){
 				return nationValue;

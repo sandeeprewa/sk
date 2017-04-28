@@ -37,7 +37,7 @@ private String disablityValue ;
 	}
 	
 	@JsonCreator
-	public static Disablity getDisablityFromText(String disablityValue1){
+	public static Disablity getEnumFromText(String disablityValue1){
 		for (Disablity disablityValue : Disablity.values()) {
 			if(disablityValue.getName().equals(disablityValue1)){
 				return disablityValue;

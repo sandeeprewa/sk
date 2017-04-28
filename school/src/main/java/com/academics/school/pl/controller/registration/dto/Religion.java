@@ -26,7 +26,7 @@ public enum Religion {
 	}
 	
 	@JsonCreator
-	public static Religion getReligionFromText(String religionValue1){
+	public static Religion getEnumFromText(String religionValue1){
 		for (Religion religionValue : Religion.values()) {
 			if(religionValue.getName().equals(religionValue1)){
 				return religionValue;

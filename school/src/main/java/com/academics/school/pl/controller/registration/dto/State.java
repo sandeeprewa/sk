@@ -52,7 +52,7 @@ public enum State {
 	}
 	
 	@JsonCreator
-	public static State getStateFromText(String stateValue1){
+	public static State getEnumFromText(String stateValue1){
 		for (State stateValue : State.values()) {
 			if(stateValue.getName().equals(stateValue1)){
 				return stateValue;

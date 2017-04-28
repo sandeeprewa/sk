@@ -27,7 +27,7 @@ public enum Category {
 	}
 	
 	@JsonCreator
-	public static Category getCategoryFromText(String categoryValue1){
+	public static Category getEnumFromText(String categoryValue1){
 		for (Category categoryValue : Category.values()) {
 			if(categoryValue.getName().equals(categoryValue1)){
 				return categoryValue;
