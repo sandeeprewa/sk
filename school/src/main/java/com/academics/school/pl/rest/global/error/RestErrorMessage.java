@@ -9,4 +9,8 @@ public class RestErrorMessage {
 	public static final String UNEDITABLE_FIELD = "uneditable.field.message";
 	public static final String STUDENT_DOES_NOT_EXIST = "student.does.not.exist.message";
 	public static final String INPUT_IS_INVALID = "input.invalid";
+	
+	
+	public static final String ALREADY_ADMITTED = "Admission.alreadyadmitted.message";
+	
 }
