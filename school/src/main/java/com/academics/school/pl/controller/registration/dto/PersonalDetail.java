@@ -1,11 +1,27 @@
 package com.academics.school.pl.controller.registration.dto;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Id;
+
+@Entity
+@Table(name = "PERSONAL_DETAIL")
 public class PersonalDetail {
 
+	@Id
+	@Column(name = "PERSONAL_DETAIL_ID")
+	private Long personalDetailId;
+	@Column(name = "FIRST_NAME")
 	private String firstName;
+	@Column(name = "MIDDLE_NAME")
     private String middleName;
+	@Column(name = "LAST_NAME")
 	private String lastName;  
+	@Column(name = "GENDER")
 	private Gender gender;
+	
 	private String mobileNumber;
 	private String email;
 	private String dateOfBirth;
@@ -17,6 +33,23 @@ public class PersonalDetail {
     private String bloodGroup;
     private String adhaarCardNo;
     
+    @OneToOne
+    StudentRegistrationRecord studentRegistrationRecord;
+    
+    
+	public Long getPersonalDetailId() {
+		return personalDetailId;
+	}
+	public void setPersonalDetailId(Long personalDetailId) {
+		this.personalDetailId = personalDetailId;
+	}
+	public StudentRegistrationRecord getStudentRegistrationRecord() {
+		return studentRegistrationRecord;
+	}
+	public void setStudentRegistrationRecord(
+			StudentRegistrationRecord studentRegistrationRecord) {
+		this.studentRegistrationRecord = studentRegistrationRecord;
+	}
 	public String getFirstName() {
 		return firstName;
 	}

@@ -10,6 +10,7 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -49,7 +50,7 @@ public class StudentRegistrationController {
 	
 	@RequestMapping(method = RequestMethod.POST)
 	@RequiredPrivilage({PrivilageEnum.PUBLIC_USER})
-	public StudentRegistrationRecord createNewStudentRegistrationRecord(@RequestBody FakeStudentRegistrationDTO fakeRegistrationRecord) 
+	public StudentRegistrationRecord createNewStudentRegistrationRecord(@ModelAttribute FakeStudentRegistrationDTO fakeRegistrationRecord) 
 			throws StudentRegistrationFieldValidationException, StudentAlreadyRegisteredException, JsonParseException, JsonMappingException, IOException, StudentRegistrationFieldValidationException {
 		StudentRegistrationRecord studentRegistrationRecord = buildStudentRegistrationRecordDTO(fakeRegistrationRecord);
 		validate(studentRegistrationRecord);
@@ -136,6 +137,8 @@ public class StudentRegistrationController {
 			StudentRegistrationRecord studentRegistrationRecord = (StudentRegistrationRecord)new ObjectMapper()
 							.readValue(fakeRegistrationRecord.getRegistrationJson(),StudentRegistrationRecord.class);
 			studentRegistrationRecord.setStudentImage(fakeRegistrationRecord.getStudentImage());
+			studentRegistrationRecord.setFatherImage(fakeRegistrationRecord.getFatherImage());
+			studentRegistrationRecord.setMotherImage(fakeRegistrationRecord.getMotherImage());
 			studentRegistrationRecord.setBirthCertificate(fakeRegistrationRecord.getBirthCertificate());
 			studentRegistrationRecord.setCastCertificate(fakeRegistrationRecord.getCastCertificate());
 			return studentRegistrationRecord;

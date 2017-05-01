@@ -34,7 +34,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
     	http.csrf().disable()
         .authorizeRequests()
-        .antMatchers("/testjsp/test.jsp","/testingJs/testing.js","/includes/js/jquery-1.8.2.min.js")
+        .antMatchers("/rest/register/","/testjsp/test.jsp","/testingJs/testing.js","/includes/js/jquery-1.8.2.min.js")
         .anonymous()
         .anyRequest().authenticated()
         .and().httpBasic().realmName("MY_TEST_REALM").authenticationEntryPoint(getBasicAuthEntryPoint())

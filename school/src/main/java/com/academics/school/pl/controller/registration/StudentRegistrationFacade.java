@@ -10,19 +10,19 @@ import org.springframework.stereotype.Component;
 import com.academics.school.pl.controller.registration.dto.RegistrationRecordStatusTrackerDTO;
 import com.academics.school.pl.controller.registration.dto.SearchRegistrationRequestDTO;
 import com.academics.school.pl.controller.registration.dto.StudentRegistrationRecord;
-import com.academics.school.sl.registration.StudentAdmissionService;
+import com.academics.school.sl.registration.StudentRegistrationService;
 
 @Component
 public class StudentRegistrationFacade {
-			
-/*	@Autowired
-	@Qualifier("studentAdmissionServiceImpl")
-	StudentAdmissionService studentAdmissionService;
-*/
+
+	@Autowired
+	@Qualifier("studentRegistrationServiceImpl")
+	StudentRegistrationService studentRegistrationServiceImpl;
+	
 	public StudentRegistrationRecord createRegistrationStudentRecord(
 			StudentRegistrationRecord admissionRecord) {
 		// TODO Auto-generated method stub
-		return null;
+		return studentRegistrationServiceImpl.createRegistrationStudentRecord(admissionRecord);
 	}
 
 	public  StudentRegistrationRecord updateStudentRegistrationRecord(

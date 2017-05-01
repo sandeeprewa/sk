@@ -1,6 +1,18 @@
 package com.academics.school.pl.controller.registration.dto;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Table( name = "PERSONAL_DETAIL")
+@Entity
 public class ParentDetail {
+	
+	@Id
+	@Column(name = "personalDetailId")
+	private Long personalDetailId;
 	
 	private String fatherName;
 	private String fatherMobileNumber;
@@ -11,6 +23,8 @@ public class ParentDetail {
 	private String motherEmail;
 	private String motherOccupation;
 	
+	@OneToOne
+	private StudentRegistrationRecord studentRegistrationRecord;
 	
 	public String getFatherName() {
 		return fatherName;

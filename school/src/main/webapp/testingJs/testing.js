@@ -24,8 +24,65 @@ $(document).ready(function (){
 	});
 	$("#getRequestId").click(function(){
 		secureViaBasicAuth();
-	});	
+	});
+	
+	$("#registerRecordId").click(function (){
+		submitStudentRecord();
+	});
 });
+
+function getInputData(){
+	return {
+		"studentDetails": {
+			"firstName": "firstName",
+			"middleName": "middleName",
+			"lastName": "lastName",
+			"gender": "gender",
+			"mobileNumber": "mobileNumber",
+			"email": "email",
+			"dateOfBirth": "dateOfBirth",
+			"age": "age",
+			"category": "category",
+			"disability": "disability",
+			"nationality": "nationality",
+			"religion": "religion",
+			"bloodGroup": "bloodGroup",
+			"aadharCardNumber": "aadharCardNumber"
+		}
+	}; 	
+}
+
+	function submitStudentRecord(){
+	
+	var markers = getInputData();
+	$('input[name="registrationJson"]').val(JSON.stringify(markers));
+
+	var d = new FormData();
+	d.append("studentImage", $("#studentImageId").val());
+	d.append("fatherImage", $("#fatherImageId").val());
+	d.append("motherImage", $("#motherImageId").val());
+	d.append("birthCertificate", $("#birthCertificateId").val());
+	d.append("castCertificate", $("#castCertificateId").val());
+	d.append("disabilityCertficate", $("#disabilityCertificateId").val());
+	d.append("registrationJson", JSON.stringify(markers));
+	
+	console.log(JSON.stringify(markers));
+	
+	$.ajax({
+         url: '../rest/register/',
+         type: "POST",
+         data: new FormData(document.getElementById('testForm')),
+         enctype: 'multipart/form-data',
+         processData: false,
+         contentType: false,
+			beforeSend: function(xhr) {
+				xhr.setRequestHeader("Accept", "application/json");
+				xhr.setRequestHeader("Content-Type", "application/json");
+				xhr.setRequestHeader ("Authorization", "Basic " + btoa("sa" + ":" + "hariom"))
+			}
+
+    }) 
+}//
 
 function makeCall(){
 	var markers = { "userName": "42.5978231292517", "password": "-3" };
@@ -126,6 +183,12 @@ function submitComplexObjectAndImage(){
          enctype: 'multipart/form-data',
          processData: false,
          contentType: false,
+			beforeSend: function(xhr) {
+				xhr.setRequestHeader("Accept", "application/json");
+				xhr.setRequestHeader("Content-Type", "application/json");
+				xhr.setRequestHeader ("Authorization", "Basic " + btoa("sa" + ":" + "hariom"))
+			}
+
     }) 
 }
 
@@ -147,5 +210,4 @@ function secureViaBasicAuth(){
 					alert(errMsg);
 				}			
 		});
-
 }

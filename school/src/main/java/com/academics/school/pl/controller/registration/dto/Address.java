@@ -1,7 +1,19 @@
 package com.academics.school.pl.controller.registration.dto;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Table(name = "ADDRESS_TABLE")
+@Entity
 public class Address {
 	
+	@Id
+	@Column(name = "addressId")
+	private Long addressId;
+
 	private String houseNumber;
 	private String village;
 	private String city;
@@ -9,7 +21,9 @@ public class Address {
 	private String pinNumber;
 	private Nation country;
 	private String addressDetails;
-	
+
+	@OneToOne
+	StudentRegistrationRecord studentRegistrationRecord;
 	
 	public String getHouseNumber() {
 		return houseNumber;

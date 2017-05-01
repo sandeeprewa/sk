@@ -1,12 +1,24 @@
 package com.academics.school.pl.controller.registration.dto;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Table
+@Entity(name = "EDUCATION_DETAIL")
 public class EducationDetail {
 	
+	@Id
+	private Long   educationDetailId;
 	private String previousSchoolName;
 	private String previousSchoolAddress;
 	private String previousSchoolClass;
 	private String previousClassPercentage;
-	
+
+	@OneToOne
+    StudentRegistrationRecord studentRegistrationRecord;
+
 	public String getPreviousSchoolName() {
 		return previousSchoolName;
 	}
