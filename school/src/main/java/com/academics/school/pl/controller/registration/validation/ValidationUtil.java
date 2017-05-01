@@ -10,8 +10,6 @@ public class ValidationUtil {
 
 	
 	public static boolean isEmpty(String input){
-		//to be implemented
-		
 		return input=="";
 	}
 	
@@ -24,13 +22,11 @@ public class ValidationUtil {
 	}
 	
 	public static boolean containOnlyNumbers(String input){
-		// to be implemented
-		return true;
+		return (input.matches("[0-9]+"));
 	}
 	
 	public static boolean containOnlyAlphnumericWords(String input){
-		// to be implemented
-		return true;
+		return (input.matches("[a-zA-Z_]+")) ;
 	}
 
 	public static boolean isVaildEmail(String email) {
