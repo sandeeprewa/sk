@@ -1,6 +1,7 @@
 package com.academics.school.wl.configuration.security;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -24,7 +25,7 @@ public class MyAuthenticationProvider implements AuthenticationProvider {
 	    Object obj = auth.getDetails();
 	    
 	    Auth roleAuth = new Auth();
-	    ArrayList<Auth> listAuth = new ArrayList<Auth>();
+	    Collection<Auth> listAuth = new ArrayList<Auth>();
 	    listAuth.add(roleAuth);
 	    System.out.println(listAuth);
 	    
@@ -37,11 +38,12 @@ public class MyAuthenticationProvider implements AuthenticationProvider {
 		return true;
 	}
 }
+
 class Auth implements GrantedAuthority {
 
 	public String getAuthority() {
 		// TODO Auto-generated method stub
-		return "ROLE_SUPER";
+		return "ROLE_USER";
 	}
 	
 }

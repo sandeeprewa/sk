@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 import com.academics.school.pl.controller.registration.dto.RegistrationRecordStatusTrackerDTO;
 import com.academics.school.pl.controller.registration.dto.SearchRegistrationRequestDTO;
 import com.academics.school.pl.controller.registration.dto.StudentRegistrationRecord;
-import com.academics.school.sl.registration.StudentAdmissionService;
 
 @Component
 public class StudentAdmissionFacade {
