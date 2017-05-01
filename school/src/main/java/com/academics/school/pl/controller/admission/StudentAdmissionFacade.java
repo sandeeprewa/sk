@@ -18,6 +18,7 @@ public class StudentAdmissionFacade {
 /*	@Autowired
 	@Qualifier("studentAdmissionServiceImpl")
 	StudentAdmissionService studentAdmissionService;
+	Commit test added
 */
 	public StudentRegistrationRecord createRegistrationStudentRecord(
 			StudentRegistrationRecord admissionRecord) {
