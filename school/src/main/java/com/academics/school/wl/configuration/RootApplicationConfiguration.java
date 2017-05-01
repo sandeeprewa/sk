@@ -26,7 +26,7 @@ import com.academics.school.wl.configuration.security.WebSecurityConfig;
 @EnableWebMvc
 @ComponentScan(basePackages = {"com.academics.school.*"})
 @PropertySource(value = {"classpath:application.properties"})
-@Import(value = {com.academics.school.wl.configuration.security.WebSecurityConfig.class})
+//@Import(value = {com.academics.school.wl.configuration.security.WebSecurityConfig.class})
 public class RootApplicationConfiguration extends WebMvcConfigurerAdapter {
 
 

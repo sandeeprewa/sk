@@ -13,7 +13,6 @@ public class ParentDetail {
 	@Id
 	@Column(name = "personalDetailId")
 	private Long personalDetailId;
-	
 	private String fatherName;
 	private String fatherMobileNumber;
 	private String fatherEmail;
@@ -25,7 +24,21 @@ public class ParentDetail {
 	
 	@OneToOne
 	private StudentRegistrationRecord studentRegistrationRecord;
-	
+
+	public Long getPersonalDetailId() {
+		return personalDetailId;
+	}
+	public void setPersonalDetailId(Long personalDetailId) {
+		this.personalDetailId = personalDetailId;
+	}
+	public StudentRegistrationRecord getStudentRegistrationRecord() {
+		return studentRegistrationRecord;
+	}
+	public void setStudentRegistrationRecord(
+			StudentRegistrationRecord studentRegistrationRecord) {
+		this.studentRegistrationRecord = studentRegistrationRecord;
+	}
+
 	public String getFatherName() {
 		return fatherName;
 	}

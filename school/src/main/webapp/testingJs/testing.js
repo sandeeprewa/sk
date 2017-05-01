@@ -32,24 +32,68 @@ $(document).ready(function (){
 });
 
 function getInputData(){
-	return {
-		"studentDetails": {
-			"firstName": "firstName",
-			"middleName": "middleName",
-			"lastName": "lastName",
-			"gender": "gender",
-			"mobileNumber": "mobileNumber",
-			"email": "email",
-			"dateOfBirth": "dateOfBirth",
-			"age": "age",
-			"category": "category",
-			"disability": "disability",
-			"nationality": "nationality",
-			"religion": "religion",
-			"bloodGroup": "bloodGroup",
-			"aadharCardNumber": "aadharCardNumber"
-		}
-	}; 	
+	return 	{  
+		  "personalDetail":{  
+		    "firstName":"firstName",
+		    "middleName":"middleName",
+		    "lastName":"lastName",
+		    "gender":"male",
+		    "mobileNumber":"mobileNumber",
+		    "email":"email",
+		    "dateOfBirth":"dateOfBirth",
+		    "age":"age",
+		    "category":"general",
+		    "disability":"Autism",
+		    "nationality":"indian",
+		    "religion":"hindu",
+		    "bloodGroup":"bloodGroup",
+		    "adhaarCardNo":"adhaarCardNo"
+		  },
+		  "currentClass":{  
+		    "c_Class":"1",
+		    "school":"Name",
+		    "listOfSubject":[  
+		    	{"subject":"subject1"},
+		    	{"subject":"subject2"}
+		    ]
+		  },
+		  "previousEducationDetail":{  
+		    "previousSchoolName":"previousSchoolName",
+		    "previousSchoolAddress":"previousSchoolAddress",
+		    "previousSchoolClass":"previousSchoolClass",
+		    "previousClassPercentage":"previousClassPercentage"
+		  },
+		  "studentFamilyDetails":{  
+		    "fatherName":"fatherName",
+		    "fatherMobileNumber":"fatherMobileNumber",
+		    "fatherEmail":"fatherEmail",
+		    "fatherOccupation":"fatherOccupation",
+		    "fatherImage":"fatherImage",
+		    "motherName":"motherName",
+		    "motherMobileNumber":"motherMobileNumber",
+		    "motherEmail":"motherEmail",
+		    "motherOccupation":"motherOccupation",
+		    "motherImage":"motherImage"
+		  },
+		  "currentAddress":{  
+		    "houseNumber":"currentAddress",
+		    "village":"currentHouseNumber",
+		    "city":"currentVillage",
+		    "state":"currentCity",
+		    "pinNumber":"currentPinNumber",
+		    "country":"currentCountry",
+		    "addressDetails":"currentAddressDetails"
+		  },
+		  "permanentAddress":{  
+		    "houseNumber":"currentAddress",
+		    "village":"currentHouseNumber",
+		    "city":"currentVillage",
+		    "state":"currentCity",
+		    "pinNumber":"currentPinNumber",
+		    "country":"currentCountry",
+		    "addressDetails":"currentAddressDetails"
+		  }
+		};
 }
 
 	function submitStudentRecord(){
@@ -69,18 +113,18 @@ function getInputData(){
 	console.log(JSON.stringify(markers));
 	
 	$.ajax({
-         url: '../rest/register/',
+         url: '../rest/registration/',
          type: "POST",
-         data: new FormData(document.getElementById('testForm')),
+         data: new FormData(document.getElementById('realForm')),
          enctype: 'multipart/form-data',
          processData: false,
          contentType: false,
-			beforeSend: function(xhr) {
+/*			beforeSend: function(xhr) {
 				xhr.setRequestHeader("Accept", "application/json");
 				xhr.setRequestHeader("Content-Type", "application/json");
 				xhr.setRequestHeader ("Authorization", "Basic " + btoa("sa" + ":" + "hariom"))
 			}
-
+*/
     }) 
 }//
 
@@ -170,11 +214,9 @@ function submitComplexObjectAndImage(){
 			},
 			"quality" : "GOOD"
 	}
-	$('input[name="name"]').val(markers);
-	var d = new FormData();
-	d.append("file1", $("#imageFileId").val());
-	d.append("name", JSON.stringify(markers));
-	$("#inputText").val(JSON.stringify(markers));
+	 
+	   $('input[name="name"]').val(markers);
+		$("#inputText").val(JSON.stringify(markers));
 	console.log($("#inputText").val());
 	$.ajax({
          url: '../submitImageAndComplexObject',
@@ -182,13 +224,7 @@ function submitComplexObjectAndImage(){
          data: new FormData(document.getElementById('testForm')),
          enctype: 'multipart/form-data',
          processData: false,
-         contentType: false,
-			beforeSend: function(xhr) {
-				xhr.setRequestHeader("Accept", "application/json");
-				xhr.setRequestHeader("Content-Type", "application/json");
-				xhr.setRequestHeader ("Authorization", "Basic " + btoa("sa" + ":" + "hariom"))
-			}
-
+         contentType:false,
     }) 
 }
 

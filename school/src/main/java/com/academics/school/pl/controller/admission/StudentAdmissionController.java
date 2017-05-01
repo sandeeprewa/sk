@@ -2,6 +2,8 @@ package com.academics.school.pl.controller.admission;
 
 
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -10,12 +12,16 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import com.academics.school.pl.controller.registration.dto.FakeStudentRegistrationDTO;
 import com.academics.school.pl.controller.registration.dto.RegistrationRecordStatusTrackerDTO;
@@ -50,11 +56,13 @@ public class StudentAdmissionController {
 	
 	@RequestMapping(method = RequestMethod.POST)
 	@RequiredPrivilage({PrivilageEnum.PUBLIC_USER})
-	public StudentRegistrationRecord createNewStudentRegistrationRecord(@RequestBody FakeStudentRegistrationDTO fakeRegistrationRecord) 
-			throws StudentRegistrationFieldValidationException, StudentAlreadyRegisteredException, JsonParseException, JsonMappingException, IOException, StudentRegistrationFieldValidationException {
-		StudentRegistrationRecord studentRegistrationRecord = buildStudentRegistrationRecordDTO(fakeRegistrationRecord);
-		validate(studentRegistrationRecord);
-		return studentAdmissionFacade.createRegistrationStudentRecord(studentRegistrationRecord);
+	public StudentRegistrationRecord createNewStudentRegistrationRecord(@ModelAttribute FakeStudentRegistrationDTO fakeRegistrationRecord) 
+			throws StudentRegistrationFieldValidationException, StudentAlreadyRegisteredException, JsonParseException, JsonMappingException, IOException, StudentRegistrationFieldValidationException, URISyntaxException {
+		RestTemplate restTemplate = new RestTemplate();
+		String url  = "http://localhost:9090/school/rest/register/";
+		URI uri = new URI(url);
+		ResponseEntity<StudentRegistrationRecord> record = restTemplate.postForEntity(uri, fakeRegistrationRecord, StudentRegistrationRecord.class);
+		return record.getBody();
 	}
 	
 	/*

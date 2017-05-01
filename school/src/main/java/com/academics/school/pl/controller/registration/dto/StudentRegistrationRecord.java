@@ -22,7 +22,10 @@ public class StudentRegistrationRecord {
 	@OneToOne(mappedBy = "studentRegistrationRecord")
 	private PersonalDetail personalDetail;
 	@OneToOne(mappedBy = "studentRegistrationRecord")
-	private EducationDetail educationDetail;
+	private EducationDetail previousEducationDetail;
+	
+	@OneToOne(mappedBy = "currentClass")
+	private CurrentClass currentClass;
 	@OneToOne(mappedBy = "studentRegistrationRecord")
 	private ParentDetail parentDetails;
 	@OneToOne(mappedBy = "studentRegistrationRecord")
@@ -128,17 +131,14 @@ public class StudentRegistrationRecord {
 	}
 
 	public EducationDetail getEducationDetail() {
-		return educationDetail;
+		return this.previousEducationDetail;
 	}
-
 	public void setEducationDetail(EducationDetail educationDetail) {
-		this.educationDetail = educationDetail;
+		this.previousEducationDetail = educationDetail;
 	}
-
 	public ParentDetail getParentDetails() {
 		return parentDetails;
 	}
-
 	public void setParentDetails(ParentDetail parentDetails) {
 		this.parentDetails = parentDetails;
 	}

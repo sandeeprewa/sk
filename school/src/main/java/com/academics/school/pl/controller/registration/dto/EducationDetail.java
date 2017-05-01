@@ -6,7 +6,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Table
-@Entity(name = "EDUCATION_DETAIL")
+@Entity(name = "PREVIOUS_EDUCATION_DETAIL")
 public class EducationDetail {
 	
 	@Id

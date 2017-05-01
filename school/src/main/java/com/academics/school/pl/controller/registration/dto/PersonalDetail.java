@@ -26,8 +26,8 @@ public class PersonalDetail {
 	private String email;
 	private String dateOfBirth;
 	private String age;
-	private Category catagory;   
-	private Disablity disablity;
+	private Category category;   
+	private Disablity disability;
 	private Nation nationality;
 	private Religion religion;
     private String bloodGroup;
@@ -99,16 +99,16 @@ public class PersonalDetail {
 		this.age = age;
 	}
 	public Category getCatagory() {
-		return catagory;
+		return category;
 	}
 	public void setCatagory(Category catagory) {
-		this.catagory = catagory;
+		this.category = catagory;
 	}
 	public Disablity getDisablity() {
-		return disablity;
+		return disability;
 	}
 	public void setDisablity(Disablity disablity) {
-		this.disablity = disablity;
+		this.disability = disablity;
 	}
 	public Nation getNationality() {
 		return nationality;
@@ -134,9 +134,5 @@ public class PersonalDetail {
 	public void setAdhaarCardNo(String adhaarCardNo) {
 		this.adhaarCardNo = adhaarCardNo;
 	}
-
-    
-    
-    
 	
 }
