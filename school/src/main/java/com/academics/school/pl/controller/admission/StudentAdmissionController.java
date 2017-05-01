@@ -45,7 +45,7 @@ public class StudentAdmissionController {
 	StudentAdmissionFacade studentAdmissionFacade;
 
 	/*
-	 * Create New Registration Record 
+	 * Create New Admisssion Record 
 	 */
 	
 	@RequestMapping(method = RequestMethod.POST)
