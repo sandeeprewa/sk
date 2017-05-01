@@ -63,7 +63,7 @@ function getInputData(){
 		    "previousSchoolClass":"previousSchoolClass",
 		    "previousClassPercentage":"previousClassPercentage"
 		  },
-		  "studentFamilyDetails":{  
+		  "parentDetails":{  
 		    "fatherName":"fatherName",
 		    "fatherMobileNumber":"fatherMobileNumber",
 		    "fatherEmail":"fatherEmail",
@@ -113,7 +113,7 @@ function getInputData(){
 	console.log(JSON.stringify(markers));
 	
 	$.ajax({
-         url: '../rest/registration/',
+         url: '../rest/register/',
          type: "POST",
          data: new FormData(document.getElementById('realForm')),
          enctype: 'multipart/form-data',

@@ -26,6 +26,7 @@ public class StudentRegistrationRecord {
 	
 	@OneToOne(mappedBy = "currentClass")
 	private CurrentClass currentClass;
+
 	@OneToOne(mappedBy = "studentRegistrationRecord")
 	private ParentDetail parentDetails;
 	@OneToOne(mappedBy = "studentRegistrationRecord")
