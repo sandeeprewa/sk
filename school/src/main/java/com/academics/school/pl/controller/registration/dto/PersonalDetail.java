@@ -3,6 +3,8 @@ package com.academics.school.pl.controller.registration.dto;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Id;
@@ -12,6 +14,7 @@ import javax.persistence.Id;
 public class PersonalDetail {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "PERSONAL_DETAIL_ID")
 	private Long personalDetailId;
 	@Column(name = "FIRST_NAME")

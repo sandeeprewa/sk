@@ -14,7 +14,7 @@ public enum Gender {
 	U("unknown");
 	
 	private String genderValue ;
-	
+	Gender(){}
 	Gender(String value){
 		this.genderValue = value;
 	}

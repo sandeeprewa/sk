@@ -28,7 +28,7 @@ public enum Disability {
 	OTHER("other");
 
 	private String disablityValue ;
-	
+	Disability(){}
     Disability(String value){
 		this.disablityValue = value;
 	}

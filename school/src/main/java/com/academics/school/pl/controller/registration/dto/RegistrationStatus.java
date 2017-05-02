@@ -17,6 +17,7 @@ public enum RegistrationStatus {
 	PAID_SUBMISSION("paidSubmission"),
 	ADMITTED("admitted");
 
+	RegistrationStatus(){}
 	public String getStatus() {
 		return status;
 	}

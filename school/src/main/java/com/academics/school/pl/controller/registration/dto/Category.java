@@ -18,7 +18,7 @@ public enum Category {
 	OTHER("other");
 	
 	private String categoryValue ;
-
+	Category(){}
 	Category(String value){
 		this.categoryValue = value;
 	}

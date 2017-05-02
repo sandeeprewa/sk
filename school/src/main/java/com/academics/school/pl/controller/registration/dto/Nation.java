@@ -18,6 +18,10 @@ public enum Nation {
 	
 	private String nationValue ;
 
+	Nation() {
+		
+	}
+
 	Nation(String value){
 		this.nationValue = value;
 	}

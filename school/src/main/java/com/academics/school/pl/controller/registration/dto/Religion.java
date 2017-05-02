@@ -17,7 +17,7 @@ public enum Religion {
 	OTHER("other");
 	
 	private String religionValue ;
-
+	Religion(){}
 	Religion(String value){
 		this.religionValue = value;
 	}
