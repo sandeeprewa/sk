@@ -28,15 +28,15 @@ public class StudentRegistrationRecord {
 	
 	@OneToOne(mappedBy = "studentRegistrationRecord", cascade = CascadeType.ALL)
 	private EducationDetail previousEducationDetail;
-	
-	@OneToOne(mappedBy = "currentClass", cascade = CascadeType.ALL)
+
+	@OneToOne(mappedBy = "currentClass")
 	private CurrentClass currentClass;
 	
-	@OneToOne(mappedBy = "studentRegistrationRecord", cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "studentRegistrationRecord")
 	private ParentDetail parentDetails;
 	
-	@OneToOne(mappedBy = "studentRegistrationRecord", cascade = CascadeType.ALL)
-    private Address currentAddress;
+	@OneToOne(mappedBy = "studentRegistrationRecord")
+     private Address currentAddress;
 	
 	@OneToOne(mappedBy = "studentRegistrationRecord", cascade = CascadeType.ALL)
     private Address permanentAddress;
@@ -66,7 +66,23 @@ public class StudentRegistrationRecord {
 	@Transient
 	private MultipartFile disablityCertificate;
 
-	
+
+	public EducationDetail getPreviousEducationDetail() {
+		return previousEducationDetail;
+	}
+
+	public void setPreviousEducationDetail(EducationDetail previousEducationDetail) {
+		this.previousEducationDetail = previousEducationDetail;
+	}
+
+	public CurrentClass getCurrentClass() {
+		return currentClass;
+	}
+
+	public void setCurrentClass(CurrentClass currentClass) {
+		this.currentClass = currentClass;
+	}
+
 	public String getStudentImageLocation() {
 		return studentImageLocation;
 	}

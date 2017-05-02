@@ -25,6 +25,19 @@ public class Address {
 	@OneToOne
 	StudentRegistrationRecord studentRegistrationRecord;
 	
+	public Long getAddressId() {
+		return addressId;
+	}
+	public void setAddressId(Long addressId) {
+		this.addressId = addressId;
+	}
+	public StudentRegistrationRecord getStudentRegistrationRecord() {
+		return studentRegistrationRecord;
+	}
+	public void setStudentRegistrationRecord(
+			StudentRegistrationRecord studentRegistrationRecord) {
+		this.studentRegistrationRecord = studentRegistrationRecord;
+	}
 	public String getHouseNumber() {
 		return houseNumber;
 	}

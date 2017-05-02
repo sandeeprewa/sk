@@ -38,16 +38,16 @@ function getInputData(){
 		    "middleName":"middleName",
 		    "lastName":"lastName",
 		    "gender":"male",
-		    "mobileNumber":"mobileNumber",
-		    "email":"email",
-		    "dateOfBirth":"dateOfBirth",
-		    "age":"age",
+		    "mobileNumber":"7828101341",
+		    "email":"email@gmail.com",
+		    "dateOfBirth":"25/06/1991",
+		    "age":"12",
 		    "category":"general",
 		    "disability":"Autism",
 		    "nationality":"indian",
 		    "religion":"hindu",
 		    "bloodGroup":"bloodGroup",
-		    "adhaarCardNo":"adhaarCardNo"
+		    "adhaarCardNo":"1234567"
 		  },
 		  "currentClass":{  
 		    "c_Class":"1",
@@ -60,37 +60,35 @@ function getInputData(){
 		  "previousEducationDetail":{  
 		    "previousSchoolName":"previousSchoolName",
 		    "previousSchoolAddress":"previousSchoolAddress",
-		    "previousSchoolClass":"previousSchoolClass",
-		    "previousClassPercentage":"previousClassPercentage"
+		    "previousSchoolClass":"1",
+		    "previousClassPercentage":"12"
 		  },
 		  "parentDetails":{  
 		    "fatherName":"fatherName",
-		    "fatherMobileNumber":"fatherMobileNumber",
-		    "fatherEmail":"fatherEmail",
+		    "fatherMobileNumber":"7828101341",
+		    "fatherEmail":"fatherEmail@gmail.com",
 		    "fatherOccupation":"fatherOccupation",
-		    "fatherImage":"fatherImage",
 		    "motherName":"motherName",
-		    "motherMobileNumber":"motherMobileNumber",
-		    "motherEmail":"motherEmail",
-		    "motherOccupation":"motherOccupation",
-		    "motherImage":"motherImage"
+		    "motherMobileNumber":"7828101341",
+		    "motherEmail":"motherEmail@gmail.com",
+		    "motherOccupation":"motherOccupation"
 		  },
 		  "currentAddress":{  
 		    "houseNumber":"currentAddress",
 		    "village":"currentHouseNumber",
 		    "city":"currentVillage",
-		    "state":"currentCity",
-		    "pinNumber":"currentPinNumber",
-		    "country":"currentCountry",
+		    "state":"MadhyaPradesh",
+		    "pinNumber":"123456",
+		    "country":"indian",
 		    "addressDetails":"currentAddressDetails"
 		  },
 		  "permanentAddress":{  
 		    "houseNumber":"currentAddress",
 		    "village":"currentHouseNumber",
 		    "city":"currentVillage",
-		    "state":"currentCity",
-		    "pinNumber":"currentPinNumber",
-		    "country":"currentCountry",
+		    "state":"MadhyaPradesh",
+		    "pinNumber":"123456",
+		    "country":"indian",
 		    "addressDetails":"currentAddressDetails"
 		  }
 		};
