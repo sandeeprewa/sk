@@ -7,7 +7,6 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 
-@Embeddable
 public enum Religion {
 
 	H("hindu"),

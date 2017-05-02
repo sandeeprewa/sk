@@ -5,13 +5,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Table(name = "ADDRESS_TABLE")
 @Entity
-public class Address {
 	
+public class Address {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "addressId")
@@ -25,7 +26,7 @@ public class Address {
 	private Nation country;
 	private String addressDetails;
 
-	@OneToOne
+	@OneToOne	@JoinColumn(name = "STUDENT_REGISTRATION_ID")
 	StudentRegistrationRecord studentRegistrationRecord;
 	
 	public Long getAddressId() {

@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -25,7 +26,7 @@ public class ParentDetail {
 	private String motherEmail;
 	private String motherOccupation;
 	
-	@OneToOne
+	@OneToOne 	@JoinColumn(name = "STUDENT_REGISTRATION_ID")
 	private StudentRegistrationRecord studentRegistrationRecord;
 
 	public Long getPersonalDetailId() {

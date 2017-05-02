@@ -6,15 +6,17 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 
-@Embeddable
 public enum Gender {
+	
 	M("male"),
 	F("female"),
 	X("transgender"),
 	U("unknown");
 	
 	private String genderValue ;
+	
 	Gender(){}
+	
 	Gender(String value){
 		this.genderValue = value;
 	}

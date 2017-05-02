@@ -3,8 +3,13 @@ package com.academics.school.pl.controller.registration.dto;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Id;
@@ -23,33 +28,32 @@ public class PersonalDetail {
     private String middleName;
 	@Column(name = "LAST_NAME")
 	private String lastName;
-	@Embedded
+	@Enumerated(EnumType.STRING)
 	@Column(name = "GENDER")
 	private Gender gender;
-	
 	private String mobileNumber;
 	private String email;
 	private String dateOfBirth;
 	private String age;
-	
-	@Embedded
+	@Enumerated(EnumType.STRING)
 	private Category category;   
-	@Embedded
+	@Enumerated(EnumType.STRING)
 	private Disability disability;
-	@Embedded
+	@Enumerated(EnumType.STRING)
 	private Nation nationality;
-	@Embedded
+	@Enumerated(EnumType.STRING)
 	private Religion religion;
     private String bloodGroup;
     private String adhaarCardNo;
     
     @OneToOne
-    StudentRegistrationRecord studentRegistrationRecord;
-    
+	@JoinColumn(name = "STUDENT_REGISTRATION_ID")
+     StudentRegistrationRecord studentRegistrationRecord;
 
 	public Long getPersonalDetailId() {
 		return personalDetailId;
 	}
+	
 	public void setPersonalDetailId(Long personalDetailId) {
 		this.personalDetailId = personalDetailId;
 	}

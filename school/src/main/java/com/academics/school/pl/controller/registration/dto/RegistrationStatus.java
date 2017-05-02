@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Embeddable
 public enum RegistrationStatus {
 
 	UNPAID_SUBMISSION("unpaidSubmission"),

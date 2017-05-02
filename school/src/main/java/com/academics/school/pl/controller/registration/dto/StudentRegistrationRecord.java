@@ -1,6 +1,5 @@
 package com.academics.school.pl.controller.registration.dto;
 
-import java.sql.Timestamp;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -8,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Id;
@@ -26,23 +26,23 @@ public class StudentRegistrationRecord {
 	@Column(name = "REGISTRATION_ID")
 	Long registrationId;
 
-	@OneToOne(mappedBy = "studentRegistrationRecord", cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "studentRegistrationRecord", cascade = CascadeType.ALL)    
 	private PersonalDetail personalDetail;
 	
 	@OneToOne(mappedBy = "studentRegistrationRecord", cascade = CascadeType.ALL)
 	private EducationDetail previousEducationDetail;
 
-	@OneToOne(mappedBy = "studentRegistrationRecord", cascade = CascadeType.ALL)//currentClass
+	@OneToOne(mappedBy = "studentRegistrationRecord", cascade = CascadeType.ALL)
 	private CurrentClass currentClass;
 	
 	@OneToOne(mappedBy = "studentRegistrationRecord")
 	private ParentDetail parentDetails;
 	
 	@OneToOne(mappedBy = "studentRegistrationRecord")
-     private Address currentAddress;
+	private Address currentAddress;
 	
 	@OneToOne(mappedBy = "studentRegistrationRecord", cascade = CascadeType.ALL)
-    private Address permanentAddress;
+	private Address permanentAddress;
 	
 	@Temporal(TemporalType.DATE)
     private Date timeStamp;

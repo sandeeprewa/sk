@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -19,7 +20,7 @@ public class EducationDetail {
 	private String previousSchoolClass;
 	private String previousClassPercentage;
 
-	@OneToOne
+	@OneToOne	@JoinColumn(name = "STUDENT_REGISTRATION_ID")
     StudentRegistrationRecord studentRegistrationRecord;
 
 	public StudentRegistrationRecord getStudentRegistrationRecord() {

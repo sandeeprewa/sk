@@ -1,13 +1,9 @@
 package com.academics.school.pl.controller.registration.dto;
 
 import javax.persistence.Embeddable;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 
-@Embeddable
 public enum Nation {
 
 	I("indian"),
@@ -19,7 +15,7 @@ public enum Nation {
 	private String nationValue ;
 
 	Nation() {
-		
+		System.out.println("Hi");
 	}
 
 	Nation(String value){
