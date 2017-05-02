@@ -1,12 +1,16 @@
 package com.academics.school.pl.controller.registration.dto;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -19,26 +23,33 @@ public class StudentRegistrationRecord {
 	@Column(name = "REGISTRATION_ID")
 	Long registrationId;
 
-	@OneToOne(mappedBy = "studentRegistrationRecord")
+	@OneToOne(mappedBy = "studentRegistrationRecord", cascade = CascadeType.ALL)
 	private PersonalDetail personalDetail;
-	@OneToOne(mappedBy = "studentRegistrationRecord")
+	
+	@OneToOne(mappedBy = "studentRegistrationRecord", cascade = CascadeType.ALL)
 	private EducationDetail previousEducationDetail;
 	
-	@OneToOne(mappedBy = "currentClass")
+	@OneToOne(mappedBy = "currentClass", cascade = CascadeType.ALL)
 	private CurrentClass currentClass;
-
-	@OneToOne(mappedBy = "studentRegistrationRecord")
+	
+	@OneToOne(mappedBy = "studentRegistrationRecord", cascade = CascadeType.ALL)
 	private ParentDetail parentDetails;
-	@OneToOne(mappedBy = "studentRegistrationRecord")
+	
+	@OneToOne(mappedBy = "studentRegistrationRecord", cascade = CascadeType.ALL)
     private Address currentAddress;
-	@OneToOne(mappedBy = "studentRegistrationRecord")
+	
+	@OneToOne(mappedBy = "studentRegistrationRecord", cascade = CascadeType.ALL)
     private Address permanentAddress;
-	@OneToOne(mappedBy = "studentRegistrationRecord")
-    private Timestamp timeStamp;
+	
+	@Temporal(TemporalType.DATE)
+    private Date timeStamp;
+	
 	@Column(name = "STUDENT_IMAGE_LOCATION")
 	private String studentImageLocation;
+	
 	@Column(name = "FATHER_IMAGE_LOCATION")
 	private String fatherImageLocation;
+	
 	@Column(name = "MOTHER_IMAGE_LOCATION")
 	private String motherImageLocation;
 	
@@ -55,6 +66,7 @@ public class StudentRegistrationRecord {
 	@Transient
 	private MultipartFile disablityCertificate;
 
+	
 	public String getStudentImageLocation() {
 		return studentImageLocation;
 	}
@@ -160,11 +172,11 @@ public class StudentRegistrationRecord {
 		this.permanentAddress = permanentAddress;
 	}
 
-	public Timestamp getTimeStamp() {
+	public Date getTimeStamp() {
 		return timeStamp;
 	}
 
-	public void setTimeStamp(Timestamp timeStamp) {
+	public void setTimeStamp(Date timeStamp) {
 		this.timeStamp = timeStamp;
 	}
 
