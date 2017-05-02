@@ -1,6 +1,7 @@
 package com.academics.school.pl.rest.global.error;
 // will have variables code application specifi
 public enum Code{
+	
 	FEES_NOT_PAID(1000);
 	int value;
 	Code(int value){

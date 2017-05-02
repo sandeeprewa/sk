@@ -33,13 +33,12 @@ public class StudentRegistrationErrorHandler {
 	@ResponseBody
 	@ExceptionHandler(value = StudentRegistrationFieldValidationException.class)
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
-	public RestError handleStudentAdmissionFieldValidationException(StudentRegistrationFieldValidationException exception){
+	public RestError handleStudentRegistraionFieldValidationException(StudentRegistrationFieldValidationException exception){
 		restError = new RestError();
 		restError.setHttpStatus(HttpStatus.BAD_REQUEST.toString());
 		restError.setCode(Code.FEES_NOT_PAID.toString());
 		restError.setMessage(messageSource.getMessage(RestErrorMessage.VALIDATION_FAILURE,null, Locale.US));
-		restError.setFieldError(new FieldError(exception.getKey()
-				,messageSource.getMessage(exception.getMsg(),null, Locale.US)));
+		restError.setFieldError(new FieldError(exception.getKey(),messageSource.getMessage(exception.getMsg(),null, Locale.US)));
 		return restError;	
 	}
 	

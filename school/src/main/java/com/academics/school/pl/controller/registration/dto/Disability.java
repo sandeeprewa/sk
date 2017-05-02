@@ -2,7 +2,7 @@ package com.academics.school.pl.controller.registration.dto;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 
-public enum Disablity {
+public enum Disability {
 	
 	Autism("Autism"),
 	DeafBlindness("DeafBlindness"),
@@ -23,7 +23,7 @@ public enum Disablity {
 	
 private String disablityValue ;
 	
-      Disablity(String value){
+    Disability(String value){
 		this.disablityValue = value;
 	}
 	
@@ -37,8 +37,8 @@ private String disablityValue ;
 	}
 	
 	@JsonCreator
-	public static Disablity getEnumFromText(String disablityValue1){
-		for (Disablity disablityValue : Disablity.values()) {
+	public static Disability getEnumFromText(String disablityValue1){
+		for (Disability disablityValue : Disability.values()) {
 			if(disablityValue.getName().equals(disablityValue1)){
 				return disablityValue;
 			}

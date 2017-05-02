@@ -23,21 +23,23 @@ public class StudentRegistrationRecord {
 	private PersonalDetail personalDetail;
 	@OneToOne(mappedBy = "studentRegistrationRecord")
 	private EducationDetail previousEducationDetail;
-	
 	@OneToOne(mappedBy = "currentClass")
 	private CurrentClass currentClass;
-
+	
 	@OneToOne(mappedBy = "studentRegistrationRecord")
 	private ParentDetail parentDetails;
+	
 	@OneToOne(mappedBy = "studentRegistrationRecord")
     private Address currentAddress;
 	@OneToOne(mappedBy = "studentRegistrationRecord")
     private Address permanentAddress;
-	@OneToOne(mappedBy = "studentRegistrationRecord")
+	
     private Timestamp timeStamp;
-	@Column(name = "STUDENT_IMAGE_LOCATION")
+
+    @Column(name = "STUDENT_IMAGE_LOCATION")
 	private String studentImageLocation;
-	@Column(name = "FATHER_IMAGE_LOCATION")
+	
+    @Column(name = "FATHER_IMAGE_LOCATION")
 	private String fatherImageLocation;
 	@Column(name = "MOTHER_IMAGE_LOCATION")
 	private String motherImageLocation;
@@ -54,6 +56,22 @@ public class StudentRegistrationRecord {
 	private MultipartFile castCertificate;
 	@Transient
 	private MultipartFile disablityCertificate;
+
+	public EducationDetail getPreviousEducationDetail() {
+		return previousEducationDetail;
+	}
+
+	public void setPreviousEducationDetail(EducationDetail previousEducationDetail) {
+		this.previousEducationDetail = previousEducationDetail;
+	}
+
+	public CurrentClass getCurrentClass() {
+		return currentClass;
+	}
+
+	public void setCurrentClass(CurrentClass currentClass) {
+		this.currentClass = currentClass;
+	}
 
 	public String getStudentImageLocation() {
 		return studentImageLocation;
