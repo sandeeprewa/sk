@@ -1,7 +1,13 @@
 package com.academics.school.pl.controller.registration.dto;
 
+import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 
+@Embeddable
 public enum Disability {
 	
 	Autism("Autism"),
@@ -20,8 +26,8 @@ public enum Disability {
 	VisualImpairmentIncludingBlindness("VisualImpairmentIncludingBlindness"),
 	
 	OTHER("other");
-	
-private String disablityValue ;
+
+	private String disablityValue ;
 	
     Disability(String value){
 		this.disablityValue = value;

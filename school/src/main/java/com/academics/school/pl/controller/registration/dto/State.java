@@ -1,7 +1,13 @@
 package com.academics.school.pl.controller.registration.dto;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 
+@Table(name = "STATE")
+@Entity
 public enum State {
 
 	AP("AndhraPradesh"),
@@ -37,7 +43,17 @@ public enum State {
 	OTHER("other");
 	
 	private String stateValue ;
+
+	@Id
+	Long id;
 	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 	State(String value){
 		this.stateValue = value;
 	}

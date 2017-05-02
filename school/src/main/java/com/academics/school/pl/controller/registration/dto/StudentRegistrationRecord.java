@@ -29,7 +29,7 @@ public class StudentRegistrationRecord {
 	@OneToOne(mappedBy = "studentRegistrationRecord", cascade = CascadeType.ALL)
 	private EducationDetail previousEducationDetail;
 
-	@OneToOne(mappedBy = "currentClass")
+	@OneToOne(mappedBy = "studentRegistrationRecord", cascade = CascadeType.ALL)//currentClass
 	private CurrentClass currentClass;
 	
 	@OneToOne(mappedBy = "studentRegistrationRecord")

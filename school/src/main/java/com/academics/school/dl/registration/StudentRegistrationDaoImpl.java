@@ -1,5 +1,7 @@
 package com.academics.school.dl.registration;
 
+import javax.transaction.Transactional;
+
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -17,6 +19,7 @@ public class StudentRegistrationDaoImpl implements StudentRegistrationDao {
 		this.simpleHibernateTemplate = new SimpleHibernateTemplate<StudentRegistrationRecord>(sessionFactory);
 	}
 	
+	@Transactional
 	public StudentRegistrationRecord saveRegistrationStudentRecord(StudentRegistrationRecord admissionRecord){
 		simpleHibernateTemplate.save(admissionRecord);
 		return new StudentRegistrationRecord();

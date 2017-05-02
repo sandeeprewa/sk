@@ -14,6 +14,21 @@ import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.academics.school.pl.controller.registration.dto.Address;
+import com.academics.school.pl.controller.registration.dto.Category;
+import com.academics.school.pl.controller.registration.dto.CurrentClass;
+import com.academics.school.pl.controller.registration.dto.Disability;
+import com.academics.school.pl.controller.registration.dto.EducationDetail;
+import com.academics.school.pl.controller.registration.dto.Gender;
+import com.academics.school.pl.controller.registration.dto.Nation;
+import com.academics.school.pl.controller.registration.dto.ParentDetail;
+import com.academics.school.pl.controller.registration.dto.PersonalDetail;
+import com.academics.school.pl.controller.registration.dto.RegistrationStatus;
+import com.academics.school.pl.controller.registration.dto.Religion;
+import com.academics.school.pl.controller.registration.dto.State;
+import com.academics.school.pl.controller.registration.dto.StudentRegistrationRecord;
+import com.academics.school.pl.controller.registration.dto.Subject;
+
 @Configuration
 @EnableTransactionManagement
 public class DataBaseConfiguration {
@@ -74,10 +89,8 @@ public class DataBaseConfiguration {
     @Autowired
     @Bean(name = "sessionFactoryBuilder")    
     public LocalSessionFactoryBuilder getLocalSessionFactoryBuilder(DataSource dataSource) {
-System.out.println("sessionFactoryBuilder");
     	LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
     	sessionBuilder.addProperties(getHibernateProperties());
-System.out.println("Sending sessionFactoryBuilder");
     	return sessionBuilder;
     }
     
@@ -85,6 +98,20 @@ System.out.println("Sending sessionFactoryBuilder");
     	//all classes should be registered
 
     	System.out.println("Mark Hibernate Class");
+    	sessionBuilder.addAnnotatedClass(StudentRegistrationRecord.class);
+    	sessionBuilder.addAnnotatedClass(CurrentClass.class);
+    	sessionBuilder.addAnnotatedClass(PersonalDetail.class);
+    	sessionBuilder.addAnnotatedClass(ParentDetail.class);
+    	sessionBuilder.addAnnotatedClass(EducationDetail.class);
+    	sessionBuilder.addAnnotatedClass(RegistrationStatus.class);
+    	sessionBuilder.addAnnotatedClass(Category.class);
+    	sessionBuilder.addAnnotatedClass(Nation.class);
+    	sessionBuilder.addAnnotatedClass(Gender.class);
+    	sessionBuilder.addAnnotatedClass(Disability.class);
+    	sessionBuilder.addAnnotatedClass(State.class);
+    	sessionBuilder.addAnnotatedClass(Subject.class);
+    	sessionBuilder.addAnnotatedClass(Religion.class);
+    	sessionBuilder.addAnnotatedClass(Address.class);
     	System.out.println("END :Mark Hibernate Class");
 
     }

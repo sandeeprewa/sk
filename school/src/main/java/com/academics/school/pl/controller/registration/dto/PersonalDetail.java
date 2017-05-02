@@ -1,6 +1,7 @@
 package com.academics.school.pl.controller.registration.dto;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -18,7 +19,8 @@ public class PersonalDetail {
 	@Column(name = "MIDDLE_NAME")
     private String middleName;
 	@Column(name = "LAST_NAME")
-	private String lastName;  
+	private String lastName;
+	@Embedded
 	@Column(name = "GENDER")
 	private Gender gender;
 	
@@ -26,9 +28,14 @@ public class PersonalDetail {
 	private String email;
 	private String dateOfBirth;
 	private String age;
+	
+	@Embedded
 	private Category category;   
+	@Embedded
 	private Disability disability;
+	@Embedded
 	private Nation nationality;
+	@Embedded
 	private Religion religion;
     private String bloodGroup;
     private String adhaarCardNo;

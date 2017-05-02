@@ -1,7 +1,13 @@
 package com.academics.school.pl.controller.registration.dto;
 
+import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 
+@Embeddable
 public enum Religion {
 
 	H("hindu"),
@@ -11,7 +17,7 @@ public enum Religion {
 	OTHER("other");
 	
 	private String religionValue ;
-	
+
 	Religion(String value){
 		this.religionValue = value;
 	}

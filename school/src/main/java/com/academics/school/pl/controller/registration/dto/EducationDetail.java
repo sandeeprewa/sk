@@ -19,6 +19,13 @@ public class EducationDetail {
 	@OneToOne
     StudentRegistrationRecord studentRegistrationRecord;
 
+	public StudentRegistrationRecord getStudentRegistrationRecord() {
+		return studentRegistrationRecord;
+	}
+	public void setStudentRegistrationRecord(
+			StudentRegistrationRecord studentRegistrationRecord) {
+		this.studentRegistrationRecord = studentRegistrationRecord;
+	}
 	public String getPreviousSchoolName() {
 		return previousSchoolName;
 	}

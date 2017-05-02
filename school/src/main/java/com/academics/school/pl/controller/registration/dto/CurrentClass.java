@@ -1,21 +1,32 @@
 package com.academics.school.pl.controller.registration.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Id;
 
-@Table(name = "CURRENT_CLASS")
 @Entity 
+@Table(name = "CURRENT_CLASS")
 public class CurrentClass {
 
 	@Id
+	@Column(name = "Current_Class_Id")
 	private Long Id;
 	private String c_Class;
 	private String school;
-	private List<Subject> listOfSubject;
+	@OneToMany(mappedBy = "currentClass", cascade = CascadeType.ALL)
+	private List<Subject> listOfSubject = new ArrayList<Subject>();
+	
+	@OneToOne
+    StudentRegistrationRecord studentRegistrationRecord;
 
+	
 	public Long getId() {
 		return Id;
 	}
@@ -41,4 +52,12 @@ public class CurrentClass {
 		this.listOfSubject = listOfSubject;
 	}
 	
+	public StudentRegistrationRecord getStudentRegistrationRecord() {
+		return studentRegistrationRecord;
+	}
+	public void setStudentRegistrationRecord(
+			StudentRegistrationRecord studentRegistrationRecord) {
+		this.studentRegistrationRecord = studentRegistrationRecord;
+	}
+
 }

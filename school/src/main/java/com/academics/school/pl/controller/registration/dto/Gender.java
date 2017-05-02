@@ -1,7 +1,12 @@
 package com.academics.school.pl.controller.registration.dto;
 
+import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 
+@Embeddable
 public enum Gender {
 	M("male"),
 	F("female"),

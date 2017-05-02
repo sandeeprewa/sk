@@ -1,7 +1,13 @@
 package com.academics.school.pl.controller.registration.dto;
 
+import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 
+@Embeddable
 public enum Category {
 
 
@@ -12,7 +18,7 @@ public enum Category {
 	OTHER("other");
 	
 	private String categoryValue ;
-	
+
 	Category(String value){
 		this.categoryValue = value;
 	}
