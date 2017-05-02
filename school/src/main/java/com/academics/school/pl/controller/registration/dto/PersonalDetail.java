@@ -27,7 +27,7 @@ public class PersonalDetail {
 	private String dateOfBirth;
 	private String age;
 	private Category category;   
-	private Disablity disability;
+	private Disability disability;
 	private Nation nationality;
 	private Religion religion;
     private String bloodGroup;
@@ -98,16 +98,16 @@ public class PersonalDetail {
 	public void setAge(String age) {
 		this.age = age;
 	}
-	public Category getCatagory() {
+	public Category getCategory() {
 		return category;
 	}
-	public void setCatagory(Category catagory) {
-		this.category = catagory;
+	public void setCategory(Category category) {
+		this.category = category;
 	}
-	public Disablity getDisablity() {
+	public Disability getDisability() {
 		return disability;
 	}
-	public void setDisablity(Disablity disablity) {
+	public void setDisability(Disability disablity) {
 		this.disability = disablity;
 	}
 	public Nation getNationality() {
