@@ -20,7 +20,7 @@ public class StudentAdmissionRecordValidator implements Validator{
 	 */
 	public static void validate(StudentRegistrationRecord studentRegistrationRecord) throws StudentRegistrationFieldValidationException{
 		
-		String studentRegistrationId = studentRegistrationRecord.getPersonalDetail().getAdhaarCardNumber();
+/*		String studentRegistrationId = studentRegistrationRecord.getPersonalDetail().getAdhaarCardNumber();
 		if(!com.academics.school.pl.controller.registration.validation.ValidationUtil.isEmptyOrNull(studentRegistrationId))
 			throw new StudentRegistrationFieldValidationException("rid","input.rid.invalid");
 		else if(!com.academics.school.pl.controller.registration.validation.ValidationUtil.containOnlyNumbers(studentRegistrationId))
@@ -28,29 +28,7 @@ public class StudentAdmissionRecordValidator implements Validator{
 		
 		
 											  
-		
-								
-			
-					
-
-						
-						
-						
-						
-				   
-				   
-				   
-				   
-				   
-				   
-				   
-				   
-				   
-				   
-				   
-				   
-				   
-				   
+*/		
 	}
 }
 

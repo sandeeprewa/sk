@@ -26,7 +26,7 @@ public class StudentRegisterationRecordValidator implements Validator{
 	/*
 	 * Manual validation
 	 */
-	public static void validate(StudentRegistrationRecord studentRegistrationRecord) throws StudentRegistrationFieldValidationException{
+/*	public static void validate(StudentRegistrationRecord studentRegistrationRecord) throws StudentRegistrationFieldValidationException{
 		
 		//Student Personal Details
 		validateIsEmptyOrNullOrContainsOnlyAlphnumeric(studentRegistrationRecord.getPersonalDetail().getFirstName(), "fname");
@@ -73,7 +73,7 @@ public class StudentRegisterationRecordValidator implements Validator{
 		validateIsEmptyOrNullOrValidAlphanumericNation(studentRegistrationRecord.getCurrentAddress().getCountry().getName(), "permanentcountry");
 		validateIsEmptyOrNull(studentRegistrationRecord.getCurrentAddress().getAddressDetails(), "permanentaddressdetails");
 	}
-	
+*/	
 	
 	private static void validateIsEmptyOrNullOrValidEmail(String stringToBeValidated, String inputKey){
 		validateIsEmptyOrNull(stringToBeValidated, inputKey);

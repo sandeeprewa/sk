@@ -151,6 +151,6 @@ public class StudentAdmissionController {
 	}
 
 	private void validate(StudentRegistrationRecord studentRegistrationRecord) throws StudentRegistrationFieldValidationException {
-		StudentRegisterationRecordValidator.validate(studentRegistrationRecord);
+	//	StudentRegisterationRecordValidator.validate(studentRegistrationRecord);
 	}
 }

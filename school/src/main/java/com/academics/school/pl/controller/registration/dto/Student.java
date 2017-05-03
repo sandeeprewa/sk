@@ -1,5 +1,8 @@
 package com.academics.school.pl.controller.registration.dto;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -7,6 +10,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -14,15 +18,28 @@ import javax.persistence.Id;
 import javax.persistence.Transient;
 
 @Entity
-@Table(name = "PERSONAL_DETAIL_TABLE")
-public class PersonalDetail {
+@Table(name = "STUDENT_DETAIL_TABLE")
+public class Student {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "person_sequence")
-	@SequenceGenerator(name = "person_sequence", sequenceName = "person_sequence_db",allocationSize=1, initialValue= 1)	
-	@Column(name = "PERSONAL_DETAIL_ID")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "student_sequence")
+	@SequenceGenerator(name = "student_sequence", sequenceName = "student_sequence_db",allocationSize=1, initialValue= 1)	
+	@Column(name = "STUDENT_DETAIL_ID")
 	Long id;
 	
+	@OneToOne(mappedBy = "student", cascade = CascadeType.ALL)
+	private EducationDetail previousEducationDetail;
+
+	@OneToOne(mappedBy = "student", cascade = CascadeType.ALL)
+	private CurrentClass currentClass;
+	
+	@OneToOne(mappedBy = "student", cascade = CascadeType.ALL)
+	private ParentDetail parentDetails;
+	
+	@OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+	private List<Address> address;
+	
+
 	@Column(name = "FIRST_NAME")
 	private String firstName;
 	@Column(name = "MIDDLE_NAME")
@@ -54,6 +71,39 @@ public class PersonalDetail {
 	@OneToOne
 	@JoinColumn(name = "REGISTRATION_ID")
     StudentRegistrationRecord studentRegistrationRecord;
+
+	
+	
+	public EducationDetail getPreviousEducationDetail() {
+		return previousEducationDetail;
+	}
+	public void setPreviousEducationDetail(EducationDetail previousEducationDetail) {
+		this.previousEducationDetail = previousEducationDetail;
+		previousEducationDetail.setStudent(this);
+	}
+	public CurrentClass getCurrentClass() {
+		return currentClass;
+	}
+	public void setCurrentClass(CurrentClass currentClass) {
+		this.currentClass = currentClass;
+		currentClass.setStudent(this);
+	}
+	public ParentDetail getParentDetails() {
+		return parentDetails;
+	}
+	public void setParentDetails(ParentDetail parentDetails) {
+		this.parentDetails = parentDetails;
+		parentDetails.setStudent(this);
+	}
+	public List<Address> getAddress() {
+		return address;
+	}
+	public void setAddress(List<Address> address) {
+		this.address = address;
+		for (Address address2 : address) {
+			address2.setStudent(this);
+		}
+	}
 
     
 	public Long getId() {

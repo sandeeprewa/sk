@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -36,22 +37,21 @@ public class Address {
 	@Column(name = "ADDRESS_DETAILS")
 	private String addressDetails;
 
-	@OneToOne	
-	@JoinColumn(name = "REGISTRATION_ID")
-	StudentRegistrationRecord studentRegistrationRecord;
+	@ManyToOne
+	@JoinColumn(name = "STUDENT_ID")
+	Student student;
 	
+	public Student getStudent() {
+		return student;
+	}
+	public void setStudent(Student student) {
+		this.student = student;
+	}
 	public Long getAddressId() {
 		return addressId;
 	}
 	public void setAddressId(Long addressId) {
 		this.addressId = addressId;
-	}
-	public StudentRegistrationRecord getStudentRegistrationRecord() {
-		return studentRegistrationRecord;
-	}
-	public void setStudentRegistrationRecord(
-			StudentRegistrationRecord studentRegistrationRecord) {
-		this.studentRegistrationRecord = studentRegistrationRecord;
 	}
 	public String getHouseNumber() {
 		return houseNumber;

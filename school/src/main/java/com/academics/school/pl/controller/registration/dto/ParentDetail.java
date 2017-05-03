@@ -28,22 +28,21 @@ public class ParentDetail {
 	private String motherEmail;
 	private String motherOccupation;
 	
-	@OneToOne 	@JoinColumn(name = "STUDENT_REGISTRATION_ID")
-	private StudentRegistrationRecord studentRegistrationRecord;
+	@OneToOne 	@JoinColumn(name = "STUDENT_ID")
+	private Student student;
 
 	
+	public Student getStudent() {
+		return student;
+	}
+	public void setStudent(Student student) {
+		this.student = student;
+	}
 	public Long getParentDetailId() {
 		return parentDetailId;
 	}
 	public void setParentDetailId(Long parentDetailId) {
 		this.parentDetailId = parentDetailId;
-	}
-	public StudentRegistrationRecord getStudentRegistrationRecord() {
-		return studentRegistrationRecord;
-	}
-	public void setStudentRegistrationRecord(
-			StudentRegistrationRecord studentRegistrationRecord) {
-		this.studentRegistrationRecord = studentRegistrationRecord;
 	}
 
 	public String getFatherName() {

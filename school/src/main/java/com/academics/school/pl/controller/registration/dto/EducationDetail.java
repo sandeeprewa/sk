@@ -28,15 +28,20 @@ public class EducationDetail {
 	@Column(name = "PREVIOUS_CLASS_PERCENTAGE")
 	private String previousClassPercentage;
 
-	@OneToOne	@JoinColumn(name = "REGISTRATION_ID")
-    StudentRegistrationRecord studentRegistrationRecord;
+	@OneToOne	@JoinColumn(name = "STUDENT_ID")
+    Student student;
 
-	public StudentRegistrationRecord getStudentRegistrationRecord() {
-		return studentRegistrationRecord;
+	public Long getEducationDetailId() {
+		return educationDetailId;
 	}
-	public void setStudentRegistrationRecord(
-			StudentRegistrationRecord studentRegistrationRecord) {
-		this.studentRegistrationRecord = studentRegistrationRecord;
+	public void setEducationDetailId(Long educationDetailId) {
+		this.educationDetailId = educationDetailId;
+	}
+	public Student getStudent() {
+		return student;
+	}
+	public void setStudent(Student student) {
+		this.student = student;
 	}
 	public String getPreviousSchoolName() {
 		return previousSchoolName;

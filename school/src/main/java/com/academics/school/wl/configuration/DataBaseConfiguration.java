@@ -22,7 +22,7 @@ import com.academics.school.pl.controller.registration.dto.EducationDetail;
 import com.academics.school.pl.controller.registration.dto.Gender;
 import com.academics.school.pl.controller.registration.dto.Nation;
 import com.academics.school.pl.controller.registration.dto.ParentDetail;
-import com.academics.school.pl.controller.registration.dto.PersonalDetail;
+import com.academics.school.pl.controller.registration.dto.Student;
 import com.academics.school.pl.controller.registration.dto.RegistrationStatus;
 import com.academics.school.pl.controller.registration.dto.Religion;
 import com.academics.school.pl.controller.registration.dto.State;
@@ -100,7 +100,7 @@ public class DataBaseConfiguration {
     	System.out.println("Mark Hibernate Class");
     	sessionBuilder.addAnnotatedClass(StudentRegistrationRecord.class);
     	sessionBuilder.addAnnotatedClass(CurrentClass.class);
-    	sessionBuilder.addAnnotatedClass(PersonalDetail.class);
+    	sessionBuilder.addAnnotatedClass(Student.class);
     	sessionBuilder.addAnnotatedClass(ParentDetail.class);
     	sessionBuilder.addAnnotatedClass(EducationDetail.class);
     	sessionBuilder.addAnnotatedClass(RegistrationStatus.class);

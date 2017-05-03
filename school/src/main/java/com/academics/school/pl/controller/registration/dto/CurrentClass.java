@@ -32,10 +32,16 @@ public class CurrentClass {
 	private List<Subject> listOfSubject = new ArrayList<Subject>();
 	
 	@OneToOne
-	@JoinColumn(name = "REGISTRATION_ID")
-    StudentRegistrationRecord studentRegistrationRecord;
+	@JoinColumn(name = "STUDENT_ID")
+    Student student;
 
 	
+	public Student getStudent() {
+		return student;
+	}
+	public void setStudent(Student student) {
+		this.student = student;
+	}
 	public Long getId() {
 		return Id;
 	}
@@ -61,12 +67,4 @@ public class CurrentClass {
 		this.listOfSubject = listOfSubject;
 	}
 	
-	public StudentRegistrationRecord getStudentRegistrationRecord() {
-		return studentRegistrationRecord;
-	}
-	public void setStudentRegistrationRecord(
-			StudentRegistrationRecord studentRegistrationRecord) {
-		this.studentRegistrationRecord = studentRegistrationRecord;
-	}
-
 }

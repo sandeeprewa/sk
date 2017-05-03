@@ -47,11 +47,10 @@ function getInputData(){
 		    "nationality":"indian",
 		    "religion":"hindu",
 		    "bloodGroup":"bloodGroup",
-		    "adhaarCardNumber":"1234567"
-		  },
-		  "currentClass":{  
-		    "c_Class":"1",
-		    "school":"Name",
+		    "adhaarCardNumber":"1234567" ,
+		    "currentClass":{  
+		    		"c_Class":"1",
+		    			"school":"Name",
 		    "listOfSubject":[  
 		    	{"subject":"subject1"},
 		    	{"subject":"subject2"}
@@ -73,24 +72,26 @@ function getInputData(){
 		    "motherEmail":"motherEmail@gmail.com",
 		    "motherOccupation":"motherOccupation"
 		  },
-		  "currentAddress":{  
-		    "houseNumber":"currentAddress",
-		    "village":"currentHouseNumber",
+		  "address":[
+		  {  
+		    "houseNumber":"sa",
+		    "village":"as",
 		    "city":"currentVillage",
 		    "state":"MadhyaPradesh",
 		    "pinNumber":"123456",
 		    "country":"indian",
 		    "addressDetails":"currentAddressDetails"
 		  },
-		  "permanentAddress":{  
-		    "houseNumber":"currentAddress",
-		    "village":"currentHouseNumber",
+		  {  
+		    "houseNumber":"sa",
+		    "village":"sa",
 		    "city":"currentVillage",
 		    "state":"MadhyaPradesh",
 		    "pinNumber":"123456",
 		    "country":"indian",
 		    "addressDetails":"currentAddressDetails"
-		  }
+		  }]
+		 }
 		};
 }
 

@@ -23,6 +23,15 @@ import org.springframework.web.multipart.MultipartFile;
 @Table(name = "STUDENT_REGISTRATION_RECORD")
 public class StudentRegistrationRecord {
 
+	public Student getPersonalDetail() {
+		return personalDetail;
+	}
+
+	public void setPersonalDetail(Student personalDetail) {
+		this.personalDetail = personalDetail;
+		personalDetail.setStudentRegistrationRecord(this);
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "registration_sequence")
 	@SequenceGenerator(name = "registration_sequence", sequenceName = "registration_sequence_db",allocationSize=1, initialValue= 1)	
@@ -30,22 +39,8 @@ public class StudentRegistrationRecord {
 	Long registrationId;
 
 	@OneToOne(mappedBy = "studentRegistrationRecord", cascade = CascadeType.ALL)    
-	private PersonalDetail personalDetail;
+	private Student personalDetail;
 	
-	@OneToOne(mappedBy = "studentRegistrationRecord", cascade = CascadeType.ALL)
-	private EducationDetail previousEducationDetail;
-
-	@OneToOne(mappedBy = "studentRegistrationRecord", cascade = CascadeType.ALL)
-	private CurrentClass currentClass;
-	
-	@OneToOne(mappedBy = "studentRegistrationRecord", cascade = CascadeType.ALL)
-	private ParentDetail parentDetails;
-	
-	@OneToOne(mappedBy = "studentRegistrationRecord", cascade = CascadeType.ALL)
-	private Address currentAddress;
-	
-	@OneToOne(mappedBy = "studentRegistrationRecord", cascade = CascadeType.ALL)
-	private Address permanentAddress;
 	
 	@Temporal(TemporalType.DATE)
     private Date timeStamp;
@@ -82,25 +77,6 @@ public class StudentRegistrationRecord {
 
 	public void setRegistrationStatus(RegistrationStatus registrationStatus) {
 		this.registrationStatus = registrationStatus;
-	}
-
-	public EducationDetail getPreviousEducationDetail() {
-		return previousEducationDetail;
-	}
-
-	public void setPreviousEducationDetail(EducationDetail previousEducationDetail) {
-		this.previousEducationDetail = previousEducationDetail;
-		previousEducationDetail.setStudentRegistrationRecord(this);
-	}
-
-	public CurrentClass getCurrentClass() {
-		return currentClass;
-	}
-
-	public void setCurrentClass(CurrentClass currentClass) {
-		this.currentClass = currentClass;
-		currentClass.setStudentRegistrationRecord(this);
-
 	}
 
 	public String getStudentImageLocation() {
@@ -169,48 +145,6 @@ public class StudentRegistrationRecord {
 
 	public MultipartFile getCastCertificate() {
 		return castCertificate;
-	}
-
-	public PersonalDetail getPersonalDetail() {
-		return personalDetail;
-	}
-
-	public void setPersonalDetail(PersonalDetail personalDetail) {
-		this.personalDetail = personalDetail;
-		personalDetail.setStudentRegistrationRecord(this);
-	}
-
-	public EducationDetail getEducationDetail() {
-		return this.previousEducationDetail;
-	}
-	public void setEducationDetail(EducationDetail educationDetail) {
-		this.previousEducationDetail = educationDetail;
-		previousEducationDetail.setStudentRegistrationRecord(this);
-	}
-	public ParentDetail getParentDetails() {
-		return parentDetails;
-	}
-	public void setParentDetails(ParentDetail parentDetails) {
-		this.parentDetails = parentDetails;
-		parentDetails.setStudentRegistrationRecord(this);
-	}
-
-	public Address getCurrentAddress() {
-		return currentAddress;
-	}
-
-	public void setCurrentAddress(Address currentAddress) {
-		this.currentAddress = currentAddress;
-		currentAddress.setStudentRegistrationRecord(this);
-	}
-
-	public Address getPermanentAddress() {
-		return permanentAddress;
-	}
-
-	public void setPermanentAddress(Address permanentAddress) {
-		this.permanentAddress = permanentAddress;
-		permanentAddress.setStudentRegistrationRecord(this);
 	}
 
 	public Date getTimeStamp() {
