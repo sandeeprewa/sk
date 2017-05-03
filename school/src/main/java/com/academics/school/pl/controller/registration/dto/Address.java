@@ -2,31 +2,42 @@ package com.academics.school.pl.controller.registration.dto;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Table(name = "ADDRESS_TABLE")
 @Entity
-	
 public class Address {
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "addressId")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "address_sequence")
+	@SequenceGenerator(name = "address_sequence", sequenceName = "address_sequence_db",allocationSize=1, initialValue= 1)	
+	@Column(name = "ADDRESS_ID")
 	private Long addressId;
-
+	@Column(name = "HOUSE_NUMBER")
 	private String houseNumber;
+	@Column(name = "VILLAGE")
 	private String village;
+	@Column(name = "CITY")
 	private String city;
+	@Column(name = "STATE")
 	private State state;
+	@Column(name = "PIN_NUMBER")
 	private String pinNumber;
+	@Column(name = "COUNTRY")
 	private Nation country;
+	@Column(name = "ADDRESS_DETAILS")
 	private String addressDetails;
 
-	@OneToOne	@JoinColumn(name = "STUDENT_REGISTRATION_ID")
+	@OneToOne	
+	@JoinColumn(name = "REGISTRATION_ID")
 	StudentRegistrationRecord studentRegistrationRecord;
 	
 	public Long getAddressId() {
@@ -60,6 +71,7 @@ public class Address {
 	public void setCity(String city) {
 		this.city = city;
 	}
+	@Enumerated(EnumType.STRING)
 	public State getState() {
 		return state;
 	}

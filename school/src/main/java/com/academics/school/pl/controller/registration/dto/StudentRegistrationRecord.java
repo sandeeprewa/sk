@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
@@ -22,7 +23,8 @@ import org.springframework.web.multipart.MultipartFile;
 public class StudentRegistrationRecord {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "registration_sequence")
+	@SequenceGenerator(name = "registration_sequence", sequenceName = "registration_sequence_db",allocationSize=1, initialValue= 1)	
 	@Column(name = "REGISTRATION_ID")
 	Long registrationId;
 
@@ -35,10 +37,10 @@ public class StudentRegistrationRecord {
 	@OneToOne(mappedBy = "studentRegistrationRecord", cascade = CascadeType.ALL)
 	private CurrentClass currentClass;
 	
-	@OneToOne(mappedBy = "studentRegistrationRecord")
+	@OneToOne(mappedBy = "studentRegistrationRecord", cascade = CascadeType.ALL)
 	private ParentDetail parentDetails;
 	
-	@OneToOne(mappedBy = "studentRegistrationRecord")
+	@OneToOne(mappedBy = "studentRegistrationRecord", cascade = CascadeType.ALL)
 	private Address currentAddress;
 	
 	@OneToOne(mappedBy = "studentRegistrationRecord", cascade = CascadeType.ALL)
@@ -76,6 +78,7 @@ public class StudentRegistrationRecord {
 
 	public void setPreviousEducationDetail(EducationDetail previousEducationDetail) {
 		this.previousEducationDetail = previousEducationDetail;
+		previousEducationDetail.setStudentRegistrationRecord(this);
 	}
 
 	public CurrentClass getCurrentClass() {
@@ -84,6 +87,8 @@ public class StudentRegistrationRecord {
 
 	public void setCurrentClass(CurrentClass currentClass) {
 		this.currentClass = currentClass;
+		currentClass.setStudentRegistrationRecord(this);
+
 	}
 
 	public String getStudentImageLocation() {
@@ -160,6 +165,7 @@ public class StudentRegistrationRecord {
 
 	public void setPersonalDetail(PersonalDetail personalDetail) {
 		this.personalDetail = personalDetail;
+		personalDetail.setStudentRegistrationRecord(this);
 	}
 
 	public EducationDetail getEducationDetail() {
@@ -167,12 +173,14 @@ public class StudentRegistrationRecord {
 	}
 	public void setEducationDetail(EducationDetail educationDetail) {
 		this.previousEducationDetail = educationDetail;
+		previousEducationDetail.setStudentRegistrationRecord(this);
 	}
 	public ParentDetail getParentDetails() {
 		return parentDetails;
 	}
 	public void setParentDetails(ParentDetail parentDetails) {
 		this.parentDetails = parentDetails;
+		parentDetails.setStudentRegistrationRecord(this);
 	}
 
 	public Address getCurrentAddress() {
@@ -181,6 +189,7 @@ public class StudentRegistrationRecord {
 
 	public void setCurrentAddress(Address currentAddress) {
 		this.currentAddress = currentAddress;
+		currentAddress.setStudentRegistrationRecord(this);
 	}
 
 	public Address getPermanentAddress() {
@@ -189,6 +198,7 @@ public class StudentRegistrationRecord {
 
 	public void setPermanentAddress(Address permanentAddress) {
 		this.permanentAddress = permanentAddress;
+		permanentAddress.setStudentRegistrationRecord(this);
 	}
 
 	public Date getTimeStamp() {

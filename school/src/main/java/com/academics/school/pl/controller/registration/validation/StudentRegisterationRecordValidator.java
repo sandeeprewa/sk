@@ -29,7 +29,6 @@ public class StudentRegisterationRecordValidator implements Validator{
 	public static void validate(StudentRegistrationRecord studentRegistrationRecord) throws StudentRegistrationFieldValidationException{
 		
 		//Student Personal Details
-		
 		validateIsEmptyOrNullOrContainsOnlyAlphnumeric(studentRegistrationRecord.getPersonalDetail().getFirstName(), "fname");
 		validateIsEmptyOrNullOrContainsOnlyAlphnumeric(studentRegistrationRecord.getPersonalDetail().getLastName(),"lname");
 		validateIsEmptyOrNullOrValidAlphanumericGender(studentRegistrationRecord.getPersonalDetail().getGender().getName(), "gender");
@@ -42,25 +41,21 @@ public class StudentRegisterationRecordValidator implements Validator{
 		validateIsEmptyOrNullOrValidAlphanumericNation(studentRegistrationRecord.getPersonalDetail().getNationality().getName(),"nationality" );
 		validateIsEmptyOrNullOrValidAlphanumericReligion(studentRegistrationRecord.getPersonalDetail().getReligion().getName(),"religion" );
 		validateIsEmptyOrNullOrContainsOnlyAlphnumeric(studentRegistrationRecord.getPersonalDetail().getBloodGroup(), "bloodgroup");
-		validateIsEmptyOrNullOrContainsOnlyAlphnumeric(studentRegistrationRecord.getPersonalDetail().getAdhaarCardNo(), "aadharcardno");
-				
+		validateIsEmptyOrNullOrContainsOnlyAlphnumeric(studentRegistrationRecord.getPersonalDetail().getAdhaarCardNumber(), "aadharcardno");
        //Education Details
 		validateIsEmptyOrNullOrContainsOnlyAlphnumeric(studentRegistrationRecord.getEducationDetail().getPreviousSchoolName(), "previousschoolname");
 		validateIsEmptyOrNullOrContainsOnlyAlphnumeric(studentRegistrationRecord.getEducationDetail().getPreviousSchoolAddress(), "previousschooladdress");
 		validateIsEmptyOrNullOrContainsOnlyNumber(studentRegistrationRecord.getEducationDetail().getPreviousSchoolClass(), "previousschoolclass");
 		validateIsEmptyOrNullOrContainsOnlyNumber(studentRegistrationRecord.getEducationDetail().getPreviousClassPercentage(), "previousschoolpercentage");
-	  
 	  //Parent Details				
 		validateIsEmptyOrNullOrContainsOnlyAlphnumeric(studentRegistrationRecord.getParentDetails().getFatherName(), "fathername");
 		validateIsEmptyOrNullOrContainsOnlyNumber(studentRegistrationRecord.getParentDetails().getFatherMobileNumber(), "fathermobilenumber");
 		validateIsEmptyOrNullOrValidEmail(studentRegistrationRecord.getParentDetails().getFatherEmail(), "fatheremail");
 		validateIsEmptyOrNull(studentRegistrationRecord.getParentDetails().getFatherOccupation(), "fatheroccupation");
-	
 		validateIsEmptyOrNullOrContainsOnlyAlphnumeric(studentRegistrationRecord.getParentDetails().getMotherName(), "mothername");
 		validateIsEmptyOrNullOrContainsOnlyNumber(studentRegistrationRecord.getParentDetails().getMotherMobileNumber(), "mothermobilenumber");
 		validateIsEmptyOrNullOrValidEmail(studentRegistrationRecord.getParentDetails().getMotherEmail(), "motheremail");
 		validateIsEmptyOrNull(studentRegistrationRecord.getParentDetails().getMotherOccupation(), "motheroccupation");		   			   
-				   
 	 //Present Address			   
 		validateIsEmptyOrNull(studentRegistrationRecord.getCurrentAddress().getHouseNumber(), "currenthousenumber");
 		validateIsEmptyOrNull(studentRegistrationRecord.getCurrentAddress().getVillage(), "currentvillage");
@@ -69,7 +64,6 @@ public class StudentRegisterationRecordValidator implements Validator{
 		validateIsEmptyOrNullOrContainsOnlyNumber(studentRegistrationRecord.getCurrentAddress().getPinNumber(), "currentpinnumber");
 		validateIsEmptyOrNullOrValidAlphanumericNation(studentRegistrationRecord.getCurrentAddress().getCountry().getName(), "currentcountry");
 		validateIsEmptyOrNull(studentRegistrationRecord.getCurrentAddress().getAddressDetails(), "currentaddressdetails");
-	  		   
 	//Permanent Address
 		validateIsEmptyOrNull(studentRegistrationRecord.getCurrentAddress().getHouseNumber(), "permanenthousenumber");
 		validateIsEmptyOrNull(studentRegistrationRecord.getCurrentAddress().getVillage(), "permanentvillage");
@@ -78,8 +72,6 @@ public class StudentRegisterationRecordValidator implements Validator{
 		validateIsEmptyOrNullOrContainsOnlyNumber(studentRegistrationRecord.getCurrentAddress().getPinNumber(), "permanentpinnumber");
 		validateIsEmptyOrNullOrValidAlphanumericNation(studentRegistrationRecord.getCurrentAddress().getCountry().getName(), "permanentcountry");
 		validateIsEmptyOrNull(studentRegistrationRecord.getCurrentAddress().getAddressDetails(), "permanentaddressdetails");
-					  
-		
 	}
 	
 	

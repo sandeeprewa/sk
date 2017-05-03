@@ -47,7 +47,7 @@ function getInputData(){
 		    "nationality":"indian",
 		    "religion":"hindu",
 		    "bloodGroup":"bloodGroup",
-		    "adhaarCardNo":"1234567"
+		    "adhaarCardNumber":"1234567"
 		  },
 		  "currentClass":{  
 		    "c_Class":"1",

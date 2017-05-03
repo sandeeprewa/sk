@@ -7,16 +7,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-@Table( name = "PERSONAL_DETAIL")
+@Table( name = "PARENT_DETAIL_TABLE")
 @Entity
 public class ParentDetail {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "personalDetailId")
-	private Long personalDetailId;
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "parentDetail_sequence")
+	@SequenceGenerator(name = "parentDetail_sequence", sequenceName = "parentDetail_sequence_db",allocationSize=1, initialValue= 1)	
+	@Column(name = "PARENT_DETAIL_ID")
+	private Long parentDetailId;
 	private String fatherName;
 	private String fatherMobileNumber;
 	private String fatherEmail;
@@ -29,11 +31,12 @@ public class ParentDetail {
 	@OneToOne 	@JoinColumn(name = "STUDENT_REGISTRATION_ID")
 	private StudentRegistrationRecord studentRegistrationRecord;
 
-	public Long getPersonalDetailId() {
-		return personalDetailId;
+	
+	public Long getParentDetailId() {
+		return parentDetailId;
 	}
-	public void setPersonalDetailId(Long personalDetailId) {
-		this.personalDetailId = personalDetailId;
+	public void setParentDetailId(Long parentDetailId) {
+		this.parentDetailId = parentDetailId;
 	}
 	public StudentRegistrationRecord getStudentRegistrationRecord() {
 		return studentRegistrationRecord;

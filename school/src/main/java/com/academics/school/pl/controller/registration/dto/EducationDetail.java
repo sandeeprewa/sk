@@ -1,11 +1,13 @@
 package com.academics.school.pl.controller.registration.dto;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Table
@@ -13,14 +15,20 @@ import javax.persistence.Table;
 public class EducationDetail {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "education_sequence")
+	@SequenceGenerator(name = "education_sequence", sequenceName = "education_sequence_db",allocationSize=1, initialValue= 1)	
+	@Column(name = "EDUCATION_DETAIL_ID")
 	private Long   educationDetailId;
+	@Column(name = "PREVIOUS_SCHOOL_NAME")
 	private String previousSchoolName;
+	@Column(name = "PREVIOUS_SCHOOL_ADDRESS")
 	private String previousSchoolAddress;
+	@Column(name = "PREVIOUS_SCHOOL_CLASS")
 	private String previousSchoolClass;
+	@Column(name = "PREVIOUS_CLASS_PERCENTAGE")
 	private String previousClassPercentage;
 
-	@OneToOne	@JoinColumn(name = "STUDENT_REGISTRATION_ID")
+	@OneToOne	@JoinColumn(name = "REGISTRATION_ID")
     StudentRegistrationRecord studentRegistrationRecord;
 
 	public StudentRegistrationRecord getStudentRegistrationRecord() {
