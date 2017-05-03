@@ -77,10 +77,10 @@ public class StudentRegisterationRecordValidator implements Validator{
 		validateIsEmptyOrNullOrValidAlphanumericState(studentRegistrationRecord.getCurrentAddress().getState().getName(), "permanentstate");
 		validateIsEmptyOrNullOrContainsOnlyNumber(studentRegistrationRecord.getCurrentAddress().getPinNumber(), "permanentpinnumber");
 		validateIsEmptyOrNullOrValidAlphanumericNation(studentRegistrationRecord.getCurrentAddress().getCountry().getName(), "permanentcountry");
-		validateIsEmptyOrNull(studentRegistrationRecord.getCurrentAddress().getAddressDetails(), "permanentaddressdetails");
-					  
+		validateIsEmptyOrNull(studentRegistrationRecord.getCurrentAddress().getAddressDetails(), "permanentaddressdetails");					  
 		
 	}
+	
 	
 	
 	private static void validateIsEmptyOrNullOrValidEmail(String stringToBeValidated, String inputKey){

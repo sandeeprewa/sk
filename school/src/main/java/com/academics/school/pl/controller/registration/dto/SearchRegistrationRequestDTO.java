@@ -11,6 +11,8 @@ public class SearchRegistrationRequestDTO {
 	String studentLastName;
 	String studentFatherName;
 	String studentMotherName;
+	
+	
 	public String getStandard() {
 		return standard;
 	}

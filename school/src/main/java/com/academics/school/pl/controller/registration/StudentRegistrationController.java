@@ -127,8 +127,7 @@ public class StudentRegistrationController {
 		return "collected";	
 	}
 	
-	private void validateListOfRegistrationRecordStatusTrackerDTO(
-			ArrayList<RegistrationRecordStatusTrackerDTO> statusDTOList) {
+	private void validateListOfRegistrationRecordStatusTrackerDTO(ArrayList<RegistrationRecordStatusTrackerDTO> statusDTOList) {
 		RegistrationRecordStatusDTOValidator.validate(statusDTOList);
 	}
 
