@@ -19,9 +19,9 @@ public class FileUploader {
             }
 	}
 	
-	public static String transfer(MultipartFile multipartFile, String folderName, String subFolder) throws RuntimeException, IOException{
+	public static String transfer(MultipartFile multipartFile, String folderName, String subFolder, String namePrefix) throws RuntimeException, IOException{
 		
-			 String orgName = multipartFile.getOriginalFilename();
+			 String orgName = namePrefix +"_"+ multipartFile.getOriginalFilename();
 			 File d1 = new File(ROOT_PATH + File.separator + folderName + File.separator + subFolder);
              if(!d1.isDirectory())
             	 d1.mkdirs();
@@ -32,10 +32,10 @@ public class FileUploader {
         return dest.toString();
 	}
 
-	public static String saveFileIntoFileSystem(MultipartFile multipartFile, String folderName, String subFolder) {
+	public static String saveFileIntoFileSystem(MultipartFile multipartFile, String className, String registationId, String prefix) {
 		// TODO Auto-generated method stub
 		try {
-			return transfer(multipartFile, folderName, subFolder);
+			return transfer(multipartFile, className, registationId, prefix);
 		}  catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

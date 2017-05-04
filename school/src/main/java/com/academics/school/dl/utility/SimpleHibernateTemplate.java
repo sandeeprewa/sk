@@ -86,8 +86,8 @@ public class SimpleHibernateTemplate<E> {
   }
 
   @SuppressWarnings("unchecked")
-  public E saveAndGet(final Object object) throws DataAccessException {
     getSession().save(object);
+  public E saveAndGet(final Object object) throws DataAccessException {
     return (E) object;
   }
 

@@ -23,10 +23,11 @@ public class StudentRegistrationDaoImpl implements StudentRegistrationDao {
 	@Transactional
 	public StudentRegistrationRecord saveRegistrationStudentRecord(StudentRegistrationRecord admissionRecord){
 		
-		String fileLocationOfBirthCertificate = FileUploader.saveFileIntoFileSystem(admissionRecord.getBirthCertificate(), admissionRecord.getPersonalDetail().getCurrentClass().getC_Class(), admissionRecord.getPersonalDetail().getFirstName());
-//		String fileLocationOfCastCertifcate   = FileUploader.saveFileIntoFileSystem(admissionRecord.getCastCertificate());
-		
-		simpleHibernateTemplate.save(admissionRecord);
+		StudentRegistrationRecord record = simpleHibernateTemplate.saveAndGet(admissionRecord);
+		String fileLocationOfBirthCertificate = 
+				FileUploader.saveFileIntoFileSystem(admissionRecord.getMotherImage(),
+				admissionRecord.getPersonalDetail().getCurrentClass().getC_Class(), String.valueOf(record.getRegistrationId()), "MotherImage" );
+		admissionRecord.setMotherImageLocation(fileLocationOfBirthCertificate);
 		return new StudentRegistrationRecord();
 	}
 	
