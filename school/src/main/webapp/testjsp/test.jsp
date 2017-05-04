@@ -12,26 +12,20 @@
 </head>
 <body>
 
-<form id="realForm">
-	
+ <form id="realForm">
 	<input type= "text" name= "registrationJson" id ="registrationJsonId" />
-
 	Student Image :<input type= "file" name="studentImage" id="studentImageId"/>
 	Father image <input type = "file" name = "fatherImage" id = "fatherImageId"/>
 	Mother Image <input type= "file" name = "motherImage" id = "motherImageId"/>
-
 	birth Certificate :<input type= "file" name="birthCertificate" id="birthCertificateId"/>
 	cast Certificate <input type = "file" name = "castCertificate" id = "castCertificateId"/>
 	Disability Certificate <input type= "file" name = "disabilityCertificate" id = "disabilityCertificateId"/>
-	
-	</form>
-	
-<%-- 	<form id="testForm">
+</form>
+<%--  	<form id="testForm">
 	<input type= "text" name="name" id ="inputText" />	
 	File :<input type= "file" name="file1" id="imageFileId"/>
 	</form>
- --%>
-	<input type="button" id="formData" value ="Submit form data"/>
+ --%>	<input type="button" id="formData" value ="Submit form data"/>
 	<input type="button" id="imageAndText" value = 'Submit Image and Text'/>
 	<input type="button" id="complexObject" value='Complex Object' />
 	<input type="button" id="complexObjectAndImage" value ='ComplexOBject and Image'/>	

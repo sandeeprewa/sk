@@ -41,7 +41,6 @@ public class StudentRegistrationRecord {
 	@OneToOne(mappedBy = "studentRegistrationRecord", cascade = CascadeType.ALL)    
 	private Student personalDetail;
 	
-	
 	@Temporal(TemporalType.DATE)
     private Date timeStamp;
 	

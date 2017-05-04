@@ -1,5 +1,7 @@
 package com.academics.school.wl.configuration;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -20,6 +22,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+import com.academics.school.dl.utility.FileUploader;
 import com.academics.school.wl.configuration.security.WebSecurityConfig;
 
 @Configuration
@@ -73,11 +76,17 @@ public class RootApplicationConfiguration extends WebMvcConfigurerAdapter {
         return viewResolver;
     }
 
-	 @Bean
-	    public MessageSource messageSource() {
+	    @Bean
+	 public MessageSource messageSource() {
 	        ResourceBundleMessageSource source = new ResourceBundleMessageSource();
 	        source.setBasename("error_messages");
 	        source.setUseCodeAsDefaultMessage(true);
 	        return source;
-	    }
+	 }
+	    
+	  @Bean
+	  public FileUploader initUploader(HttpServletRequest request){
+		  String path = "C:\\production\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\school\\uploads";
+		  return new FileUploader(path);
+	  }
 }
