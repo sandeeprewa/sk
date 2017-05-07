@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.academics.school.dl.registration.StudentRegistrationDao;
+import com.academics.school.pl.controller.registration.dto.SearchRegistrationRequestDTO;
 import com.academics.school.pl.controller.registration.dto.StudentRegistrationRecord;
 
 @Service("studentRegistrationServiceImpl") 
@@ -30,8 +31,13 @@ public class StudentRegistrationServiceImpl implements StudentRegistrationServic
 
 	public StudentRegistrationRecord getRegistrationRecordByRegistrationId(
 			String studentRegistrationRecordId) {
-		// TODO Auto-generated method stub
 		return studentRegistrationDaoImpl.getRegistrationRecordByRegistrationId(studentRegistrationRecordId);
+	}
+
+	public StudentRegistrationRecord getRegistrationRecordBasedOnDiffParameter(
+			SearchRegistrationRequestDTO searchRegistrationRequestDTO) {
+		// TODO Auto-generated method stub
+		return studentRegistrationDaoImpl.getRegistrationRecordBasedOnDiffParameter(searchRegistrationRequestDTO);
 	}
 
 }

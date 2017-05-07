@@ -1,7 +1,10 @@
 package com.academics.school.sl.registration;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
+import com.academics.school.pl.controller.registration.dto.SearchRegistrationRequestDTO;
 import com.academics.school.pl.controller.registration.dto.StudentRegistrationRecord;
 
 @Service 
@@ -18,5 +21,8 @@ public interface StudentRegistrationService {
 
 	StudentRegistrationRecord getRegistrationRecordByRegistrationId(
 			String studentRegistrationRecordId);
+
+	StudentRegistrationRecord getRegistrationRecordBasedOnDiffParameter(
+			SearchRegistrationRequestDTO searchRegistrationRequestDTO);
 
 }

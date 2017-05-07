@@ -15,9 +15,11 @@ import org.springframework.stereotype.Repository;
 import static com.academics.school.dl.utility.FileUploader.*;
 
 import com.academics.school.dl.utility.SimpleHibernateTemplate;
+import com.academics.school.pl.controller.registration.dto.SearchRegistrationRequestDTO;
 import com.academics.school.pl.controller.registration.dto.Student;
 import com.academics.school.pl.controller.registration.dto.StudentRegistrationRecord;
 import com.academics.school.pl.controller.registration.error.RegistrationIDDoesNotExitException;
+import com.academics.school.pl.controller.registration.error.RegistrationRecordDoesNotExistException;
 import com.academics.school.pl.controller.registration.error.StudentAlreadyRegisteredException;
 import com.academics.school.pl.controller.registration.error.StudentIDEditException;
 import com.academics.school.pl.controller.registration.error.StudentIdDoesNotExistException;
@@ -34,6 +36,24 @@ public class StudentRegistrationDaoImpl implements StudentRegistrationDao {
 		this.simpleHibernateTemplate = new SimpleHibernateTemplate<StudentRegistrationRecord>(sessionFactory);
 	}
 	
+	@Transactional
+	public StudentRegistrationRecord getRegistrationRecordBasedOnDiffParameter(
+			SearchRegistrationRequestDTO searchRegistrationRequestDTO) throws RegistrationRecordDoesNotExistException {
+
+		Criteria criteria = simpleHibernateTemplate.createCriteria(Student.class);
+		criteria.add(Restrictions.eq("firstName", searchRegistrationRequestDTO.getStudentFirstName()));
+		criteria.add(Restrictions.eq("lastName", searchRegistrationRequestDTO.getStudentLastName()));
+		criteria.add(Restrictions.eq("dateOfBirth", searchRegistrationRequestDTO.getDateOfBirth()));
+		criteria.add(Restrictions.eq("mobileNumber", searchRegistrationRequestDTO.getStudentMobileNumber()));
+		criteria.add(Restrictions.eq("email", searchRegistrationRequestDTO.getStudentEmail()));
+		Student retrivedStudent = (Student)criteria.uniqueResult();
+		if(retrivedStudent == null){
+			throw new RegistrationRecordDoesNotExistException("input.student.notfound");
+		}
+		return retrivedStudent.getStudentRegistrationRecord();
+	}
+
+	
 	@Transactional(value = TxType.MANDATORY)
 	public Student getIfExist(StudentRegistrationRecord record) {
 		Criteria criteria = simpleHibernateTemplate.createCriteria(Student.class);
@@ -48,10 +68,6 @@ public class StudentRegistrationDaoImpl implements StudentRegistrationDao {
 	
 	@Transactional
 	public StudentRegistrationRecord getStudentRegisterRecordByRegistrationId(Long registrationId){
-/*		Criteria criteria = simpleHibernateTemplate.createCriteria(StudentRegistrationRecord.class);
-		criteria.add(Restrictions.eq("registrationId", registrationId));
-		StudentRegistrationRecord record = (StudentRegistrationRecord) criteria.uniqueResult();
-*/
 		StudentRegistrationRecord record = simpleHibernateTemplate
 				.getObjectBasedOnId(StudentRegistrationRecord.class, registrationId, REGISTRATION_ID);
 		//loading data, it should be changed
@@ -144,6 +160,7 @@ public class StudentRegistrationDaoImpl implements StudentRegistrationDao {
 		admissionRecord.setDisabilityCertificateLocation(saveFileIntoFileSystem(admissionRecord.getDisabilityCertificate(),
 						admissionRecord.getPersonalDetail().getCurrentClass().getC_Class(), String.valueOf(admissionRecord.getRegistrationId()), "Disablity Certificate Image" ));
 	}
+
 
 	
 	

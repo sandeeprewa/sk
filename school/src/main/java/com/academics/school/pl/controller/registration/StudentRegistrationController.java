@@ -83,6 +83,17 @@ public class StudentRegistrationController {
 	}
 */	
 	/*
+	 * Getting registration record by registrationID
+	 */
+	@RequestMapping(value = "{registrationId}", method = RequestMethod.GET)
+	@RequiredPrivilage({PrivilageEnum.PUBLIC_USER})
+	@ResponseStatus(code = HttpStatus.OK)
+	public StudentRegistrationRecord getStudentAdmissionRecord(@Valid @NotNull @PathVariable String registrationId) 
+			throws StudentIdDoesNotExistException {
+		return studentRegistrationFacade.getRegistrationRecordByRegistrationId(registrationId);
+	}
+	
+	/*
 	 * Create New Registration Record 
 	 */
 	@RequestMapping(method = RequestMethod.POST)
@@ -93,17 +104,6 @@ public class StudentRegistrationController {
 		StudentRegistrationRecord studentRegistrationRecord = buildStudentRegistrationRecordDTO(fakeRegistrationRecord);
 		validate(studentRegistrationRecord);
 		return studentRegistrationFacade.createRegistrationStudentRecord(studentRegistrationRecord);
-	}
-	
-	/*
-	 * Getting registration record by registrationID
-	 */
-	@RequestMapping(value = "{registrationId}", method = RequestMethod.GET)
-	@RequiredPrivilage({PrivilageEnum.PUBLIC_USER})
-	@ResponseStatus(code = HttpStatus.OK)
-	public StudentRegistrationRecord getStudentAdmissionRecord(@Valid @NotNull @PathVariable String registrationId) 
-			throws StudentIdDoesNotExistException {
-		return studentRegistrationFacade.getRegistrationRecordByRegistrationId(registrationId);
 	}
 	
 	/*
@@ -134,8 +134,8 @@ public class StudentRegistrationController {
 	 * Search of Registration Record based on Diff Parameter
 	 */
 	@RequiredPrivilage({PrivilageEnum.PUBLIC_USER})
-	@RequestMapping(value = "/search", method = RequestMethod.POST)
-	public List<StudentRegistrationRecord> getStudentAdmissionRecordByStudentName(@RequestBody SearchRegistrationRequestDTO searchRegistrationRequestDTO) 
+	@RequestMapping(value = "/search", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
+	public StudentRegistrationRecord getStudentAdmissionRecordByStudentName(@RequestBody SearchRegistrationRequestDTO searchRegistrationRequestDTO) 
 			throws RegistrationRecordDoesNotExistException {
 		return studentRegistrationFacade.getRegistrationRecordBasedOnDiffParameter(searchRegistrationRequestDTO);
 	}

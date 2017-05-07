@@ -60,10 +60,12 @@ public class StudentRegistrationFacade {
 		return null;
 	}
 
-	public List<StudentRegistrationRecord> getRegistrationRecordBasedOnDiffParameter(
+	public StudentRegistrationRecord getRegistrationRecordBasedOnDiffParameter(
 			SearchRegistrationRequestDTO searchRegistrationRequestDTO) {
-		// TODO Auto-generated method stub
-		return null;
+		if(searchRegistrationRequestDTO.getRegistrationId()!= null){
+		return	studentRegistrationServiceImpl.getRegistrationRecordByRegistrationId(searchRegistrationRequestDTO.getRegistrationId());
+		}
+		return studentRegistrationServiceImpl.getRegistrationRecordBasedOnDiffParameter(searchRegistrationRequestDTO);
 	}
 
 	public List<StudentRegistrationRecord> changeStatusOfRegistrationRecord(

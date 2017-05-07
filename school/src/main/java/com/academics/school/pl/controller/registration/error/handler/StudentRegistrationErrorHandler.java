@@ -83,7 +83,7 @@ public class StudentRegistrationErrorHandler {
 		restError = new RestError();
 		restError.setHttpStatus(HttpStatus.NOT_FOUND.toString());
 		restError.setCode(Code.FEES_NOT_PAID.toString());
-		restError.setMessage(messageSource.getMessage(RestErrorMessage.STUDENT_DOES_NOT_EXIST, null, Locale.US));
+		restError.setMessage(messageSource.getMessage(exception.getMessage(), null, Locale.US));
 		return restError;
 	}
 

@@ -34,6 +34,9 @@ $(document).ready(function (){
 		submitStudentRecordForUpdate();
 	});
 
+	$("#searchRecordId").click(function(){
+		submitStudentRecordForSearch();
+	});
 });
 
 function getInputData(){
@@ -243,6 +246,33 @@ function getInputData(){
 	    
 }
 
+	
+
+	function submitStudentRecordForSearch(){
+
+		var markers = {
+				"registrationId":"1"
+		};
+		
+		jQuery.ajax(
+			{    
+				type: "POST",
+				url: "../rest/register/search",
+				data: JSON.stringify(markers),
+				
+				beforeSend: function(xhr) {
+					xhr.setRequestHeader("Accept", "application/json");
+					xhr.setRequestHeader("Content-Type", "application/json");
+				},
+				success: function(data){
+					alert(data);
+				},
+				failure: function(errMsg) {
+					alert(errMsg);
+				}			
+		});
+	
+	}	
 	
 function makeCall(){
 	var markers = { "userName": "42.5978231292517", "password": "-3" };
