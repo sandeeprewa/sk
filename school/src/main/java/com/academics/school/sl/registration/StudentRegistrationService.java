@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.academics.school.pl.controller.registration.dto.SearchRegistrationRequestDTO;
+import com.academics.school.pl.controller.registration.dto.StatusDTO;
 import com.academics.school.pl.controller.registration.dto.StudentRegistrationRecord;
 
 @Service 
@@ -24,5 +25,8 @@ public interface StudentRegistrationService {
 
 	StudentRegistrationRecord getRegistrationRecordBasedOnDiffParameter(
 			SearchRegistrationRequestDTO searchRegistrationRequestDTO);
+
+	List<StudentRegistrationRecord> changeStatusOfRegistrationRecords(
+			List<StatusDTO> statusDTOList);
 
 }

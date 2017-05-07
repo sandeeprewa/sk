@@ -37,6 +37,10 @@ $(document).ready(function (){
 	$("#searchRecordId").click(function(){
 		submitStudentRecordForSearch();
 	});
+	
+	$("#updateStatusId").click(function(){
+		updateStatus();
+	});
 });
 
 function getInputData(){
@@ -295,6 +299,40 @@ function makeCall(){
 			}			
 	});
 }
+
+
+function updateStatus(){
+	var markers = {
+			"name":"s",
+			"statusDTO":[
+			 			{		"registrationId":"1",
+			 					"status":"hi"
+			 			},
+			 			{		"registrationId":"1",
+			 					"status":"hi"
+			 			}
+			 		]
+			 };
+	
+	jQuery.ajax(
+		{    
+			type: "POST",
+			url: "../rest/register/status",
+			data: JSON.stringify(markers),
+			
+			beforeSend: function(xhr) {
+				xhr.setRequestHeader("Accept", "application/json");
+				xhr.setRequestHeader("Content-Type", "application/json");
+			},
+			success: function(data){
+				alert(data);
+			},
+			failure: function(errMsg) {
+				alert(errMsg);
+			}			
+	});
+}
+
 
 function submitFormData(){
 	

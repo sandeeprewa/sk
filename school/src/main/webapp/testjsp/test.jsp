@@ -37,6 +37,7 @@
 	<input type="button" id="updateRecordId" value= "Update Record Id" >
 		<input type="button" id="getRecordId" value= "GET Record Id" >
 		<input type="button" id="deleteRecordId" value= "DELETE Record Id" >
-	<input type="button" id ="searchRecordId" value= "Seach Record">
+	<input type="button" id ="searchRecordId" value= "Seach Record"/>
+	<input type= "button" id="updateStatusId" value ="updateStatus"/>
 </body>
 </html>

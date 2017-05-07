@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import com.academics.school.pl.controller.registration.dto.RegistrationRecordStatusTrackerDTO;
 import com.academics.school.pl.controller.registration.dto.SearchRegistrationRequestDTO;
+import com.academics.school.pl.controller.registration.dto.StatusDTO;
 import com.academics.school.pl.controller.registration.dto.StudentRegistrationRecord;
 import com.academics.school.sl.registration.StudentRegistrationService;
 
@@ -68,10 +69,10 @@ public class StudentRegistrationFacade {
 		return studentRegistrationServiceImpl.getRegistrationRecordBasedOnDiffParameter(searchRegistrationRequestDTO);
 	}
 
-	public List<StudentRegistrationRecord> changeStatusOfRegistrationRecord(
-			ArrayList<RegistrationRecordStatusTrackerDTO> statusDTOList) {
+	public List<StudentRegistrationRecord> changeStatusOfRegistrationRecords(
+			List<StatusDTO> statusDTOList) {
 		// TODO Auto-generated method stub
-		return null;
+		return studentRegistrationServiceImpl.changeStatusOfRegistrationRecords(statusDTOList);
 	}
 
 }

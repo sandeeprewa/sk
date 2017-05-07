@@ -1,5 +1,8 @@
 package com.academics.school.dl.registration;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -15,7 +18,9 @@ import org.springframework.stereotype.Repository;
 import static com.academics.school.dl.utility.FileUploader.*;
 
 import com.academics.school.dl.utility.SimpleHibernateTemplate;
+import com.academics.school.pl.controller.registration.dto.RegistrationStatus;
 import com.academics.school.pl.controller.registration.dto.SearchRegistrationRequestDTO;
+import com.academics.school.pl.controller.registration.dto.StatusDTO;
 import com.academics.school.pl.controller.registration.dto.Student;
 import com.academics.school.pl.controller.registration.dto.StudentRegistrationRecord;
 import com.academics.school.pl.controller.registration.error.RegistrationIDDoesNotExitException;
@@ -159,6 +164,25 @@ public class StudentRegistrationDaoImpl implements StudentRegistrationDao {
 		if(admissionRecord.getDisabilityCertificate()!=null)
 		admissionRecord.setDisabilityCertificateLocation(saveFileIntoFileSystem(admissionRecord.getDisabilityCertificate(),
 						admissionRecord.getPersonalDetail().getCurrentClass().getC_Class(), String.valueOf(admissionRecord.getRegistrationId()), "Disablity Certificate Image" ));
+	}
+
+	@Transactional
+	public List<StudentRegistrationRecord> updateStatusOfRegistrationRecords(
+			List<StatusDTO> statusDTOList) {
+		List<StudentRegistrationRecord> listOfRegistrationRecords = new ArrayList<StudentRegistrationRecord>();
+		
+		
+		for (StatusDTO statusDTO : statusDTOList) {
+			StudentRegistrationRecord record =	simpleHibernateTemplate.get(StudentRegistrationRecord.class, statusDTO.getRegistrationId());
+			if(record == null){
+				throw new StudentIdDoesNotExistException("input.id.invalid");
+			}
+			record.setRegistrationStatus(RegistrationStatus.getEnum(statusDTO.getStatus()));
+			listOfRegistrationRecords.add(record);
+			simpleHibernateTemplate.flush();
+		}  
+		
+		return listOfRegistrationRecords;
 	}
 
 

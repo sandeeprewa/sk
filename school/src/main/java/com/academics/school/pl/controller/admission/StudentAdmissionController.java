@@ -137,7 +137,7 @@ public class StudentAdmissionController {
 	
 	private void validateListOfRegistrationRecordStatusTrackerDTO(
 			ArrayList<RegistrationRecordStatusTrackerDTO> statusDTOList) {
-		RegistrationRecordStatusDTOValidator.validate(statusDTOList);
+//		RegistrationRecordStatusDTOValidator.validate(statusDTOList);
 	}
 
 	private StudentRegistrationRecord buildStudentRegistrationRecordDTO(FakeStudentRegistrationDTO

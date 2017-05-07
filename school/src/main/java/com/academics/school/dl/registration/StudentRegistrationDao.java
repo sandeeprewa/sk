@@ -1,8 +1,11 @@
 package com.academics.school.dl.registration;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import com.academics.school.pl.controller.registration.dto.SearchRegistrationRequestDTO;
+import com.academics.school.pl.controller.registration.dto.StatusDTO;
 import com.academics.school.pl.controller.registration.dto.StudentRegistrationRecord;
 import com.academics.school.pl.controller.registration.error.RegistrationRecordDoesNotExistException;
 
@@ -25,5 +28,8 @@ public interface StudentRegistrationDao {
 
 	StudentRegistrationRecord getRegistrationRecordBasedOnDiffParameter(
 			SearchRegistrationRequestDTO searchRegistrationRequestDTO) throws RegistrationRecordDoesNotExistException;
+
+	List<StudentRegistrationRecord> updateStatusOfRegistrationRecords(
+			List<StatusDTO> statusDTOList);
 
 }

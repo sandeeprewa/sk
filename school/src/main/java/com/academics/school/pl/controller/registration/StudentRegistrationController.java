@@ -32,6 +32,7 @@ import org.springframework.web.context.support.ServletContextResource;
 import com.academics.school.pl.controller.registration.dto.FakeStudentRegistrationDTO;
 import com.academics.school.pl.controller.registration.dto.RegistrationRecordStatusTrackerDTO;
 import com.academics.school.pl.controller.registration.dto.SearchRegistrationRequestDTO;
+import com.academics.school.pl.controller.registration.dto.StatusDTO;
 import com.academics.school.pl.controller.registration.dto.StudentRegistrationRecord;
 import com.academics.school.pl.controller.registration.error.RegistrationRecordDoesNotExistException;
 import com.academics.school.pl.controller.registration.error.StudentAlreadyRegisteredException;
@@ -139,7 +140,21 @@ public class StudentRegistrationController {
 			throws RegistrationRecordDoesNotExistException {
 		return studentRegistrationFacade.getRegistrationRecordBasedOnDiffParameter(searchRegistrationRequestDTO);
 	}
+
 	
+	/*
+	 * Admin Facility - Changing Status of Registration Record
+	 */
+	@RequestMapping(value = "/status", method = RequestMethod.POST, consumes = "application/json", produces = "application/json" )
+	@RequiredPrivilage({PrivilageEnum.EDITOR})
+	public List<StudentRegistrationRecord> changeRegistrationRecordStatus(@RequestBody RegistrationRecordStatusTrackerDTO inputStatusDTO){
+		List<StatusDTO> statusDTOList = inputStatusDTO.getStatusDTO();
+		validateListOfStatusDTO(statusDTOList);
+		List<StudentRegistrationRecord> registeredRecord = studentRegistrationFacade.changeStatusOfRegistrationRecords(statusDTOList);
+		return registeredRecord;
+	}
+	
+	/* * Yet to be implement - Fee Part	 */
 	/*
 	 * Paying Fee
 	 */
@@ -147,18 +162,6 @@ public class StudentRegistrationController {
 	@RequestMapping(value = "/{registrationId}/fee", method = RequestMethod.POST)
 	public String payFee(@PathVariable String registrationId){
 		return "Fees Paid ! Testing";
-	}
-	
-	/*
-	 * Admin Facility - Changing Status of Registration Record
-	 */
-	@RequestMapping(value = "/status/", method = RequestMethod.PUT)
-	@RequiredPrivilage({PrivilageEnum.EDITOR})
-	public List<StudentRegistrationRecord> changeRegistrationRecordStatus(@RequestBody RegistrationRecordStatusTrackerDTO[] inputStatusDTO){
-		ArrayList<RegistrationRecordStatusTrackerDTO> statusDTOList = new ArrayList<RegistrationRecordStatusTrackerDTO>(Arrays.asList(inputStatusDTO));
-		validateListOfRegistrationRecordStatusTrackerDTO(statusDTOList);
-		List<StudentRegistrationRecord> registeredRecord = studentRegistrationFacade.changeStatusOfRegistrationRecord(statusDTOList);
-		return registeredRecord;
 	}
 	
 	/*
@@ -170,8 +173,7 @@ public class StudentRegistrationController {
 		return "collected";	
 	}
 	
-	private void validateListOfRegistrationRecordStatusTrackerDTO(
-			ArrayList<RegistrationRecordStatusTrackerDTO> statusDTOList) {
+	private void validateListOfStatusDTO(List<StatusDTO> statusDTOList) {
 		RegistrationRecordStatusDTOValidator.validate(statusDTOList);
 	}
 

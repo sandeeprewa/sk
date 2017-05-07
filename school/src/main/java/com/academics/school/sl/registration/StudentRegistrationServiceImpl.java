@@ -1,11 +1,14 @@
 package com.academics.school.sl.registration;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.academics.school.dl.registration.StudentRegistrationDao;
 import com.academics.school.pl.controller.registration.dto.SearchRegistrationRequestDTO;
+import com.academics.school.pl.controller.registration.dto.StatusDTO;
 import com.academics.school.pl.controller.registration.dto.StudentRegistrationRecord;
 
 @Service("studentRegistrationServiceImpl") 
@@ -36,8 +39,12 @@ public class StudentRegistrationServiceImpl implements StudentRegistrationServic
 
 	public StudentRegistrationRecord getRegistrationRecordBasedOnDiffParameter(
 			SearchRegistrationRequestDTO searchRegistrationRequestDTO) {
-		// TODO Auto-generated method stub
 		return studentRegistrationDaoImpl.getRegistrationRecordBasedOnDiffParameter(searchRegistrationRequestDTO);
+	}
+
+	public List<StudentRegistrationRecord> changeStatusOfRegistrationRecords(
+			List<StatusDTO> statusDTOList) {
+		return studentRegistrationDaoImpl.updateStatusOfRegistrationRecords(statusDTOList);
 	}
 
 }
