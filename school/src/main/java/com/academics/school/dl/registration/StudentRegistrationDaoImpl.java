@@ -75,17 +75,6 @@ public class StudentRegistrationDaoImpl implements StudentRegistrationDao {
 	public StudentRegistrationRecord getStudentRegisterRecordByRegistrationId(Long registrationId){
 		StudentRegistrationRecord record = simpleHibernateTemplate
 				.getObjectBasedOnId(StudentRegistrationRecord.class, registrationId, REGISTRATION_ID);
-		//loading data, it should be changed
-		if(record != null) {
-			record.getPersonalDetail();
-			record.getPersonalDetail().getStudentRegistrationRecord();
-			record.getPersonalDetail().getAddress();
-			record.getPersonalDetail().getCurrentClass().getStudent();
-			record.getPersonalDetail().getParentDetails().getStudent();
-			record.getPersonalDetail().getPreviousEducationDetail().getStudent();
-			record.getPersonalDetail().getCurrentClass().getListOfSubject();
-			record.getPersonalDetail().getCurrentClass().getStudent();
-		}
 		return record == null ? null : record;
 	}
 
