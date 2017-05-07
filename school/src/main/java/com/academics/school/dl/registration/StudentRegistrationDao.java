@@ -9,4 +9,16 @@ public interface StudentRegistrationDao {
 
 	StudentRegistrationRecord saveRegistrationStudentRecord(StudentRegistrationRecord admissionRecord);
 
+	StudentRegistrationRecord saveRegistrationRecordIfDoesNotExist(
+			StudentRegistrationRecord admissionRecord);
+
+	StudentRegistrationRecord updateRegistrationRecordIfExist(
+			StudentRegistrationRecord registrationRecord);
+
+	StudentRegistrationRecord deleteStudentRegistrationRecordById(
+			String studentRegisterRecordId);
+
+	StudentRegistrationRecord getRegistrationRecordByRegistrationId(
+			String studentRegistrationRecordId);
+
 }

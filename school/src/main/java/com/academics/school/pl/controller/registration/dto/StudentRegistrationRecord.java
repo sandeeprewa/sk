@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.OneToOne;
@@ -17,20 +18,17 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "STUDENT_REGISTRATION_RECORD")
 public class StudentRegistrationRecord {
-
-	public Student getPersonalDetail() {
-		return personalDetail;
-	}
-
-	public void setPersonalDetail(Student personalDetail) {
-		this.personalDetail = personalDetail;
-		personalDetail.setStudentRegistrationRecord(this);
-	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "registration_sequence")
@@ -38,11 +36,13 @@ public class StudentRegistrationRecord {
 	@Column(name = "REGISTRATION_ID")
 	Long registrationId;
 
-	@OneToOne(mappedBy = "studentRegistrationRecord", cascade = CascadeType.ALL)    
+	@OneToOne(mappedBy = "studentRegistrationRecord", fetch = FetchType.EAGER)
+	@Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, 
+		org.hibernate.annotations.CascadeType.MERGE, org.hibernate.annotations.CascadeType.DELETE})
 	private Student personalDetail;
 	
 	@Temporal(TemporalType.DATE)
-    private Date timeStamp;
+    private Date timeStamp = getTimeStamp();
 	
 	@Column(name = "STUDENT_IMAGE_LOCATION")
 	private String studentImageLocation;
@@ -52,7 +52,49 @@ public class StudentRegistrationRecord {
 	
 	@Column(name = "MOTHER_IMAGE_LOCATION")
 	private String motherImageLocation;
-	
+
+	@Column(name = "BIRTHCert_IMAGE_LOCATION")
+	private String birthCertificateLocation;
+	@Column(name = "CASTCert_IMAGE_LOCATION")
+	private String castCertificateLocation;
+	@Column(name = "DISABC_IMAGE_LOCATION")
+	private String disabilityCertificateLocation;
+
+	public Student getPersonalDetail() {
+		return personalDetail;
+	}
+
+
+	public void setPersonalDetail(Student personalDetail) {
+		this.personalDetail = personalDetail;
+		personalDetail.setStudentRegistrationRecord(this);
+	}
+
+	public String getBirthCertificateLocation() {
+		return birthCertificateLocation;
+	}
+
+	public void setBirthCertificateLocation(String birthCertificateLocation) {
+		this.birthCertificateLocation = birthCertificateLocation;
+	}
+
+	public String getCastCertificateLocation() {
+		return castCertificateLocation;
+	}
+
+	public void setCastCertificateLocation(String castCertificateLocation) {
+		this.castCertificateLocation = castCertificateLocation;
+	}
+
+	public String getDisabilityCertificateLocation() {
+		return disabilityCertificateLocation;
+	}
+
+	public void setDisabilityCertificateLocation(
+			String disabilityCertificateLocation) {
+		this.disabilityCertificateLocation = disabilityCertificateLocation;
+	}
+
 	@Transient
 	private MultipartFile studentImage;
 	@Transient
@@ -64,7 +106,7 @@ public class StudentRegistrationRecord {
 	@Transient
 	private MultipartFile castCertificate;
 	@Transient
-	private MultipartFile disablityCertificate;
+	private MultipartFile disabilityCertificate;
 
 	@Column(name = "STATUS")
 	@Enumerated(EnumType.STRING)
@@ -110,38 +152,42 @@ public class StudentRegistrationRecord {
 		this.registrationId = registrationId;
 	}
 
-	public MultipartFile getFatherImage() {
-		return fatherImage;
-	}
 
 	public void setFatherImage(MultipartFile fatherImage) {
 		this.fatherImage = fatherImage;
-	}
-
-	public MultipartFile getMotherImage() {
-		return motherImage;
 	}
 
 	public void setMotherImage(MultipartFile motherImage) {
 		this.motherImage = motherImage;
 	}
 
-	public MultipartFile getDisablityCertificate() {
-		return disablityCertificate;
+	public MultipartFile getDisabilityCertificate() {
+		return disabilityCertificate;
 	}
 
-	public void setDisablityCertificate(MultipartFile disablityCertificate) {
-		this.disablityCertificate = disablityCertificate;
+	public void setDisabilityCertificate(MultipartFile disabilityCertificate) {
+		this.disabilityCertificate = disabilityCertificate;
+	}
+	
+	@JsonIgnore
+	public MultipartFile getFatherImage() {
+		return fatherImage;
 	}
 
+	@JsonIgnore
+	public MultipartFile getMotherImage() {
+		return motherImage;
+	}
+
+	@JsonIgnore
 	public MultipartFile getStudentImage() {
 		return studentImage;
 	}
-
+	@JsonIgnore
 	public MultipartFile getBirthCertificate() {
 		return birthCertificate;
 	}
-
+	@JsonIgnore
 	public MultipartFile getCastCertificate() {
 		return castCertificate;
 	}

@@ -26,7 +26,7 @@ public class StudentRegisterationRecordValidator implements Validator{
 	/*
 	 * Manual validation
 	 */
-/*	public static void validate(StudentRegistrationRecord studentRegistrationRecord) throws StudentRegistrationFieldValidationException{
+	public static void validate(StudentRegistrationRecord studentRegistrationRecord) throws StudentRegistrationFieldValidationException{
 		
 		//Student Personal Details
 		validateIsEmptyOrNullOrContainsOnlyAlphnumeric(studentRegistrationRecord.getPersonalDetail().getFirstName(), "fname");
@@ -43,37 +43,37 @@ public class StudentRegisterationRecordValidator implements Validator{
 		validateIsEmptyOrNullOrContainsOnlyAlphnumeric(studentRegistrationRecord.getPersonalDetail().getBloodGroup(), "bloodgroup");
 		validateIsEmptyOrNullOrContainsOnlyAlphnumeric(studentRegistrationRecord.getPersonalDetail().getAdhaarCardNumber(), "aadharcardno");
        //Education Details
-		validateIsEmptyOrNullOrContainsOnlyAlphnumeric(studentRegistrationRecord.getEducationDetail().getPreviousSchoolName(), "previousschoolname");
-		validateIsEmptyOrNullOrContainsOnlyAlphnumeric(studentRegistrationRecord.getEducationDetail().getPreviousSchoolAddress(), "previousschooladdress");
-		validateIsEmptyOrNullOrContainsOnlyNumber(studentRegistrationRecord.getEducationDetail().getPreviousSchoolClass(), "previousschoolclass");
-		validateIsEmptyOrNullOrContainsOnlyNumber(studentRegistrationRecord.getEducationDetail().getPreviousClassPercentage(), "previousschoolpercentage");
+		validateIsEmptyOrNullOrContainsOnlyAlphnumeric(studentRegistrationRecord.getPersonalDetail().getPreviousEducationDetail().getPreviousSchoolName(), "previousschoolname");
+		validateIsEmptyOrNullOrContainsOnlyAlphnumeric(studentRegistrationRecord.getPersonalDetail().getPreviousEducationDetail().getPreviousSchoolAddress(), "previousschooladdress");
+		validateIsEmptyOrNullOrContainsOnlyNumber(studentRegistrationRecord.getPersonalDetail().getPreviousEducationDetail().getPreviousSchoolClass(), "previousschoolclass");
+		validateIsEmptyOrNullOrContainsOnlyNumber(studentRegistrationRecord.getPersonalDetail().getPreviousEducationDetail().getPreviousClassPercentage(), "previousschoolpercentage");
 	  //Parent Details				
-		validateIsEmptyOrNullOrContainsOnlyAlphnumeric(studentRegistrationRecord.getParentDetails().getFatherName(), "fathername");
-		validateIsEmptyOrNullOrContainsOnlyNumber(studentRegistrationRecord.getParentDetails().getFatherMobileNumber(), "fathermobilenumber");
-		validateIsEmptyOrNullOrValidEmail(studentRegistrationRecord.getParentDetails().getFatherEmail(), "fatheremail");
-		validateIsEmptyOrNull(studentRegistrationRecord.getParentDetails().getFatherOccupation(), "fatheroccupation");
-		validateIsEmptyOrNullOrContainsOnlyAlphnumeric(studentRegistrationRecord.getParentDetails().getMotherName(), "mothername");
-		validateIsEmptyOrNullOrContainsOnlyNumber(studentRegistrationRecord.getParentDetails().getMotherMobileNumber(), "mothermobilenumber");
-		validateIsEmptyOrNullOrValidEmail(studentRegistrationRecord.getParentDetails().getMotherEmail(), "motheremail");
-		validateIsEmptyOrNull(studentRegistrationRecord.getParentDetails().getMotherOccupation(), "motheroccupation");		   			   
+		validateIsEmptyOrNullOrContainsOnlyAlphnumeric(studentRegistrationRecord.getPersonalDetail().getParentDetails().getFatherName(), "fathername");
+		validateIsEmptyOrNullOrContainsOnlyNumber(studentRegistrationRecord.getPersonalDetail().getParentDetails().getFatherMobileNumber(), "fathermobilenumber");
+		validateIsEmptyOrNullOrValidEmail(studentRegistrationRecord.getPersonalDetail().getParentDetails().getFatherEmail(), "fatheremail");
+		validateIsEmptyOrNull(studentRegistrationRecord.getPersonalDetail().getParentDetails().getFatherOccupation(), "fatheroccupation");
+		validateIsEmptyOrNullOrContainsOnlyAlphnumeric(studentRegistrationRecord.getPersonalDetail().getParentDetails().getMotherName(), "mothername");
+		validateIsEmptyOrNullOrContainsOnlyNumber(studentRegistrationRecord.getPersonalDetail().getParentDetails().getMotherMobileNumber(), "mothermobilenumber");
+		validateIsEmptyOrNullOrValidEmail(studentRegistrationRecord.getPersonalDetail().getParentDetails().getMotherEmail(), "motheremail");
+		validateIsEmptyOrNull(studentRegistrationRecord.getPersonalDetail().getParentDetails().getMotherOccupation(), "motheroccupation");		   			   
 	 //Present Address			   
-		validateIsEmptyOrNull(studentRegistrationRecord.getCurrentAddress().getHouseNumber(), "currenthousenumber");
-		validateIsEmptyOrNull(studentRegistrationRecord.getCurrentAddress().getVillage(), "currentvillage");
-		validateIsEmptyOrNull(studentRegistrationRecord.getCurrentAddress().getCity(), "currentcity");
-		validateIsEmptyOrNullOrValidAlphanumericState(studentRegistrationRecord.getCurrentAddress().getState().getName(), "currentstate");
-		validateIsEmptyOrNullOrContainsOnlyNumber(studentRegistrationRecord.getCurrentAddress().getPinNumber(), "currentpinnumber");
-		validateIsEmptyOrNullOrValidAlphanumericNation(studentRegistrationRecord.getCurrentAddress().getCountry().getName(), "currentcountry");
-		validateIsEmptyOrNull(studentRegistrationRecord.getCurrentAddress().getAddressDetails(), "currentaddressdetails");
+		validateIsEmptyOrNull(studentRegistrationRecord.getPersonalDetail().getAddress().get(1).getHouseNumber(), "currenthousenumber");
+		validateIsEmptyOrNull(studentRegistrationRecord.getPersonalDetail().getAddress().get(1).getVillage(), "currentvillage");
+		validateIsEmptyOrNull(studentRegistrationRecord.getPersonalDetail().getAddress().get(1).getCity(), "currentcity");
+		validateIsEmptyOrNullOrValidAlphanumericState(studentRegistrationRecord.getPersonalDetail().getAddress().get(1).getState().getName(), "currentstate");
+		validateIsEmptyOrNullOrContainsOnlyNumber(studentRegistrationRecord.getPersonalDetail().getAddress().get(1).getPinNumber(), "currentpinnumber");
+		validateIsEmptyOrNullOrValidAlphanumericNation(studentRegistrationRecord.getPersonalDetail().getAddress().get(1).getCountry().getName(), "currentcountry");
+		validateIsEmptyOrNull(studentRegistrationRecord.getPersonalDetail().getAddress().get(1).getAddressDetails(), "currentaddressdetails");
 	//Permanent Address
-		validateIsEmptyOrNull(studentRegistrationRecord.getCurrentAddress().getHouseNumber(), "permanenthousenumber");
-		validateIsEmptyOrNull(studentRegistrationRecord.getCurrentAddress().getVillage(), "permanentvillage");
-		validateIsEmptyOrNull(studentRegistrationRecord.getCurrentAddress().getCity(), "permanentcity");
-		validateIsEmptyOrNullOrValidAlphanumericState(studentRegistrationRecord.getCurrentAddress().getState().getName(), "permanentstate");
-		validateIsEmptyOrNullOrContainsOnlyNumber(studentRegistrationRecord.getCurrentAddress().getPinNumber(), "permanentpinnumber");
-		validateIsEmptyOrNullOrValidAlphanumericNation(studentRegistrationRecord.getCurrentAddress().getCountry().getName(), "permanentcountry");
-		validateIsEmptyOrNull(studentRegistrationRecord.getCurrentAddress().getAddressDetails(), "permanentaddressdetails");
+		validateIsEmptyOrNull(studentRegistrationRecord.getPersonalDetail().getAddress().get(0).getHouseNumber(), "permanenthousenumber");
+		validateIsEmptyOrNull(studentRegistrationRecord.getPersonalDetail().getAddress().get(0).getVillage(), "permanentvillage");
+		validateIsEmptyOrNull(studentRegistrationRecord.getPersonalDetail().getAddress().get(0).getCity(), "permanentcity");
+		validateIsEmptyOrNullOrValidAlphanumericState(studentRegistrationRecord.getPersonalDetail().getAddress().get(0).getState().getName(), "permanentstate");
+		validateIsEmptyOrNullOrContainsOnlyNumber(studentRegistrationRecord.getPersonalDetail().getAddress().get(0).getPinNumber(), "permanentpinnumber");
+		validateIsEmptyOrNullOrValidAlphanumericNation(studentRegistrationRecord.getPersonalDetail().getAddress().get(0).getCountry().getName(), "permanentcountry");
+		validateIsEmptyOrNull(studentRegistrationRecord.getPersonalDetail().getAddress().get(0).getAddressDetails(), "permanentaddressdetails");
 	}
-*/	
+	
 	
 	private static void validateIsEmptyOrNullOrValidEmail(String stringToBeValidated, String inputKey){
 		validateIsEmptyOrNull(stringToBeValidated, inputKey);

@@ -13,6 +13,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Table(name = "ADDRESS_TABLE")
 @Entity
 public class Address {
@@ -37,10 +39,21 @@ public class Address {
 	@Column(name = "ADDRESS_DETAILS")
 	private String addressDetails;
 
+	@Column(name = "IS_PERMANENT")
+	private Boolean isPermanent = Boolean.FALSE;
+	
 	@ManyToOne
 	@JoinColumn(name = "STUDENT_ID")
+	@JsonIgnore
 	Student student;
+
 	
+	public Boolean getIsPermanent() {
+		return isPermanent;
+	}
+	public void setIsPermanent(Boolean isPermanent) {
+		this.isPermanent = isPermanent;
+	}
 	public Student getStudent() {
 		return student;
 	}

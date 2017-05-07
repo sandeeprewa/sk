@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.JoinColumn;
@@ -16,9 +17,16 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Id;
 import javax.persistence.Transient;
+import javax.persistence.UniqueConstraint;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "STUDENT_DETAIL_TABLE")
+@Table(name = "STUDENT_DETAIL_TABLE", uniqueConstraints = 
+	@UniqueConstraint(columnNames = {"FIRST_NAME","LAST_NAME","MOBILE_NUMBER","EMAIL","DATE_OF_BIRTH"}))
 public class Student {
 
 	@Id
@@ -27,16 +35,17 @@ public class Student {
 	@Column(name = "STUDENT_DETAIL_ID")
 	Long id;
 	
-	@OneToOne(mappedBy = "student", cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "student", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private EducationDetail previousEducationDetail;
 
-	@OneToOne(mappedBy = "student", cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "student", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private CurrentClass currentClass;
 	
-	@OneToOne(mappedBy = "student", cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "student", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private ParentDetail parentDetails;
 	
 	@OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Address> address;
 	
 
@@ -57,19 +66,26 @@ public class Student {
 	private String dateOfBirth;
 	@Column(name = "AGE")
 	private String age;
+	@Column(name = "CATEGORY")
 	@Enumerated(EnumType.STRING)
-	private Category category;   
+	private Category category;
+	@Column(name = "DISABILITY")
 	@Enumerated(EnumType.STRING)
 	private Disability disability;
+	@Column(name = "NATIONALITY")
 	@Enumerated(EnumType.STRING)
 	private Nation nationality;
+	@Column(name = "RELIGION")
 	@Enumerated(EnumType.STRING)
 	private Religion religion;
+	@Column(name = "BLOOD_GROUP")
     private String bloodGroup;
+	@Column(name = "ADHAAR_CARD_NUMBER")
     private String adhaarCardNumber;
     
 	@OneToOne
 	@JoinColumn(name = "REGISTRATION_ID")
+	@JsonIgnore
     StudentRegistrationRecord studentRegistrationRecord;
 
 	

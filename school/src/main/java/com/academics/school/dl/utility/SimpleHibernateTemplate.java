@@ -10,8 +10,11 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.dao.DataAccessException;
 import org.springframework.orm.hibernate4.HibernateExceptionTranslator;
+
+import com.academics.school.pl.controller.registration.dto.StudentRegistrationRecord;
 
 
 public class SimpleHibernateTemplate<E> {
@@ -123,8 +126,8 @@ public class SimpleHibernateTemplate<E> {
     applyNamedParameterToQuery(queryObject, name, value);
     List<E> result = list(queryObject);
     return result.isEmpty() ? null : result.get(0);
+    
   }
-
   @SuppressWarnings("unchecked")
   private List<E> list(Query queryObject) {
     return queryObject.list();
@@ -214,4 +217,17 @@ public class SimpleHibernateTemplate<E> {
     }
   }
 
+@SuppressWarnings("unchecked")
+public E load(Class<E> class1,
+		Long id) {
+	// TODO Auto-generated method stub
+	return (E)getSession().load(class1, id);
+}
+
+public E getObjectBasedOnId(Class<E> entity, Long id, String idField){
+	Criteria criteria = createCriteria(entity);
+	criteria.add(Restrictions.eq(idField, id));
+	return  (E)criteria.uniqueResult();
+
+}
 }

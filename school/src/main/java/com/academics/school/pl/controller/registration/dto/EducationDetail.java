@@ -10,6 +10,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Table
 @Entity(name = "PREVIOUS_EDUCATION_DETAIL")
 public class EducationDetail {
@@ -29,6 +31,7 @@ public class EducationDetail {
 	private String previousClassPercentage;
 
 	@OneToOne	@JoinColumn(name = "STUDENT_ID")
+	@JsonIgnore
     Student student;
 
 	public Long getEducationDetailId() {

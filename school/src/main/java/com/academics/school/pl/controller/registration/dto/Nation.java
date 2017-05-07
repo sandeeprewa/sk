@@ -10,6 +10,7 @@ public enum Nation {
 	S("shreeLankan"),
 	B("bangladeshi"),
 	N("Nepali"),
+	JUNK("junk"),
 	Other("other");
 	
 	private String nationValue ;
@@ -32,7 +33,20 @@ public enum Nation {
 	}
 	
 	@JsonCreator
+	public static Nation getEnumFromTextCreator(String nationValue1){
+		for (Nation nationValue : Nation.values()) {
+			if(nationValue.getName().equals(nationValue1)){
+				return nationValue;
+			}
+		}
+		return JUNK;
+	}
+	
 	public static Nation getEnumFromText(String nationValue1){
+		if(nationValue1.equals(JUNK)){
+			throw new IllegalArgumentException();
+		}
+
 		for (Nation nationValue : Nation.values()) {
 			if(nationValue.getName().equals(nationValue1)){
 				return nationValue;

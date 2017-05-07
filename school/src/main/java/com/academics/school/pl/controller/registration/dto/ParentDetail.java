@@ -10,6 +10,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Table( name = "PARENT_DETAIL_TABLE")
 @Entity
 public class ParentDetail {
@@ -29,6 +31,7 @@ public class ParentDetail {
 	private String motherOccupation;
 	
 	@OneToOne 	@JoinColumn(name = "STUDENT_ID")
+	@JsonIgnore
 	private Student student;
 
 	

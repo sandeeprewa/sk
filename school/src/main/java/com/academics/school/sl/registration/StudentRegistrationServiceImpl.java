@@ -14,8 +14,24 @@ public class StudentRegistrationServiceImpl implements StudentRegistrationServic
 	@Qualifier("studentRegistrationDaoImpl")
 	StudentRegistrationDao studentRegistrationDaoImpl;
 	
-	public StudentRegistrationRecord createRegistrationStudentRecord(StudentRegistrationRecord admissionRecord){
-		return studentRegistrationDaoImpl.saveRegistrationStudentRecord(admissionRecord);
+	public StudentRegistrationRecord createRegistrationStudentRecord(StudentRegistrationRecord registrationRecord){
+		return studentRegistrationDaoImpl.saveRegistrationRecordIfDoesNotExist(registrationRecord);
+	}
+
+	public StudentRegistrationRecord updateRegistrationStudentRecord(
+			StudentRegistrationRecord registrationRecord) {
+		return studentRegistrationDaoImpl.updateRegistrationRecordIfExist(registrationRecord);
+	}
+
+	public StudentRegistrationRecord deleteStudentRegistrationRecordById(
+			String studentRegisterRecordId) {
+		return studentRegistrationDaoImpl.deleteStudentRegistrationRecordById(studentRegisterRecordId);
+	}
+
+	public StudentRegistrationRecord getRegistrationRecordByRegistrationId(
+			String studentRegistrationRecordId) {
+		// TODO Auto-generated method stub
+		return studentRegistrationDaoImpl.getRegistrationRecordByRegistrationId(studentRegistrationRecordId);
 	}
 
 }

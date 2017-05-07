@@ -2,6 +2,7 @@ package com.academics.school.pl.controller.registration.dto;
 
 import javax.persistence.Embeddable;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -14,8 +15,8 @@ public enum Category {
 	OBC("obc"),
 	SC("sc"),
 	ST("st"),
-	OTHER("other");
-	
+	OTHER("other"),
+	JUNK("junk");
 	private String categoryValue ;
 	Category(){}
 	Category(String value){
@@ -32,7 +33,18 @@ public enum Category {
 	}
 	
 	@JsonCreator
+	public static Category getEnumFromTextCreator(String categoryValue1){
+		for (Category categoryValue : Category.values()) {
+			if(categoryValue.getName().equals(categoryValue1)){
+				return categoryValue;
+			}
+		}
+		return JUNK;
+	}
+	
 	public static Category getEnumFromText(String categoryValue1){
+		if(categoryValue1.equals(JUNK))
+			throw new IllegalArgumentException();
 		for (Category categoryValue : Category.values()) {
 			if(categoryValue.getName().equals(categoryValue1)){
 				return categoryValue;

@@ -13,6 +13,7 @@ public enum Religion {
 	M("muslim"),
 	S("sikh"),
 	I("isai"),
+	JUNK("junk"),
 	OTHER("other");
 	
 	private String religionValue ;
@@ -31,7 +32,20 @@ public enum Religion {
 	}
 	
 	@JsonCreator
+	public static Religion getEnumFromTextCreator(String religionValue1){
+		for (Religion religionValue : Religion.values()) {
+			if(religionValue.getName().equals(religionValue1)){
+				return religionValue;
+			}
+		}
+		return JUNK;
+	}
+
+	
 	public static Religion getEnumFromText(String religionValue1){
+		if(religionValue1.equals(JUNK)){
+			throw new IllegalArgumentException();
+		}
 		for (Religion religionValue : Religion.values()) {
 			if(religionValue.getName().equals(religionValue1)){
 				return religionValue;

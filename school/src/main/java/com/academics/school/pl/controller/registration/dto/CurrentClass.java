@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.JoinColumn;
@@ -14,6 +15,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Id;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity 
 @Table(name = "CURRENT_CLASS")
@@ -28,11 +31,12 @@ public class CurrentClass {
 	private String c_Class;
 	@Column(name = "CURRENT_SCHOOL")
 	private String school;
-	@OneToMany(mappedBy = "currentClass", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "currentClass", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Subject> listOfSubject = new ArrayList<Subject>();
 	
 	@OneToOne
 	@JoinColumn(name = "STUDENT_ID")
+	@JsonIgnore
     Student student;
 
 	

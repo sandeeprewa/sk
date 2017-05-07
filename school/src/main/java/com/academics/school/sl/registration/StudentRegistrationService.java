@@ -10,4 +10,13 @@ public interface StudentRegistrationService {
 	StudentRegistrationRecord createRegistrationStudentRecord(
 			StudentRegistrationRecord admissionRecord);
 
+	StudentRegistrationRecord updateRegistrationStudentRecord(
+			StudentRegistrationRecord registrationRecord);
+
+	StudentRegistrationRecord deleteStudentRegistrationRecordById(
+			String studentRegisterRecordId);
+
+	StudentRegistrationRecord getRegistrationRecordByRegistrationId(
+			String studentRegistrationRecordId);
+
 }

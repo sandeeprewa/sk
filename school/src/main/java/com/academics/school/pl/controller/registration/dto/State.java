@@ -39,6 +39,7 @@ public enum State {
 	Uttarakhand("Uttarakhand"),
 	WB("WestBengal"),
 	Delhi("Delhi"),
+	JUNK("junk"),
 	OTHER("other");
 	
 	private String stateValue ;
@@ -58,7 +59,20 @@ public enum State {
 	}
 	
 	@JsonCreator
+	public static State getEnumFromTextCreator(String stateValue1){
+		for (State stateValue : State.values()) {
+			if(stateValue.getName().equals(stateValue1)){
+				return stateValue;
+			}
+		}
+		return JUNK;
+	}
+	
 	public static State getEnumFromText(String stateValue1){
+		if(stateValue1.equals(JUNK))
+		{
+			throw new IllegalArgumentException();
+		}
 		for (State stateValue : State.values()) {
 			if(stateValue.getName().equals(stateValue1)){
 				return stateValue;

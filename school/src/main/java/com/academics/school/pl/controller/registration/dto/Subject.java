@@ -30,6 +30,7 @@ public class Subject {
 		
 		@ManyToOne
 		@JoinColumn(name = "Current_Class_Id")
+		@JsonIgnore
 		CurrentClass currentClass;
 		
 		public CurrentClass getCurrentClass() {

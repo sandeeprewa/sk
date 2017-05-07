@@ -1,5 +1,8 @@
 package com.academics.school.wl.configuration;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +15,11 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.core.env.Environment;
 import org.springframework.http.MediaType;
+import org.springframework.http.converter.ByteArrayHttpMessageConverter;
+import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.filter.HttpPutFormContentFilter;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
@@ -51,6 +57,10 @@ public class RootApplicationConfiguration extends WebMvcConfigurerAdapter {
 	    return resolver;
 	}
 
+	@Bean(name = "httpPutFormContentFilter")
+	public HttpPutFormContentFilter createFormContentFilter(){
+		return new HttpPutFormContentFilter();
+	}
 	
 	@Override
 	public void addResourceHandlers(final ResourceHandlerRegistry registry) {
@@ -86,7 +96,28 @@ public class RootApplicationConfiguration extends WebMvcConfigurerAdapter {
 	    
 	  @Bean
 	  public FileUploader initUploader(HttpServletRequest request){
-		  String path = "C:\\production\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\school\\uploads";
+//		  String path = "C:\\production\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\school\\uploads";
+		  String path = System.getProperty("catalina.home");
 		  return new FileUploader(path);
 	  }
-}
+	  
+/*	  @Override
+	  public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+	  converters.add(byteArrayHttpMessageConverter());
+	  }
+	  
+	  @Bean
+	  public ByteArrayHttpMessageConverter byteArrayHttpMessageConverter() {
+	  ByteArrayHttpMessageConverter arrayHttpMessageConverter = new ByteArrayHttpMessageConverter();
+	  arrayHttpMessageConverter.setSupportedMediaTypes(getSupportedMediaTypes());
+	  return arrayHttpMessageConverter;
+	  }
+	  
+	  private List<MediaType> getSupportedMediaTypes() {
+		  List<MediaType> list = new ArrayList<MediaType>();
+		  list.add(MediaType.IMAGE_JPEG);
+		  list.add(MediaType.IMAGE_PNG);
+		  list.add(MediaType.APPLICATION_OCTET_STREAM);
+	  return list;
+	  }
+*/}

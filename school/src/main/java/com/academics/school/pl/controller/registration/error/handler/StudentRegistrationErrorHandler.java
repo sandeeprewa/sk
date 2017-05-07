@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import com.academics.school.pl.controller.registration.error.RegistrationIDDoesNotExitException;
 import com.academics.school.pl.controller.registration.error.RegistrationRecordDoesNotExistException;
 import com.academics.school.pl.controller.registration.error.StudentAlreadyRegisteredException;
 import com.academics.school.pl.controller.registration.error.StudentIDEditException;
@@ -44,7 +45,7 @@ public class StudentRegistrationErrorHandler {
 	
 	@ResponseBody
 	@ExceptionHandler(value = StudentAlreadyRegisteredException.class)
-	@ResponseStatus
+	@ResponseStatus (code = HttpStatus.CONFLICT)
 	public RestError handleStudentAlreadyRegisteredException(StudentAlreadyRegisteredException exception){
 		restError = new RestError();
 		restError.setHttpStatus(HttpStatus.CONFLICT.toString());
@@ -71,11 +72,11 @@ public class StudentRegistrationErrorHandler {
 		restError = new RestError();
 		restError.setHttpStatus(HttpStatus.NOT_FOUND.toString());
 		restError.setCode(Code.FEES_NOT_PAID.toString());
-		restError.setMessage(messageSource.getMessage(RestErrorMessage.STUDENT_DOES_NOT_EXIST, null, Locale.US));
+		restError.setMessage(messageSource.getMessage(exception.getMessage(), null, Locale.US));
 		return restError;
 	}
 	
-	@ResponseBody
+	@ResponseBody	
 	@ExceptionHandler(value = RegistrationRecordDoesNotExistException.class)
 	@ResponseStatus(code = HttpStatus.NOT_FOUND)
 	public RestError handleStudentDoesNotExistException(RegistrationRecordDoesNotExistException exception){
@@ -95,6 +96,18 @@ public class StudentRegistrationErrorHandler {
 		restError.setCode(Code.FEES_NOT_PAID.toString());
 		restError.setMessage(messageSource.getMessage(RestErrorMessage.INPUT_IS_INVALID, null, Locale.US));
 		return restError;
+	}
+	
+	@ResponseBody
+	@ExceptionHandler(value = RegistrationIDDoesNotExitException.class)
+	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
+	public RestError handleRegistrationIDDoesNotExitException(RegistrationIDDoesNotExitException e){
+		restError = new RestError();
+		restError.setHttpStatus(HttpStatus.BAD_REQUEST.toString());
+		restError.setCode(Code.FEES_NOT_PAID.toString());
+		restError.setMessage(messageSource.getMessage(e.getMessage(), null, Locale.US));
+		return restError;
+		
 	}
 	
 }

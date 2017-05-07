@@ -20,26 +20,26 @@ public class StudentRegistrationFacade {
 	StudentRegistrationService studentRegistrationServiceImpl;
 	
 	public StudentRegistrationRecord createRegistrationStudentRecord(
-			StudentRegistrationRecord admissionRecord) {
+			StudentRegistrationRecord registrationRecord) {
 		// TODO Auto-generated method stub
-		return studentRegistrationServiceImpl.createRegistrationStudentRecord(admissionRecord);
+		return studentRegistrationServiceImpl.createRegistrationStudentRecord(registrationRecord);
 	}
 
 	public  StudentRegistrationRecord updateStudentRegistrationRecord(
-			StudentRegistrationRecord admissionRecord) {
+			StudentRegistrationRecord registrationRecord) {
 		// TODO Auto-generated method stub
-		return null;
+		return studentRegistrationServiceImpl.updateRegistrationStudentRecord(registrationRecord);
 	}
 
-	public StudentRegistrationRecord getRegistrationRecordByRegistrationId(String studentId) {
+	public StudentRegistrationRecord getRegistrationRecordByRegistrationId(String studentRegistrationRecordId) {
 		// TODO Auto-generated method stub
-		return null;
+		return studentRegistrationServiceImpl.getRegistrationRecordByRegistrationId(studentRegistrationRecordId);
 	}
 
 	public StudentRegistrationRecord deleteStudentRegistrationRecordById(
-			String studentId) {
+			String studentRegisterRecordId) {
 		// TODO Auto-generated method stub
-		return null;
+		return studentRegistrationServiceImpl.deleteStudentRegistrationRecordById(studentRegisterRecordId);
 	}
 
 	public List<StudentRegistrationRecord> getAdmissionRecordByStudentLastName(

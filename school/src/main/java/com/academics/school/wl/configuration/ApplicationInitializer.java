@@ -3,6 +3,7 @@ package com.academics.school.wl.configuration;
 import javax.servlet.Filter;
 import javax.servlet.ServletContext;
 
+import org.springframework.web.filter.HttpPutFormContentFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 /**
@@ -31,8 +32,8 @@ public class ApplicationInitializer extends AbstractAnnotationConfigDispatcherSe
 		super.registerContextLoaderListener(context);
 	}
 	
-	//@Override
-    // protected Filter[] getServletFilters() {
-	 //       return new Filter[]{new SessionSecurityFilter()};
-	  //}
+	@Override
+     protected Filter[] getServletFilters() {
+	       return new Filter[]{new HttpPutFormContentFilter()};
+	}
 }

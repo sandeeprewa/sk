@@ -21,22 +21,15 @@
 	cast Certificate <input type = "file" name = "castCertificate" id = "castCertificateId"/>
 	Disability Certificate <input type= "file" name = "disabilityCertificate" id = "disabilityCertificateId"/>
 </form>
-
-<%--  
-	<form id="testForm">
+<%--  	<form id="testForm">
 	<input type= "text" name="name" id ="inputText" />	
 	File :<input type= "file" name="file1" id="imageFileId"/>
 	</form>
---%>	
- 	<input type="button" id="formData" value ="Submit form data"/>
+ --%>	<input type="button" id="formData" value ="Submit form data"/>
 	<input type="button" id="imageAndText" value = 'Submit Image and Text'/>
 	<input type="button" id="complexObject" value='Complex Object' />
 	<input type="button" id="complexObjectAndImage" value ='ComplexOBject and Image'/>	
 	<input type="button" id="getRequestId" value ="Secure throgh Basic Header"/>
 	<input type="button" id="registerRecordId" value ="Register Record Id"/>
-	<input type="button" id="updateRecordId" value= "Update Record Id" >
-		<input type="button" id="getRecordId" value= "GET Record Id" >
-		<input type="button" id="deleteRecordId" value= "DELETE Record Id" >
-	
 </body>
 </html>
