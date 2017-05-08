@@ -66,7 +66,8 @@ public class StudentRegistrationFacade {
 
 	private StudentRegistrationRecord buildRegistrationRecordByAddingImageAsResourceLocation(
 			StudentRegistrationRecord registrationRecord) {
-			String imageLoc = registrationRecord.getPersonalDetail().getCurrentClass().getC_Class(); 
+			String tempURL = "http://localhost:9090/school/image/";
+			String imageLoc = tempURL + registrationRecord.getPersonalDetail().getCurrentClass().getC_Class(); 
 			imageLoc = imageLoc + "_" + String.valueOf(registrationRecord.getRegistrationId()) +"_";
 			
 			String studentImageLoc = imageLoc + STUDENT_IMAGE_PREFIX;
@@ -82,7 +83,7 @@ public class StudentRegistrationFacade {
 			
 			if(studentImageLocation != null){
 				String extension = registrationRecord.getStudentImage().getOriginalFilename();
-				registrationRecord.setStudentImageLocation(studentImageLoc + extension);
+				registrationRecord.setStudentImageLocation(studentImageLoc+"_" + extension);
 			}
 			
 			String fatherImageLocation = registrationRecord.getFatherImageLocation();
