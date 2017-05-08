@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.transaction.Transactional;
 import javax.transaction.Transactional.TxType;
 
@@ -33,8 +34,17 @@ import com.academics.school.pl.controller.registration.error.StudentIdDoesNotExi
 public class StudentRegistrationDaoImpl implements StudentRegistrationDao {
 	
 	private static final String REGISTRATION_ID = "registrationId";
+	private static final String STUDENT_IMAGE_PREFIX = "StudentImage";
+	private static final String FATHER_IMAGE_PREFIX = "FatherImage";
+	private static final String MOTHER_IMAGE_PREFIX = "MotherImage";
+	private static final String BIRTH_CERT_PREFIX = "Birth_Certificate_Image";
+	private static final String CAST_CERT_PREFIX = "Cast_Certificate_Image";
+	private static final String DISABILITY_CERT_PREFIX = "Disablity_Certificate_Image";
+
 	private SimpleHibernateTemplate<StudentRegistrationRecord> simpleHibernateTemplate;
 	
+	@Autowired
+	ServletContext servletContext;
 	
 	@Autowired
 	public StudentRegistrationDaoImpl(SessionFactory sessionFactory) {
@@ -91,8 +101,8 @@ public class StudentRegistrationDaoImpl implements StudentRegistrationDao {
 
 
 	@Transactional
-	public StudentRegistrationRecord saveRegistrationStudentRecord(StudentRegistrationRecord admissionRecord){
-		StudentRegistrationRecord record = simpleHibernateTemplate.saveAndGet(admissionRecord);
+	public StudentRegistrationRecord saveRegistrationStudentRecord(StudentRegistrationRecord registrationRecord){
+		StudentRegistrationRecord record = simpleHibernateTemplate.saveAndGet(registrationRecord);
 		saveImagesInFileSystemAndUpdateInDB(record);
 		return record;
 	}
@@ -135,24 +145,38 @@ public class StudentRegistrationDaoImpl implements StudentRegistrationDao {
 			return true;
 	}
 	
-	private void saveImagesInFileSystemAndUpdateInDB(StudentRegistrationRecord admissionRecord) {
-		if(admissionRecord.getStudentImage()!=null)
-		admissionRecord.setStudentImageLocation(saveFileIntoFileSystem(admissionRecord.getStudentImage(),
-				admissionRecord.getPersonalDetail().getCurrentClass().getC_Class(), String.valueOf(admissionRecord.getRegistrationId()), "StudentImage" ));
-		if(admissionRecord.getStudentImage()!=null)
-		admissionRecord.setFatherImageLocation(saveFileIntoFileSystem(admissionRecord.getFatherImage(),
-						admissionRecord.getPersonalDetail().getCurrentClass().getC_Class(), String.valueOf(admissionRecord.getRegistrationId()), "FatherImage" ));
-		admissionRecord.setMotherImageLocation(saveFileIntoFileSystem(admissionRecord.getMotherImage(),
-						admissionRecord.getPersonalDetail().getCurrentClass().getC_Class(), String.valueOf(admissionRecord.getRegistrationId()), "MotherImage" ));
-		if(admissionRecord.getBirthCertificate()!=null)
-		admissionRecord.setBirthCertificateLocation(saveFileIntoFileSystem(admissionRecord.getBirthCertificate(),
-						admissionRecord.getPersonalDetail().getCurrentClass().getC_Class(), String.valueOf(admissionRecord.getRegistrationId()), "Birth Certificate Image" ));
-		if(admissionRecord.getCastCertificate()!=null)
-		admissionRecord.setCastCertificateLocation(saveFileIntoFileSystem(admissionRecord.getCastCertificate(),
-						admissionRecord.getPersonalDetail().getCurrentClass().getC_Class(), String.valueOf(admissionRecord.getRegistrationId()), "Cast Certificate Image" ));
-		if(admissionRecord.getDisabilityCertificate()!=null)
-		admissionRecord.setDisabilityCertificateLocation(saveFileIntoFileSystem(admissionRecord.getDisabilityCertificate(),
-						admissionRecord.getPersonalDetail().getCurrentClass().getC_Class(), String.valueOf(admissionRecord.getRegistrationId()), "Disablity Certificate Image" ));
+	
+	private void saveImagesInFileSystemAndUpdateInDB(StudentRegistrationRecord registrationRecord) {
+		
+		if(registrationRecord.getStudentImage()!= null)
+		registrationRecord.setStudentImageLocation(saveFileIntoFileSystem(registrationRecord.getStudentImage(),
+				registrationRecord.getPersonalDetail().getCurrentClass().getC_Class(),
+				String.valueOf(registrationRecord.getRegistrationId()), STUDENT_IMAGE_PREFIX ));
+
+		if(registrationRecord.getFatherImage()!= null)
+		registrationRecord.setFatherImageLocation(saveFileIntoFileSystem(registrationRecord.getFatherImage(),
+						registrationRecord.getPersonalDetail().getCurrentClass().getC_Class(), 
+						String.valueOf(registrationRecord.getRegistrationId()), FATHER_IMAGE_PREFIX ));
+	
+		if(registrationRecord.getMotherImage() != null)
+		registrationRecord.setMotherImageLocation(saveFileIntoFileSystem(registrationRecord.getMotherImage(),
+						registrationRecord.getPersonalDetail().getCurrentClass().getC_Class(), 
+						String.valueOf(registrationRecord.getRegistrationId()), MOTHER_IMAGE_PREFIX ));
+
+		if(registrationRecord.getBirthCertificate()!= null)
+		registrationRecord.setBirthCertificateLocation(saveFileIntoFileSystem(registrationRecord.getBirthCertificate(),
+						registrationRecord.getPersonalDetail().getCurrentClass().getC_Class(), 
+						String.valueOf(registrationRecord.getRegistrationId()), BIRTH_CERT_PREFIX ));
+		
+		if(registrationRecord.getCastCertificate()!=null)
+		registrationRecord.setCastCertificateLocation(saveFileIntoFileSystem(registrationRecord.getCastCertificate(),
+						registrationRecord.getPersonalDetail().getCurrentClass().getC_Class(),
+						String.valueOf(registrationRecord.getRegistrationId()), CAST_CERT_PREFIX ));
+		
+		if(registrationRecord.getDisabilityCertificate()!=null)
+		registrationRecord.setDisabilityCertificateLocation(saveFileIntoFileSystem(registrationRecord.getDisabilityCertificate(),
+						registrationRecord.getPersonalDetail().getCurrentClass().getC_Class(), 
+						String.valueOf(registrationRecord.getRegistrationId()), DISABILITY_CERT_PREFIX ));
 	}
 
 	@Transactional

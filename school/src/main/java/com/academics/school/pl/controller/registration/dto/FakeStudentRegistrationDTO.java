@@ -10,8 +10,14 @@ public class FakeStudentRegistrationDTO {
 	private MultipartFile fatherImage;
 	private MultipartFile birthCertificate;
 	private MultipartFile castCertificate;
-	private MultipartFile disablityCertificate;
+	private MultipartFile disabilityCertificate;
 
+	public MultipartFile getDisabilityCertificate() {
+		return disabilityCertificate;
+	}
+	public void setDisabilityCertificate(MultipartFile disabilityCertificate) {
+		this.disabilityCertificate = disabilityCertificate;
+	}
 	public MultipartFile getMotherImage() {
 		return motherImage;
 	}
@@ -41,12 +47,6 @@ public class FakeStudentRegistrationDTO {
 	}
 	public void setCastCertificate(MultipartFile castCertificate) {
 		this.castCertificate = castCertificate;
-	}
-	public MultipartFile getDisablityCertificate() {
-		return disablityCertificate;
-	}
-	public void setDisablityCertificate(MultipartFile disablityCertificate) {
-		this.disablityCertificate = disablityCertificate;
 	}
 	public String getRegistrationJson() {
 		return registrationJson;

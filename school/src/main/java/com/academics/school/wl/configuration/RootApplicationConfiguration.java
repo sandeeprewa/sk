@@ -3,6 +3,7 @@ package com.academics.school.wl.configuration;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,9 @@ public class RootApplicationConfiguration extends WebMvcConfigurerAdapter {
 
 	@Autowired
 	private Environment environment;
+	
+	@Autowired
+	private ServletContext servletContext;
 	/**
        It tells Spring to use the container's default servlet for certain requests, like for static resources.
 	 */
@@ -57,11 +61,6 @@ public class RootApplicationConfiguration extends WebMvcConfigurerAdapter {
 	    return resolver;
 	}
 
-	@Bean(name = "httpPutFormContentFilter")
-	public HttpPutFormContentFilter createFormContentFilter(){
-		return new HttpPutFormContentFilter();
-	}
-	
 	@Override
 	public void addResourceHandlers(final ResourceHandlerRegistry registry) {
 	    registry.addResourceHandler("/resources/js/**").addResourceLocations("/resources/js/");
@@ -97,7 +96,7 @@ public class RootApplicationConfiguration extends WebMvcConfigurerAdapter {
 	  @Bean
 	  public FileUploader initUploader(HttpServletRequest request){
 //		  String path = "C:\\production\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\school\\uploads";
-		  String path = System.getProperty("catalina.home");
+		  String path =  servletContext.getRealPath("/WEB-INF/upload");
 		  return new FileUploader(path);
 	  }
 	  

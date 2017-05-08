@@ -14,22 +14,20 @@ public class FileUploader {
 	public 	FileUploader(String rootPath){
 			ROOT_PATH = rootPath;
 		    if(! new File(ROOT_PATH).exists())
-            {
-                new File(ROOT_PATH).mkdir();
-            }
+                	new File(ROOT_PATH).mkdir();
 	}
 	
-	public static String transfer(MultipartFile multipartFile, String folderName, String subFolder, String namePrefix) throws RuntimeException, IOException{
-		
+	public static String transfer(MultipartFile multipartFile, String className, String registationId, String namePrefix) throws RuntimeException, IOException{
+
 			 String orgName = namePrefix +"_"+ multipartFile.getOriginalFilename();
-			 File d1 = new File(ROOT_PATH + File.separator + folderName + File.separator + subFolder);
+			 File d1 = new File(ROOT_PATH + File.separator + className + File.separator + registationId);
              if(!d1.isDirectory())
-            	 d1.mkdirs();
-             
+            	 		d1.mkdirs();
+
              String filePath = d1.getPath() + File.separator + orgName;
              File dest = new File(filePath);
              multipartFile.transferTo(dest);
-        return dest.toString();
+             return dest.toString();
 	}
 
 	public static String saveFileIntoFileSystem(MultipartFile multipartFile, String className, String registationId, String prefix) {

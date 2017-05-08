@@ -39,5 +39,9 @@
 		<input type="button" id="deleteRecordId" value= "DELETE Record Id" >
 	<input type="button" id ="searchRecordId" value= "Seach Record"/>
 	<input type= "button" id="updateStatusId" value ="updateStatus"/>
-</body>
+<!-- 	<img src ="http://localhost:9090/school/rest/register/image-manual-response.jpg"></img>
+		<img src ="http://localhost:9090/school/rest/register/image-resource.jpg"></img>
+		<img src = "http://localhost:9090/school/rest/register/image1/1_1_StudentImage.jpg" />	
+				<img src = "http://localhost:9090/school/rest/register/image1/1_2_StudentImage.jpg"/>
+ --></body>
 </html>

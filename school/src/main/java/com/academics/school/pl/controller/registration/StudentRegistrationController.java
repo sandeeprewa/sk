@@ -1,5 +1,6 @@
 package com.academics.school.pl.controller.registration;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -12,23 +13,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
-import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.Resource;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.context.support.ServletContextResource;
-
 import com.academics.school.pl.controller.registration.dto.FakeStudentRegistrationDTO;
 import com.academics.school.pl.controller.registration.dto.RegistrationRecordStatusTrackerDTO;
 import com.academics.school.pl.controller.registration.dto.SearchRegistrationRequestDTO;
@@ -56,33 +49,9 @@ public class StudentRegistrationController {
 
 	@Autowired
 	StudentRegistrationFacade studentRegistrationFacade;
-
 	@Autowired
 	ServletContext servletContext;
-	
-/*	@ResponseBody
-	@RequestMapping(value = "/image-resource", method = RequestMethod.GET)
-	public Resource getImageAsResource() {
-       String path = servletContext.getRealPath("/WEB-INF/upload");
-	   System.out.println(path);
-	   System.out.println(servletContext.getRealPath("/ImageUpload"));
-	   servletContext.getContextPath();
-	   return new ServletContextResource(servletContext, "/WEB-INF/upload/once1.jpg");
-	}
-	
-	@RequestMapping(value = "/image-manual-response", method = RequestMethod.GET)
-	public void getImageAsByteArray(HttpServletResponse response) throws IOException {
-	    InputStream in = servletContext.getResourceAsStream("/WEB-INF/upload/once1.jpg");
-	    response.setContentType(MediaType.IMAGE_JPEG_VALUE);
-	    IOUtils.copy(in, response.getOutputStream());
-	}
-	
-	@RequestMapping(value = "/image-byte-array", method = RequestMethod.GET)
-	public @ResponseBody byte[] getImageAsByteArray() throws IOException {
-	    InputStream in = servletContext.getResourceAsStream("/WEB-INF/upload/once1.jpg");
-	    return IOUtils.toByteArray(in);
-	}
-*/	
+
 	/*
 	 * Getting registration record by registrationID
 	 */
@@ -186,7 +155,7 @@ public class StudentRegistrationController {
 			studentRegistrationRecord.setMotherImage(fakeRegistrationRecord.getMotherImage());
 			studentRegistrationRecord.setBirthCertificate(fakeRegistrationRecord.getBirthCertificate());
 			studentRegistrationRecord.setCastCertificate(fakeRegistrationRecord.getCastCertificate());
-			studentRegistrationRecord.setDisabilityCertificate(fakeRegistrationRecord.getDisablityCertificate());
+			studentRegistrationRecord.setDisabilityCertificate(fakeRegistrationRecord.getDisabilityCertificate());
 			return studentRegistrationRecord;
 	}
 
