@@ -161,6 +161,7 @@ public class StudentRegistrationRecord {
 		this.motherImage = motherImage;
 	}
 
+	@JsonIgnore
 	public MultipartFile getDisabilityCertificate() {
 		return disabilityCertificate;
 	}

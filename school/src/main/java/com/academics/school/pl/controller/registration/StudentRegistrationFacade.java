@@ -30,9 +30,9 @@ public class StudentRegistrationFacade {
 	
 	public StudentRegistrationRecord createRegistrationStudentRecord(
 			StudentRegistrationRecord registrationRecord) {
-//		registrationRecord = studentRegistrationServiceImpl.createRegistrationStudentRecord(registrationRecord);
-//		registrationRecord = buildRegistrationRecordByAddingImageAsResourceLocation(registrationRecord);
-		return studentRegistrationServiceImpl.createRegistrationStudentRecord(registrationRecord);
+		registrationRecord = studentRegistrationServiceImpl.createRegistrationStudentRecord(registrationRecord);
+		registrationRecord = buildRegistrationRecordByAddingImageAsResourceLocation(registrationRecord);
+		return registrationRecord;
 	}
 
 
