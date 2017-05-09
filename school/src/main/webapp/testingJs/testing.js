@@ -46,9 +46,9 @@ $(document).ready(function (){
 function getInputData(){
 	return 	{  
 		  "personalDetail":{  
-		    "firstName":"sa",
+		    "firstName":"Hariom AS",
 		    "middleName":"middleName",
-		    "lastName":"sas",
+		    "lastName":"sas Hariom",
 		    "gender":"male",
 		    "mobileNumber":"8101346",
 		    "email":"ema@gmail.com",
@@ -150,21 +150,19 @@ function getInputData(){
 			"previousSchoolName":"previousSchoolName",
 			"previousSchoolAddress":"previousSchoolAddress",
 			"previousSchoolClass":"1",
-			"previousClassPercentage":"99"
+			"previousClassPercentage":"12"
 			},
 			"currentClass":{
-			"c_Class":"11",
+			"c_Class":"1",
 			"school":"Name",
 			"listOfSubject":[
 			{
 			"id":1,
-			"subject":"subject1",
-			"currentClass":null
+			"subject":"subject1"
 			},
 			{
 			"id":2,
-			"subject":"subject2",
-			"currentClass":null
+			"subject":"subject2"
 			}
 			],
 			"id":1
@@ -186,9 +184,9 @@ function getInputData(){
 			"houseNumber":"sa",
 			"village":"as",
 			"city":"currentVillage",
-			"state":"MadhyaPradesh",
+			"state":"MP",
 			"pinNumber":"123456",
-			"country":"indian",
+			"country":"I",
 			"addressDetails":"currentAddressDetails",
 			"isPermanent":true
 			},
@@ -197,36 +195,35 @@ function getInputData(){
 			"houseNumber":"sa",
 			"village":"sa",
 			"city":"currentVillage",
-			"state":"MadhyaPradesh",
+			"state":"MP",
 			"pinNumber":"123456",
-			"country":"indian",
+			"country":"I",
 			"addressDetails":"currentAddressDetails",
 			"isPermanent":false
 			}
 			],
-			"firstName":"Hariom",
-			"middleName":"OmHari",
-			"lastName":"AS",
-			"gender":"female",
+			"firstName":"sa",
+			"middleName":"middleName",
+			"lastName":"sas",
+			"gender":"male",
 			"mobileNumber":"8101346",
 			"email":"ema@gmail.com",
 			"dateOfBirth":"25/06/1993",
 			"age":"12",
-			"category":"general",
+			"category":"JUNK",
 			"disability":"Autism",
-			"nationality":"indian",
-			"religion":"hindu",
+			"nationality":"I",
+			"religion":"H",
 			"bloodGroup":"bloodGroup",
 			"adhaarCardNumber":"1234567"
 			},
 			"timeStamp":null,
-			"studentImageLocation":"C:\\Tomcat 8\\1\\1\\StudentImage_",
-			"fatherImageLocation":"C:\\Tomcat 8\\1\\1\\FatherImage_",
-			"motherImageLocation":"C:\\Tomcat 8\\1\\1\\MotherImage_",
-			"birthCertificateLocation":"C:\\Tomcat 8\\1\\1\\Birth Certificate Image_",
-			"castCertificateLocation":"C:\\Tomcat 8\\1\\1\\Cast Certificate Image_",
-			"disabilityCertificateLocation":null,
-			"disabilityCertificate":null,
+			"studentImageLocation":"http://localhost:9090/school/image/1_1_StudentImage.jpg",
+			"fatherImageLocation":"http://localhost:9090/school/image/1_1_FatherImage.jpg",
+			"motherImageLocation":"http://localhost:9090/school/image/1_1_MotherImage.png",
+			"birthCertificateLocation":"http://localhost:9090/school/image/1_1_Birth_Certificate_Image.png",
+			"castCertificateLocation":"http://localhost:9090/school/image/1_1_Cast_Certificate_Image.png",
+			"disabilityCertificateLocation":"http://localhost:9090/school/image/1_1_Disablity_Certificate_Image.jpg",
 			"registrationStatus":"UNPAID_SUBMISSION"
 			};
 		

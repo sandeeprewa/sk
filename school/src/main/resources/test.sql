@@ -1,0 +1,2 @@
+select * from STUDENT_REGISTRATION_RECORD;
+select * from STUDENT_DETAIL_TABLE
