@@ -13,7 +13,6 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -49,24 +48,9 @@ public class StudentAdmissionController {
 
 	@Autowired
 	StudentAdmissionFacade studentAdmissionFacade;
-
-	/*
-	 * Create New Admisssion Record 
-	 */
-	
-	@RequestMapping(method = RequestMethod.POST)
-	@RequiredPrivilage({PrivilageEnum.PUBLIC_USER})
-	public StudentRegistrationRecord createNewStudentRegistrationRecord(@ModelAttribute FakeStudentRegistrationDTO fakeRegistrationRecord) 
-			throws StudentRegistrationFieldValidationException, StudentAlreadyRegisteredException, JsonParseException, JsonMappingException, IOException, StudentRegistrationFieldValidationException, URISyntaxException {
-		RestTemplate restTemplate = new RestTemplate();
-		String url  = "http://localhost:9090/school/rest/register/";
-		URI uri = new URI(url);
-		ResponseEntity<StudentRegistrationRecord> record = restTemplate.postForEntity(uri, fakeRegistrationRecord, StudentRegistrationRecord.class);
-		return record.getBody();
-	}
 	
 	/*
-	 * Getting registration record by registrationID
+	 * Getting registration record by registrationID if and only if it is selected for admitted
 	 */
 	@RequestMapping(value = "{registrationId}", method = RequestMethod.GET)
 	@RequiredPrivilage({PrivilageEnum.PUBLIC_USER})

@@ -47,4 +47,10 @@ public class StudentRegistrationServiceImpl implements StudentRegistrationServic
 		return studentRegistrationDaoImpl.updateStatusOfRegistrationRecords(statusDTOList);
 	}
 
+	public List<StudentRegistrationRecord> getRegistrationRecordsByClass(
+			String stu_Class) {
+		// TODO Auto-generated method stub
+		return studentRegistrationDaoImpl.getRegistrationRecordsByClass(stu_Class);
+	}
+
 }

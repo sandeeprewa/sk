@@ -1,10 +1,5 @@
 package com.academics.school.pl.controller.registration.dto;
 
-import javax.persistence.Embeddable;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
 public enum RegistrationStatus {
 
 	UNPAID_SUBMISSION("unpaidSubmission"),

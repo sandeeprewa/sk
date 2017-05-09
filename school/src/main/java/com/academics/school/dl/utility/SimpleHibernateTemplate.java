@@ -217,17 +217,25 @@ public class SimpleHibernateTemplate<E> {
     }
   }
 
-@SuppressWarnings("unchecked")
-public E load(Class<E> class1,
-		Long id) {
-	// TODO Auto-generated method stub
-	return (E)getSession().load(class1, id);
-}
-
-public E getObjectBasedOnId(Class<E> entity, Long id, String idField){
-	Criteria criteria = createCriteria(entity);
-	criteria.add(Restrictions.eq(idField, id));
-	return  (E)criteria.uniqueResult();
-
-}
+	@SuppressWarnings("unchecked")
+	public E load(Class<E> class1,
+			Long id) {
+		// TODO Auto-generated method stub
+		return (E)getSession().load(class1, id);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public E getObjectBasedOnId(Class<E> entity, Long id, String idField){
+		Criteria criteria = createCriteria(entity);
+		criteria.add(Restrictions.eq(idField, id));
+		return  (E)criteria.uniqueResult();
+	
+	}
+	
+	@SuppressWarnings("unchecked")
+	public <T> List<T> getObjectBasedOnCriteria(Class<T> entity,String field, String fieldValue) {
+		Criteria criteria = createCriteria(entity);
+		criteria.add(Restrictions.eq(field, fieldValue));
+		return (List<T>)criteria.list();
+	}
 }

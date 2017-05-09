@@ -20,6 +20,7 @@ import org.springframework.stereotype.Repository;
 import static com.academics.school.dl.utility.FileUploader.*;
 
 import com.academics.school.dl.utility.SimpleHibernateTemplate;
+import com.academics.school.pl.controller.registration.dto.CurrentClass;
 import com.academics.school.pl.controller.registration.dto.RegistrationStatus;
 import com.academics.school.pl.controller.registration.dto.SearchRegistrationRequestDTO;
 import com.academics.school.pl.controller.registration.dto.StatusDTO;
@@ -148,7 +149,38 @@ public class StudentRegistrationDaoImpl implements StudentRegistrationDao {
 			return true;
 	}
 	
+
+	@Transactional
+	public List<StudentRegistrationRecord> updateStatusOfRegistrationRecords(
+			List<StatusDTO> statusDTOList) {
+		List<StudentRegistrationRecord> listOfRegistrationRecords = new ArrayList<StudentRegistrationRecord>();
+		for (StatusDTO statusDTO : statusDTOList) {
+			StudentRegistrationRecord record =	simpleHibernateTemplate.get(StudentRegistrationRecord.class, statusDTO.getRegistrationId());
+			if(record == null){
+				throw new StudentIdDoesNotExistException("input.id.invalid");
+			}
+			record.setRegistrationStatus(RegistrationStatus.getEnum(statusDTO.getStatus()));
+			listOfRegistrationRecords.add(record);
+			simpleHibernateTemplate.flush();
+		}  
+		return listOfRegistrationRecords;
+	}
 	
+	@Transactional
+	public List<StudentRegistrationRecord> getRegistrationRecordsByClass(String stu_Class) {
+			List<StudentRegistrationRecord> records = new ArrayList<StudentRegistrationRecord>();
+			List<CurrentClass> listOfCurretnClassDetail = simpleHibernateTemplate.getObjectBasedOnCriteria(CurrentClass.class, "c_Class", stu_Class);
+			for (CurrentClass current : listOfCurretnClassDetail) {
+				records.add(current.getStudent().getStudentRegistrationRecord());
+			}
+			return records;
+	}
+
+	private String getFileExtention(String studentImageLocation) {
+		 		String[] strSpilt = studentImageLocation.split(Pattern.quote("."));
+		 		return strSpilt[1] ;
+	}
+
 	private void saveImagesInFileSystemAndUpdateInDB(StudentRegistrationRecord registrationRecord) {
 		
 	final	String class_Standard = registrationRecord.getPersonalDetail().getCurrentClass().getC_Class();
@@ -191,25 +223,4 @@ public class StudentRegistrationDaoImpl implements StudentRegistrationDao {
 		}
 	}
 
-	@Transactional
-	public List<StudentRegistrationRecord> updateStatusOfRegistrationRecords(
-			List<StatusDTO> statusDTOList) {
-		List<StudentRegistrationRecord> listOfRegistrationRecords = new ArrayList<StudentRegistrationRecord>();
-		for (StatusDTO statusDTO : statusDTOList) {
-			StudentRegistrationRecord record =	simpleHibernateTemplate.get(StudentRegistrationRecord.class, statusDTO.getRegistrationId());
-			if(record == null){
-				throw new StudentIdDoesNotExistException("input.id.invalid");
-			}
-			record.setRegistrationStatus(RegistrationStatus.getEnum(statusDTO.getStatus()));
-			listOfRegistrationRecords.add(record);
-			simpleHibernateTemplate.flush();
-		}  
-		return listOfRegistrationRecords;
-	}
-	
-	private String getFileExtention(String studentImageLocation) {
-		 		String[] strSpilt = studentImageLocation.split(Pattern.quote("."));
-		 		return strSpilt[1] ;
-	}
-	
 }

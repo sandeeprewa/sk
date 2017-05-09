@@ -32,4 +32,7 @@ public interface StudentRegistrationDao {
 	List<StudentRegistrationRecord> updateStatusOfRegistrationRecords(
 			List<StatusDTO> statusDTOList);
 
+	List<StudentRegistrationRecord> getRegistrationRecordsByClass(
+			String stu_Class);
+
 }

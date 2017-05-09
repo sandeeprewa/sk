@@ -3,10 +3,13 @@ package com.academics.school.pl.controller.registration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
+
 import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+
 import com.academics.school.pl.controller.registration.dto.SearchRegistrationRequestDTO;
 import com.academics.school.pl.controller.registration.dto.StatusDTO;
 import com.academics.school.pl.controller.registration.dto.StudentRegistrationRecord;
@@ -54,6 +57,12 @@ public class StudentRegistrationFacade {
 	public List<StudentRegistrationRecord> changeStatusOfRegistrationRecords(
 			List<StatusDTO> statusDTOList) {
 		return studentRegistrationServiceImpl.changeStatusOfRegistrationRecords(statusDTOList);
+	}
+
+	public List<StudentRegistrationRecord> getRegistrationRecordsByClass(
+			String stu_Class) {
+		// TODO Auto-generated method stub
+		return studentRegistrationServiceImpl.getRegistrationRecordsByClass(stu_Class);
 	}
 
 }

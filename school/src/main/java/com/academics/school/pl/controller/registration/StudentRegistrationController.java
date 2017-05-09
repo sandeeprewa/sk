@@ -1,18 +1,11 @@
 package com.academics.school.pl.controller.registration;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -110,7 +103,6 @@ public class StudentRegistrationController {
 		return studentRegistrationFacade.getRegistrationRecordBasedOnDiffParameter(searchRegistrationRequestDTO);
 	}
 
-	
 	/*
 	 * Admin Facility - Changing Status of Registration Record
 	 */
@@ -121,6 +113,13 @@ public class StudentRegistrationController {
 		validateListOfStatusDTO(statusDTOList);
 		List<StudentRegistrationRecord> registeredRecord = studentRegistrationFacade.changeStatusOfRegistrationRecords(statusDTOList);
 		return registeredRecord;
+	}
+	
+	
+	@RequestMapping(value = "/class/{stu_Class}",method = RequestMethod.GET)
+	@RequiredPrivilage({PrivilageEnum.EDITOR})
+	public List<StudentRegistrationRecord> getStudentRegistrationRecordByClass(@PathVariable String stu_Class){
+		return studentRegistrationFacade.getRegistrationRecordsByClass(stu_Class);
 	}
 	
 	/* * Yet to be implement - Fee Part	 */
@@ -148,7 +147,8 @@ public class StudentRegistrationController {
 
 	private StudentRegistrationRecord buildStudentRegistrationRecordDTO(FakeStudentRegistrationDTO
 			   fakeRegistrationRecord) throws JsonParseException, JsonMappingException, IOException {
-			StudentRegistrationRecord studentRegistrationRecord = (StudentRegistrationRecord)new ObjectMapper()
+
+		StudentRegistrationRecord studentRegistrationRecord = (StudentRegistrationRecord)new ObjectMapper()
 							.readValue(fakeRegistrationRecord.getRegistrationJson(),StudentRegistrationRecord.class);
 			studentRegistrationRecord.setStudentImage(fakeRegistrationRecord.getStudentImage());
 			studentRegistrationRecord.setFatherImage(fakeRegistrationRecord.getFatherImage());

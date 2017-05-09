@@ -29,4 +29,7 @@ public interface StudentRegistrationService {
 	List<StudentRegistrationRecord> changeStatusOfRegistrationRecords(
 			List<StatusDTO> statusDTOList);
 
+	List<StudentRegistrationRecord> getRegistrationRecordsByClass(
+			String stu_Class);
+
 }
