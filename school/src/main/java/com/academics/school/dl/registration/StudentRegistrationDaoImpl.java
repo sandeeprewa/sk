@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import javax.servlet.ServletContext;
 import javax.transaction.Transactional;
@@ -40,7 +41,9 @@ public class StudentRegistrationDaoImpl implements StudentRegistrationDao {
 	private static final String BIRTH_CERT_PREFIX = "Birth_Certificate_Image";
 	private static final String CAST_CERT_PREFIX = "Cast_Certificate_Image";
 	private static final String DISABILITY_CERT_PREFIX = "Disablity_Certificate_Image";
-
+	//will chnage
+	private static final String IMAGE_PUBLIC_URL = "http://localhost:9090/school/image/";
+	
 	private SimpleHibernateTemplate<StudentRegistrationRecord> simpleHibernateTemplate;
 	
 	@Autowired
@@ -148,43 +151,50 @@ public class StudentRegistrationDaoImpl implements StudentRegistrationDao {
 	
 	private void saveImagesInFileSystemAndUpdateInDB(StudentRegistrationRecord registrationRecord) {
 		
-		if(registrationRecord.getStudentImage()!= null)
-		registrationRecord.setStudentImageLocation(saveFileIntoFileSystem(registrationRecord.getStudentImage(),
-				registrationRecord.getPersonalDetail().getCurrentClass().getC_Class(),
-				String.valueOf(registrationRecord.getRegistrationId()), STUDENT_IMAGE_PREFIX ));
-
-		if(registrationRecord.getFatherImage()!= null)
-		registrationRecord.setFatherImageLocation(saveFileIntoFileSystem(registrationRecord.getFatherImage(),
-						registrationRecord.getPersonalDetail().getCurrentClass().getC_Class(), 
-						String.valueOf(registrationRecord.getRegistrationId()), FATHER_IMAGE_PREFIX ));
+	final	String class_Standard = registrationRecord.getPersonalDetail().getCurrentClass().getC_Class();
+	final	String registrationId = String.valueOf(registrationRecord.getRegistrationId());
+	String  class_registrationIDPath = class_Standard +"_"+ registrationId+"_";
+	final String dot = ".";
+	if(registrationRecord.getStudentImage()!= null){
+		saveFileIntoFileSystem(registrationRecord.getStudentImage(),class_Standard, registrationId, STUDENT_IMAGE_PREFIX );
+		registrationRecord.setStudentImageLocation(	IMAGE_PUBLIC_URL + class_registrationIDPath + STUDENT_IMAGE_PREFIX 
+			+ dot	+ getFileExtention(registrationRecord.getStudentImage().getOriginalFilename()));
+		}
 	
-		if(registrationRecord.getMotherImage() != null)
-		registrationRecord.setMotherImageLocation(saveFileIntoFileSystem(registrationRecord.getMotherImage(),
-						registrationRecord.getPersonalDetail().getCurrentClass().getC_Class(), 
-						String.valueOf(registrationRecord.getRegistrationId()), MOTHER_IMAGE_PREFIX ));
-
-		if(registrationRecord.getBirthCertificate()!= null)
-		registrationRecord.setBirthCertificateLocation(saveFileIntoFileSystem(registrationRecord.getBirthCertificate(),
-						registrationRecord.getPersonalDetail().getCurrentClass().getC_Class(), 
-						String.valueOf(registrationRecord.getRegistrationId()), BIRTH_CERT_PREFIX ));
+		if(registrationRecord.getFatherImage()!= null){
+			saveFileIntoFileSystem(registrationRecord.getFatherImage(),class_Standard, registrationId, FATHER_IMAGE_PREFIX );
+			registrationRecord.setFatherImageLocation(IMAGE_PUBLIC_URL + class_registrationIDPath + FATHER_IMAGE_PREFIX 
+			+ dot	+ getFileExtention(registrationRecord.getFatherImage().getOriginalFilename()));
+		}
+		if(registrationRecord.getMotherImage() != null){
+			saveFileIntoFileSystem(registrationRecord.getMotherImage(),class_Standard, registrationId, MOTHER_IMAGE_PREFIX );
+			registrationRecord.setMotherImageLocation(IMAGE_PUBLIC_URL + class_registrationIDPath + MOTHER_IMAGE_PREFIX
+			+ dot + getFileExtention(registrationRecord.getMotherImage().getOriginalFilename()));
+		}
 		
-		if(registrationRecord.getCastCertificate()!=null)
-		registrationRecord.setCastCertificateLocation(saveFileIntoFileSystem(registrationRecord.getCastCertificate(),
-						registrationRecord.getPersonalDetail().getCurrentClass().getC_Class(),
-						String.valueOf(registrationRecord.getRegistrationId()), CAST_CERT_PREFIX ));
+		if(registrationRecord.getBirthCertificate()!= null){
+			saveFileIntoFileSystem(registrationRecord.getBirthCertificate(),class_Standard, registrationId, BIRTH_CERT_PREFIX );
+			registrationRecord.setBirthCertificateLocation(IMAGE_PUBLIC_URL + class_registrationIDPath + BIRTH_CERT_PREFIX
+			+ dot		+ getFileExtention(registrationRecord.getBirthCertificate().getOriginalFilename()));
+		}
 		
-		if(registrationRecord.getDisabilityCertificate()!=null)
-		registrationRecord.setDisabilityCertificateLocation(saveFileIntoFileSystem(registrationRecord.getDisabilityCertificate(),
-						registrationRecord.getPersonalDetail().getCurrentClass().getC_Class(), 
-						String.valueOf(registrationRecord.getRegistrationId()), DISABILITY_CERT_PREFIX ));
+		if(registrationRecord.getCastCertificate()!=null){
+			saveFileIntoFileSystem(registrationRecord.getCastCertificate(),class_Standard, registrationId, CAST_CERT_PREFIX );
+			registrationRecord.setCastCertificateLocation(IMAGE_PUBLIC_URL + class_registrationIDPath + CAST_CERT_PREFIX 
+			+ dot		+ getFileExtention(registrationRecord.getCastCertificate().getOriginalFilename()));
+		}
+		
+		if(registrationRecord.getDisabilityCertificate()!=null){
+			saveFileIntoFileSystem(registrationRecord.getDisabilityCertificate(),class_Standard, registrationId,DISABILITY_CERT_PREFIX );
+			registrationRecord.setDisabilityCertificateLocation(IMAGE_PUBLIC_URL + class_registrationIDPath + DISABILITY_CERT_PREFIX 
+			+ dot	+ getFileExtention(registrationRecord.getDisabilityCertificate().getOriginalFilename()));
+		}
 	}
 
 	@Transactional
 	public List<StudentRegistrationRecord> updateStatusOfRegistrationRecords(
 			List<StatusDTO> statusDTOList) {
 		List<StudentRegistrationRecord> listOfRegistrationRecords = new ArrayList<StudentRegistrationRecord>();
-		
-		
 		for (StatusDTO statusDTO : statusDTOList) {
 			StudentRegistrationRecord record =	simpleHibernateTemplate.get(StudentRegistrationRecord.class, statusDTO.getRegistrationId());
 			if(record == null){
@@ -194,11 +204,12 @@ public class StudentRegistrationDaoImpl implements StudentRegistrationDao {
 			listOfRegistrationRecords.add(record);
 			simpleHibernateTemplate.flush();
 		}  
-		
 		return listOfRegistrationRecords;
 	}
-
-
 	
+	private String getFileExtention(String studentImageLocation) {
+		 		String[] strSpilt = studentImageLocation.split(Pattern.quote("."));
+		 		return strSpilt[1] ;
+	}
 	
 }
