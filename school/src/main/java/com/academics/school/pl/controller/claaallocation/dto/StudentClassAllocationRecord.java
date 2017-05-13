@@ -2,6 +2,10 @@ package com.academics.school.pl.controller.claaallocation.dto;
 
 public class StudentClassAllocationRecord {
 	
+	StudentClassAllocationRecord(){
+		
+	}
+	
 	String admissionid;
 	String section;
 	//String allocated;

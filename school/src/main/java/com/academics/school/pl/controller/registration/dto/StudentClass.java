@@ -1,5 +1,6 @@
 package com.academics.school.pl.controller.registration.dto;
 
+import com.academics.school.pl.controller.classallocation.error.StudentClassAllocationFieldValidationException;
 import com.fasterxml.jackson.annotation.JsonCreator;
 
 public enum StudentClass {

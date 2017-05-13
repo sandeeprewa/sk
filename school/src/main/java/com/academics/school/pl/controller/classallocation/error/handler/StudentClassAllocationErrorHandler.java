@@ -37,7 +37,7 @@ public class StudentClassAllocationErrorHandler {
 		restError.setHttpStatus(HttpStatus.BAD_REQUEST.toString());
 		restError.setCode(Code.FEES_NOT_PAID.toString());
 		restError.setMessage(messageSource.getMessage(RestErrorMessage.VALIDATION_FAILURE,null, Locale.US));
-		restError.setFieldError(new FieldError(exception.getKey(),messageSource.getMessage(exception.getMsg(),null, Locale.US)));
+//		restError.setFieldError(new FieldError(exception.getKey(),messageSource.getMessage(exception.getMsg(),null, Locale.US)));
 		return restError;	
 	}
 	

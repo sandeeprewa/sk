@@ -3,12 +3,10 @@ package com.academics.school.pl.controller.classallocation;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
+
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,11 +19,8 @@ import com.academics.school.pl.controller.claaallocation.dto.StudentClassAllocat
 import com.academics.school.pl.controller.classallocation.error.SectionAlredyExistException;
 import com.academics.school.pl.controller.classallocation.error.StudentAlreadyAllocatedException;
 import com.academics.school.pl.controller.classallocation.error.StudentClassAllocationFieldValidationException;
+import com.academics.school.pl.controller.classallocation.error.StudentSectionDoesNotExistException;
 import com.academics.school.pl.controller.classallocation.validation.StudentClassAllocationRecordValidator;
-import com.academics.school.pl.controller.registration.dto.RegistrationRecordStatusTrackerDTO;
-import com.academics.school.pl.controller.registration.dto.StudentRegistrationRecord;
-import com.academics.school.pl.controller.registration.validation.RegistrationRecordStatusDTOValidator;
-import com.academics.school.pl.controller.registration.validation.StudentRegisterationRecordValidator;
 import com.academics.school.pl.rest.security.PrivilageEnum;
 import com.academics.school.pl.rest.security.RequiredPrivilage;
 import com.fasterxml.jackson.core.JsonParseException;
@@ -58,9 +53,9 @@ public class StudentClassAllocationController {
 	 */
 		@RequestMapping(value = "/student/alocate_seaction", method = RequestMethod.POST)
 		@RequiredPrivilage({PrivilageEnum.EDITOR})
-		public StudentClassAllocationRecord updateAdmissionRecord(@ModelAttribute StudentClassAllocationRecord [] studentClassAllocationRecord) 
+		public StudentClassAllocationRecord updateAdmissionRecord(@RequestBody FakeStudentClassAllocationRecord   studentClassAllocationRecord) 
 				throws  StudentAlreadyAllocatedException, JsonParseException, JsonMappingException, IOException, StudentClassAllocationFieldValidationException {
-			ArrayList<StudentClassAllocationRecord> allocationList = new ArrayList<StudentClassAllocationRecord>(Arrays.asList(studentClassAllocationRecord));
+			ArrayList<StudentClassAllocationRecord> allocationList = (ArrayList<StudentClassAllocationRecord>) studentClassAllocationRecord.getListOfStudent();
 			validateListOfAllocationSectionRecord(allocationList);
 			return studentClassAllocationFacade.updateAdmissionRecord(allocationList);
 		}
@@ -88,6 +83,15 @@ public class StudentClassAllocationController {
 			SectionCreationDTO sectionCreationDTOResult=studentClassAllocationFacade.createSection(sectionCreationDTO);
 			return sectionCreationDTOResult;
 		}
+		
+		@RequiredPrivilage({PrivilageEnum.EDITOR})
+		@RequestMapping(value = "/section/getsection", method = RequestMethod.POST)
+		public List<SectionCreationDTO> getSection(@RequestBody SectionCreationDTO sectionCreationDTO) 
+				throws StudentSectionDoesNotExistException ,StudentClassAllocationFieldValidationException{
+			validate(sectionCreationDTO,"GET");
+			List<SectionCreationDTO> sectionCreationDTOResult=studentClassAllocationFacade.getSection(sectionCreationDTO);
+			return sectionCreationDTOResult;
+		}
 
 		/*
 		 * deleting  section
@@ -96,7 +100,7 @@ public class StudentClassAllocationController {
 		@RequestMapping(value = "/section/delete", method = RequestMethod.DELETE)
 		public SectionCreationDTO deleteSection(@RequestBody SectionCreationDTO sectionCreationDTO)throws StudentClassAllocationFieldValidationException{
 			validate(sectionCreationDTO,"DELETE");
-			SectionCreationDTO sectionCreationDTOResult=studentClassAllocationFacade.deleteSection(sectionCreationDTO);
+			//SectionCreationDTO sectionCreationDTOResult=studentClassAllocationFacade.deleteSection(sectionCreationDTO);
 			return studentClassAllocationFacade.deleteSection(sectionCreationDTO);
 		}
 		

@@ -33,35 +33,46 @@ public static void validate(StudentClassAllocationRecord studentClassAllocationR
 						  	
 	}
 
-public static void validate(SectionCreationDTO sectionCreationDTO, String input) throws StudentClassAllocationFieldValidationException{
+public static void validate(SectionCreationDTO sectionCreationDTO, String input) throws StudentClassAllocationFieldValidationException, StudentClassAllocationFieldValidationException{
 	
 	validateIsEmptyOrNullOrValidAlphanumericClass(sectionCreationDTO.getClassname(), "classname");
     validateIsEmptyOrNullOrContainsOnlyAlphnumeric(sectionCreationDTO.getSectionname(), "sectionname") ;
     if(input=="UPT")
 	validateIsEmptyOrNullOrContainsOnlyAlphnumeric(sectionCreationDTO.getUpdatesectionname(), "updatesectionname");
+    if(input=="GET")
+    	validateIsEmptyOrNullOrValidAlphanumericClass(sectionCreationDTO.getClassname(), "classname");
+        
+    
 
 }
 
 public static void validate(ArrayList<StudentClassAllocationRecord> statusDTOList) {
 	for (StudentClassAllocationRecord statusDTO : statusDTOList) {
-		   if(ValidationUtil.isEmptyOrNull(String.valueOf(statusDTO.getAdmissionid())))
+		validateIsEmptyOrNullOrContainsOnlyNumber(String.valueOf(statusDTO.getAdmissionid()), "admissionid");
+		validateIsEmptyOrNullOrContainsOnlyAlphnumeric(String.valueOf(statusDTO.getSection()), "section");
+		   /*if(ValidationUtil.isEmptyOrNull(String.valueOf(statusDTO.getAdmissionid())))
 			   throw new StudentRegistrationFieldValidationException("Registration Id", "input.admissionid.invalid");
 		   if(ValidationUtil.isEmptyOrNull(String.valueOf(statusDTO.getSection())))
-			   throw new StudentRegistrationFieldValidationException("Section", "input.section.invalid");
+			   throw new StudentRegistrationFieldValidationException("Section", "input.section.invalid");*/
 	}
 }
 
-private static void validateIsEmptyOrNullOrValidAlphanumericClass(String stringToBeValidated, String inputKey) {
+private static void validateIsEmptyOrNullOrValidAlphanumericClass(String stringToBeValidated, String inputKey)throws StudentClassAllocationFieldValidationException {
 	
-		validateIsEmptyOrNullOrContainsOnlyAlphnumeric(stringToBeValidated, inputKey);
+		validateIsEmptyOrNull(stringToBeValidated, inputKey);
+		
 		validateClassStatus(stringToBeValidated);
+		
 	}
 
-private static void validateClassStatus(String stringInput){
-	  StudentClass religion = StudentClass.getEnumFromText(stringInput);
+private static void validateClassStatus(String stringInput)throws StudentClassAllocationFieldValidationException{
+	try{
+	  StudentClass classname = StudentClass.getEnumFromText(stringInput);
 	}
-
-
+	catch(Exception e){
+		throw new StudentClassAllocationFieldValidationException("classdoesnotmatch");
+	}
+	}
 
 private static void validateIsEmptyOrNullOrContainsOnlyNumber(String stringToBeValidated, String inputKey) {
 	validateIsEmptyOrNull(stringToBeValidated, inputKey);
