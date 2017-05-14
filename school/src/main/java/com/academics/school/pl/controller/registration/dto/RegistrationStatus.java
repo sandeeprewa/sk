@@ -9,6 +9,8 @@ public enum RegistrationStatus {
 	FAIL("fail"),
 	SELECTED_FOR_ADMISSION("selected_for_admission"),
 	PAID_SUBMISSION("paidSubmission"),
+	PAID_ADMISSION_FEE("paidForAdmission"),
+	
 	ADMITTED("admitted");
 
 	RegistrationStatus(){}

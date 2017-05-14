@@ -31,8 +31,7 @@ import com.academics.school.pl.rest.security.PrivilageEnum;
 import com.academics.school.pl.rest.security.RequiredPrivilage;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
+import static com.academics.school.pl.utility.RegistrationRecordDTOBuilder.*;
 /*
  * @author sandeep
  */
@@ -144,21 +143,7 @@ public class StudentRegistrationController {
 	private void validateListOfStatusDTO(List<StatusDTO> statusDTOList) {
 		RegistrationRecordStatusDTOValidator.validate(statusDTOList);
 	}
-
-	private StudentRegistrationRecord buildStudentRegistrationRecordDTO(FakeStudentRegistrationDTO
-			   fakeRegistrationRecord) throws JsonParseException, JsonMappingException, IOException {
-
-		StudentRegistrationRecord studentRegistrationRecord = (StudentRegistrationRecord)new ObjectMapper()
-							.readValue(fakeRegistrationRecord.getRegistrationJson(),StudentRegistrationRecord.class);
-			studentRegistrationRecord.setStudentImage(fakeRegistrationRecord.getStudentImage());
-			studentRegistrationRecord.setFatherImage(fakeRegistrationRecord.getFatherImage());
-			studentRegistrationRecord.setMotherImage(fakeRegistrationRecord.getMotherImage());
-			studentRegistrationRecord.setBirthCertificate(fakeRegistrationRecord.getBirthCertificate());
-			studentRegistrationRecord.setCastCertificate(fakeRegistrationRecord.getCastCertificate());
-			studentRegistrationRecord.setDisabilityCertificate(fakeRegistrationRecord.getDisabilityCertificate());
-			return studentRegistrationRecord;
-	}
-
+	
 	private void validate(StudentRegistrationRecord studentRegistrationRecord) throws StudentRegistrationFieldValidationException {
 		StudentRegisterationRecordValidator.validate(studentRegistrationRecord);
 	}
