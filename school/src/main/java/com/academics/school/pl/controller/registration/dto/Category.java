@@ -1,15 +1,8 @@
 package com.academics.school.pl.controller.registration.dto;
 
-import javax.persistence.Embeddable;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 
 public enum Category {
-
 
 	GEN("general"),
 	OBC("obc"),
@@ -17,6 +10,7 @@ public enum Category {
 	ST("st"),
 	OTHER("other"),
 	JUNK("junk");
+	
 	private String categoryValue ;
 	Category(){}
 	Category(String value){
