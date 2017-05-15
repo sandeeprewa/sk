@@ -1,20 +1,31 @@
 package com.academics.school.sl.credential;
 
-public class Credential {
+import javax.persistence.Embeddable;
+
+@Embeddable
+public class Credential<E, T> {
 		
-	String userName;
-	String userPassword;
+	private E userName;
+	private T userPassword;
 	
-	public String getUserName() {
+	
+	public Credential(){}
+	
+	public Credential(E userName, T userPassword){
+		this.userName = userName ;
+		this.userPassword = userPassword;
+	}
+	
+	public E getUserName() {
 		return userName;
 	}
-	public void setUserName(String userName) {
+	public void setUserName(E userName) {
 		this.userName = userName;
 	}
-	public String getUserPassword() {
+	public T getUserPassword() {
 		return userPassword;
 	}
-	public void setUserPassword(String userPassword) {
+	public void setUserPassword(T userPassword) {
 		this.userPassword = userPassword;
 	}
 	

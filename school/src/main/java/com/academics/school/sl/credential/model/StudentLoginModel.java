@@ -1,6 +1,7 @@
 package com.academics.school.sl.credential.model;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,8 +9,10 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.academics.school.sl.credential.Credential;
+
 @Entity
-@Table (name = "STUDENT_LOGIN_MODEL")
+@Table (name = "STUDENT_LOGIN_TABLE")
 public class StudentLoginModel {
 	
 	@Id
@@ -17,10 +20,6 @@ public class StudentLoginModel {
 	@SequenceGenerator(name = "student_login_sequence", sequenceName = "student_login_sequence_db",allocationSize=1, initialValue= 1)	
 	Long id;
 	
-	@Column(name = "USER_NAME")
-	String userName;
-	@Column(name = "PASSWORD")
-	String password;
 	@Column(name = "LAST_PASSWORD")
 	String lastPassword;
 	@Column (name = "LAST_SENT_TOKEN")
@@ -31,9 +30,19 @@ public class StudentLoginModel {
 	boolean isLoggedIn;
 	@Column (name = "LAST_LOGIN_IP")
 	String lastLogInIP;
-	
 	@Column (name = "REGISTRATION_ID")
 	String registration_Id;
+
+	@Embedded
+	Credential<String, String> credential;
+	
+	public Credential<String, String> getCredential() {
+		return credential;
+	}
+
+	public void setCredential(Credential<String, String> credential) {
+		this.credential = credential;
+	}
 
 	public Long getId() {
 		return id;
@@ -41,22 +50,6 @@ public class StudentLoginModel {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	public String getLastPassword() {

@@ -2,6 +2,7 @@ package com.academics.school.wl.configuration;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +19,8 @@ import org.springframework.core.env.Environment;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.ByteArrayHttpMessageConverter;
 import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.filter.HttpPutFormContentFilter;
@@ -45,6 +48,7 @@ public class RootApplicationConfiguration extends WebMvcConfigurerAdapter {
 	
 	@Autowired
 	private ServletContext servletContext;
+
 	/**
        It tells Spring to use the container's default servlet for certain requests, like for static resources.
 	 */
@@ -95,10 +99,24 @@ public class RootApplicationConfiguration extends WebMvcConfigurerAdapter {
 	    
 	  @Bean
 	  public FileUploader initUploader(HttpServletRequest request){
-//		  String path = "C:\\production\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\school\\uploads";
 		  String path =  servletContext.getRealPath("/WEB-INF/upload");
 		  return new FileUploader(path);
 	  }
+	  
+	  @Bean(name = "mailSender")
+	  public MailSender mailSender(){
+		  JavaMailSenderImpl mailSenderImpl = new JavaMailSenderImpl();
+		  mailSenderImpl.setHost("smtp.gmail.com");
+		  mailSenderImpl.setPort(587);
+		  mailSenderImpl.setUsername("username");
+		  mailSenderImpl.setPassword("password");
+		  Properties properties = new Properties();
+		  properties.setProperty("mail.smtp.auth", "true");
+		  properties.setProperty("mail.smtp.starttls.enable", "true");
+		  mailSenderImpl.setJavaMailProperties(properties);
+		  return mailSenderImpl;
+	  }
+	  
 	  
 /*	  @Override
 	  public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {

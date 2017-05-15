@@ -3,15 +3,21 @@ package com.academics.school.dl.registration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
+
 import javax.servlet.ServletContext;
 import javax.transaction.Transactional;
 import javax.transaction.Transactional.TxType;
+
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
+
 import static com.academics.school.dl.utility.FileUploader.*;
+
+import com.academics.mail.sender.CommunicationSender;
 import com.academics.school.dl.utility.SimpleHibernateTemplate;
 import com.academics.school.pl.controller.registration.dto.CurrentClass;
 import com.academics.school.pl.controller.registration.dto.RegistrationStatus;
@@ -22,6 +28,8 @@ import com.academics.school.pl.controller.registration.dto.StudentRegistrationRe
 import com.academics.school.pl.controller.registration.error.RegistrationRecordDoesNotExistException;
 import com.academics.school.pl.controller.registration.error.StudentAlreadyRegisteredException;
 import com.academics.school.pl.controller.registration.error.StudentIdDoesNotExistException;
+import com.academics.school.sl.credential.CredentialGenerator;
+import com.academics.school.sl.credential.CredentialGeneratorImpl;
 
 @Repository("studentRegistrationDaoImpl")
 public class StudentRegistrationDaoImpl implements StudentRegistrationDao {
@@ -37,6 +45,10 @@ public class StudentRegistrationDaoImpl implements StudentRegistrationDao {
 	private static final String IMAGE_PUBLIC_URL = "http://localhost:9090/school/image/";
 	
 	private SimpleHibernateTemplate<StudentRegistrationRecord> simpleHibernateTemplate;
+	
+	@Autowired
+	@Qualifier("credentialGeneratorImpl")
+	private CredentialGenerator credentialGeneratorImpl;
 	
 	@Autowired
 	ServletContext servletContext;
@@ -144,6 +156,8 @@ public class StudentRegistrationDaoImpl implements StudentRegistrationDao {
 	@Transactional
 	public List<StudentRegistrationRecord> updateStatusOfRegistrationRecords(
 			List<StatusDTO> statusDTOList) {
+
+		credentialGeneratorImpl.createCredentialAndShareWithEmail("1", "91anu.sandeep@gmail.com");
 		List<StudentRegistrationRecord> listOfRegistrationRecords = new ArrayList<StudentRegistrationRecord>();
 		for (StatusDTO statusDTO : statusDTOList) {
 			StudentRegistrationRecord record =	simpleHibernateTemplate.get(StudentRegistrationRecord.class, statusDTO.getRegistrationId());
