@@ -91,7 +91,7 @@ public class StudentAttendenceDAOImpl implements StudentAttendenceDAO {
 		
 		Criteria criteria = simpleHibernateTemplate.createCriteria(StudentAttendenceRecord.class);
 		criteria.add(Restrictions.eq("studentId",Long.parseLong(studentId)));
-		criteria.add(Restrictions.between("timestamp", startTime, lastTime));
+		criteria.add(Restrictions.between("timeStamp", startTime, lastTime));
 		List<StudentAttendenceRecord> listOfRecord = criteria.list();
 		
 		if(listOfRecord == null){
