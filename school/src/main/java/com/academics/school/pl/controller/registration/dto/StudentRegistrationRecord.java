@@ -35,7 +35,7 @@ public class StudentRegistrationRecord {
 	@SequenceGenerator(name = "registration_sequence", sequenceName = "registration_sequence_db",allocationSize=1, initialValue= 1)	
 	@Column(name = "REGISTRATION_ID")
 	Long registrationId;
-
+    
 	@OneToOne(mappedBy = "studentRegistrationRecord", fetch = FetchType.EAGER)
 	@Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, 
 		org.hibernate.annotations.CascadeType.MERGE, org.hibernate.annotations.CascadeType.DELETE})

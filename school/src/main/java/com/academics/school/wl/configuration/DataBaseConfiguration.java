@@ -14,6 +14,8 @@ import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.academics.school.pl.controller.attendence.dto.AttendenceStatus;
+import com.academics.school.pl.controller.attendence.dto.StudentAttendenceRecord;
 import com.academics.school.pl.controller.registration.dto.Address;
 import com.academics.school.pl.controller.registration.dto.Category;
 import com.academics.school.pl.controller.registration.dto.CurrentClass;
@@ -112,6 +114,8 @@ public class DataBaseConfiguration {
     	sessionBuilder.addAnnotatedClass(Subject.class);
     	sessionBuilder.addAnnotatedClass(Religion.class);
     	sessionBuilder.addAnnotatedClass(Address.class);
+    	sessionBuilder.addAnnotatedClass(AttendenceStatus.class);
+    	sessionBuilder.addAnnotatedClass(StudentAttendenceRecord.class);
     	System.out.println("END :Mark Hibernate Class");
 
     }
