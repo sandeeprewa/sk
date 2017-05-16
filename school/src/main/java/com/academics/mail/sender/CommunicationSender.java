@@ -2,8 +2,12 @@ package com.academics.mail.sender;
 
 import java.util.Properties;
 
+import javax.mail.Authenticator;
+import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
+import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
@@ -28,12 +32,14 @@ public class CommunicationSender {
 		
 	}
 	
-	public  boolean sendCommunicion(String to, String message, SendBy sender) throws AddressException, MessagingException{
+	public  boolean sendCommunicion(String to, String message, SendBy sender) {
 		
+		  String username = "sp.sendmail@gmail.com";
+		  String password = "hariom@1234";
 		  mailSenderImpl.setHost("smtp.gmail.com");
 		  mailSenderImpl.setPort(587);
-		  mailSenderImpl.setUsername("sp.sendmail@gmail.com");
-		  mailSenderImpl.setPassword("hariom@1234");
+		  mailSenderImpl.setUsername(username);
+		  mailSenderImpl.setPassword(password);
 		  Properties properties = new Properties();
 		  properties.setProperty("mail.smtp.auth", "true");
 		  properties.setProperty("mail.smtp.starttls.enable", "true");
@@ -41,19 +47,35 @@ public class CommunicationSender {
 
 		  Properties properties1 = new Properties();
 		  properties1.setProperty("mail.smtp.host", "localhost");
-		  Session session = Session.getDefaultInstance(properties1);
-		  
+		  properties1.setProperty("mail.smtp.port", "9090");		  
+		     
+		  Session session = Session.getDefaultInstance(properties1, 
+          new Authenticator(){
+	             protected PasswordAuthentication getPasswordAuthentication() {
+	                 return new PasswordAuthentication("sp.sendmail@gmail.com", "hariom@1234");
+	              }});
+             
 		  MimeMessage mimeMessage = new MimeMessage(session);
-		  mimeMessage.setFrom(new InternetAddress("sp.sendmail@gmail.com"));
-		  mimeMessage.setContent("<h1 style='color:red'>Your ID IS"+ message + "</h1>", "text/html");
-		  
+		  try {
+				mimeMessage.setFrom(new InternetAddress("sp.sendmail@gmail.com"));
+				mimeMessage.addRecipient(Message.RecipientType.TO, new InternetAddress("91anu.sandeep@gmail.com"));
+				mimeMessage.setContent("<h1 style='color:red'>Your ID IS"+ message + "</h1>", "text/html");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
 			SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
 			simpleMailMessage.setFrom("sp.sendmail@gmaiil.com");
 			simpleMailMessage.setTo(to);
 			simpleMailMessage.setSubject("SchoolCommunication");
 			simpleMailMessage.setText(message);
 			mailSenderImpl.send(simpleMailMessage);
-			
+			try {
+				Transport.send(mimeMessage);
+			} catch (MessagingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		return true;
 	} 
 	
