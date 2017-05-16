@@ -1,38 +1,31 @@
 package com.academics.school.pl.controller.attendence.dto;
 
-import java.sql.Timestamp;
-import java.util.Date;
-
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-
+/*
+ * @author Sandeep
+ */
 public class AttendenceRequestDTO {
 
-	String studentId;
-	private Date startTime;
-	private Date lastTime;
+	private String studentId;
+	private String startTime;
+	private String lastTime;
 	
 	public void setStudentId(String studentId) {
 		this.studentId = studentId;
 	}
 
-	AttendenceRequestDTO(){}
-
-	public Date getStartTime() {
+	public String getStartTime() {
 		return startTime;
 	}
 
-	public void setStartTime(Date startTime) {
+	public void setStartTime(String startTime) {
 		this.startTime = startTime;
 	}
 
-	public Date getLastTime() {
+	public String getLastTime() {
 		return lastTime;
 	}
 
-	public void setLastTime(Date lastTime) {
+	public void setLastTime(String lastTime) {
 		this.lastTime = lastTime;
 	}
 

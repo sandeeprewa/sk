@@ -1,5 +1,7 @@
 package com.academics.school.pl.controller.attendence;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -21,9 +23,12 @@ public class StudentAttendenceFacade {
 	
 	public List<StudentAttendenceRecord> getAttendenceRecordBasedOnDiffParameter(AttendenceRequestDTO attendenceRequestDTO) {
 		
-		Date startTime = attendenceRequestDTO.getStartTime();
-		Date lastTime  = attendenceRequestDTO.getLastTime();
+		String startTime = attendenceRequestDTO.getStartTime();
+		String lastTime  = attendenceRequestDTO.getLastTime();
 		Date currentTime = new Date();
+		DateFormat df = new SimpleDateFormat("dd-mm-yyyy");
+		df.format(currentTime);
+		String currentTimeStr = currentTime.toString();
 		
 		 if(startTime == null & lastTime ==null){
 			 return studentAttendenceServiceImpl.getAllAttendenceRecordTillCurrentDate(attendenceRequestDTO.getStudentId());
@@ -31,7 +36,7 @@ public class StudentAttendenceFacade {
 		 
 		 if(startTime !=null){
 			 	if(lastTime == null){
-			 		lastTime = currentTime;
+			 		lastTime = currentTimeStr;
 			 	}
 			return studentAttendenceServiceImpl.getAttendenceRecordBasedTimePeriod(attendenceRequestDTO.getStudentId(),startTime,lastTime);
 		 }

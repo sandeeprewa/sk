@@ -12,11 +12,11 @@ public interface StudentAttendenceDAO {
 	
 	
 	List<StudentAttendenceRecord> getAttendenceRecord(String studentId,
-			Date startTime, Date lastDate);
+			String startTime, String lastTime);
 
 	List<StudentAttendenceRecord> getAttendenceRecord(String studentId);
 
-	List<StudentAttendenceRecord> getAttendenceRecord(String studentId, Date lastTime);
+	List<StudentAttendenceRecord> getAttendenceRecord(String studentId, String lastTime);
 	
 	
 	

@@ -13,7 +13,7 @@ public interface StudentAttendenceService {
 
     
 	List<StudentAttendenceRecord> getAllAttendenceRecordTillCurrentDate(String studentId);
-	List<StudentAttendenceRecord> getAttendenceRecordBasedTimePeriod(String string, Date startTime,Date lastTime);
-	List<StudentAttendenceRecord> getAttendenceRecordBasedOnDate(String studentId,Date lastTime);
+	List<StudentAttendenceRecord> getAttendenceRecordBasedTimePeriod(String string, String startTime,String lastTime);
+	List<StudentAttendenceRecord> getAttendenceRecordBasedOnDate(String studentId,String lastTime);
      
 }

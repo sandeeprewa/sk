@@ -26,11 +26,11 @@ public class StudentAttendenceServiceImpl implements StudentAttendenceService {
 		return studentAttendenceDAOImpl.getAttendenceRecord(studentId);
 	}
 
-	public List<StudentAttendenceRecord> getAttendenceRecordBasedTimePeriod(String studentId, Date startTime, Date lastTime) {
+	public List<StudentAttendenceRecord> getAttendenceRecordBasedTimePeriod(String studentId, String startTime, String lastTime) {
 		return studentAttendenceDAOImpl.getAttendenceRecord(studentId, startTime, lastTime);
 	}
 
-	public List<StudentAttendenceRecord> getAttendenceRecordBasedOnDate(String studentId, Date lastTime) {
+	public List<StudentAttendenceRecord> getAttendenceRecordBasedOnDate(String studentId, String lastTime) {
 		return studentAttendenceDAOImpl.getAttendenceRecord(studentId, lastTime);
 	}
 	

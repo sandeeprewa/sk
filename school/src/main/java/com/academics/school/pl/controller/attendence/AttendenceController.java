@@ -18,7 +18,7 @@ import com.academics.school.pl.controller.registration.dto.StudentRegistrationRe
 import com.academics.school.pl.controller.registration.error.RegistrationRecordDoesNotExistException;
 
 /*
- * 
+ * @author Sandeep
  */
 @RestController
 @RequestMapping("/rest/attendence/")

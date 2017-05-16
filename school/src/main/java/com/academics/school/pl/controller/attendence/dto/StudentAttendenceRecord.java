@@ -28,9 +28,17 @@ public class StudentAttendenceRecord {
 	@Column(name = "ATTENDENCE_STATUS")
 	AttendenceStatus attendenceStatus;
 	
-	@Temporal(TemporalType.DATE)
-	Date timestamp;
+	@Column( name = "TIME_STAMP")
+	String timeStamp;
 	
+	public String getTimeStamp() {
+		return timeStamp;
+	}
+
+	public void setTimeStamp(String timeStamp) {
+		this.timeStamp = timeStamp;
+	}
+
 	@Column(name = "STUDENT_ID")
 	Long studentId;
 
@@ -48,14 +56,6 @@ public class StudentAttendenceRecord {
 
 	public void setAttendenceStatus(AttendenceStatus attendenceStatus) {
 		this.attendenceStatus = attendenceStatus;
-	}
-
-	public Date getTimestamp() {
-		return timestamp;
-	}
-
-	public void setTimestamp(Date timestamp) {
-		this.timestamp = timestamp;
 	}
 
 	public Long getStudentId() {
