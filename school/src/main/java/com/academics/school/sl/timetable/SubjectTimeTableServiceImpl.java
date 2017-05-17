@@ -2,10 +2,14 @@ package com.academics.school.sl.timetable;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.transaction.Transactional;
+
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.academics.school.dl.utility.SimpleHibernateTemplate;
 import com.academics.school.pl.timetable.dto.Standard;
 import com.academics.school.pl.timetable.dto.SubjectAndTeacher;
@@ -24,9 +28,8 @@ public class SubjectTimeTableServiceImpl implements SubjectTimeTableService {
 	}
 	
 	@Transactional
-	public List<TimeTableModel> createAssociationOfSubjectAndTeacher(TimeTable timeTable) {
+	public List<TimeTableModel> createAssociationOfSubjectAndTeacher(List<TimeTableModel> listOfTimeTableModel) {
 		List<TimeTableModel> listToBeReturned = new ArrayList<TimeTableModel>();
-		List<TimeTableModel> listOfTimeTableModel = buildTimeTableModel(timeTable);
 		for (TimeTableModel timeTableModel : listOfTimeTableModel) {
 			listToBeReturned.add(simpleHibernateTemplate.saveAndGet(timeTableModel));
 		}
@@ -34,9 +37,22 @@ public class SubjectTimeTableServiceImpl implements SubjectTimeTableService {
 	}
 	
 	@Transactional
-	public TimeTableModel addOrUpdateSubjectAndTeacher(TimeTableModel timeTableModel) {
+	public TimeTableModel addSubjectAndTeacher(TimeTableModel timeTableModel) {
+		return this.simpleHibernateTemplate.saveAndGet(timeTableModel);
+	}
+	
+	@Transactional
+	public TimeTableModel updateSubjectAndTeacher(String timeTableId,TimeTableModel timeTableModel) {
 		return this.simpleHibernateTemplate.updateAndGet(timeTableModel);
 	}
+
+	@Transactional
+	public List<TimeTableModel> getCompleteTimeTable() {
+		Criteria criteria = this.simpleHibernateTemplate.createCriteria(TimeTableModel.class);
+		List<TimeTableModel> list = criteria.list();
+		return list;
+	}
+
 
 	private List<TimeTableModel> buildTimeTableModel(TimeTable timeTable) {
 		List<TimeTableModel> listOfTimeTableModel = new ArrayList<TimeTableModel>();
@@ -57,7 +73,7 @@ public class SubjectTimeTableServiceImpl implements SubjectTimeTableService {
 		return listOfTimeTableModel;
 	}
 
-	public TimeTableModel addSubjectAndTeacher(TimeTableModel timeTableModel) {
+	public TimeTableModel addOrUpdateSubjectAndTeacher(TimeTableModel timeTableModel) {
 		// TODO Auto-generated method stub
 		return null;
 	}

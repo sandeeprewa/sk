@@ -17,8 +17,8 @@ public class SubjectTimeTableFacade {
 	@Qualifier("subjectTimeTableServiceImpl")
 	SubjectTimeTableService subjectTimeTableServiceImpl;
 	
-	public List<TimeTableModel> createAssociationOfSubjectAndTeacher(TimeTable timeTable) {
-		return subjectTimeTableServiceImpl.createAssociationOfSubjectAndTeacher(timeTable);
+	public List<TimeTableModel> createAssociationOfSubjectAndTeacher(List<TimeTableModel> listOfTimeTable) {
+		return subjectTimeTableServiceImpl.createAssociationOfSubjectAndTeacher(listOfTimeTable);
 	}
 
 	public TimeTableModel addSubjectAndTeacher(TimeTableModel timeTableModel) {

@@ -17,7 +17,7 @@ import com.academics.school.sl.timetable.model.TimeTableModel;
 @Service
 public interface SubjectTimeTableService {
 
-	List<TimeTableModel> createAssociationOfSubjectAndTeacher(TimeTable timeTable);
+	List<TimeTableModel> createAssociationOfSubjectAndTeacher(List<TimeTableModel> listOfTimeTable);
 
 	TimeTableModel addOrUpdateSubjectAndTeacher(TimeTableModel timeTableModel);
 

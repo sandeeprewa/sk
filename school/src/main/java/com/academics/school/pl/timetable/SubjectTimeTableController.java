@@ -1,10 +1,13 @@
 package com.academics.school.pl.timetable;
 
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,13 +25,16 @@ public class SubjectTimeTableController {
 	SubjectTimeTableFacade subjectTimeTableFacade;
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public List<TimeTableModel> createAssociationOfSubjectAndTeacher(@ModelAttribute TimeTable timeTable){
-		validate(timeTable);
-		return subjectTimeTableFacade.createAssociationOfSubjectAndTeacher(timeTable);
+	public List<TimeTableModel> createAssociationOfSubjectAndTeacher(@RequestBody TimeTableModel[] timeTable){
+		List<TimeTableModel> listOfTimeTable = Arrays.asList(timeTable);
+		for (TimeTableModel timeTableModel : listOfTimeTable) {
+			validate(timeTableModel);
+		}
+		return subjectTimeTableFacade.createAssociationOfSubjectAndTeacher(listOfTimeTable);
 	}
 	
-	@RequestMapping(method = RequestMethod.POST)
-	public TimeTableModel addSubjectAndTeacher(@ModelAttribute TimeTableModel timeTableModel){
+	@RequestMapping(value = "/add", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
+	public TimeTableModel addSubjectAndTeacher(@RequestBody TimeTableModel timeTableModel){
 		validate(timeTableModel);
 		return subjectTimeTableFacade.addSubjectAndTeacher(timeTableModel);
 	}

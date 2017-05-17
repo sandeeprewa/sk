@@ -30,6 +30,7 @@ import com.academics.school.pl.controller.registration.dto.StudentRegistrationRe
 import com.academics.school.pl.controller.registration.dto.Subject;
 import com.academics.school.sl.credential.Credential;
 import com.academics.school.sl.credential.model.StudentLoginModel;
+import com.academics.school.sl.timetable.model.TimeTableModel;
 
 @Configuration
 @EnableTransactionManagement
@@ -116,6 +117,7 @@ public class DataBaseConfiguration {
     	sessionBuilder.addAnnotatedClass(Address.class);
     	sessionBuilder.addAnnotatedClass(StudentLoginModel.class);
     	sessionBuilder.addAnnotatedClass(Credential.class);
+    	sessionBuilder.addAnnotatedClass(TimeTableModel.class);
     	System.out.println("END :Mark Hibernate Class");
 
     }
