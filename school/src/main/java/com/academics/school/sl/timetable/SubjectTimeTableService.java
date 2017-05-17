@@ -19,13 +19,17 @@ public interface SubjectTimeTableService {
 
 	List<TimeTableModel> createAssociationOfSubjectAndTeacher(List<TimeTableModel> listOfTimeTable);
 
-	TimeTableModel addOrUpdateSubjectAndTeacher(TimeTableModel timeTableModel);
-
 	TimeTableModel addSubjectAndTeacher(TimeTableModel timeTableModel);
 
 	TimeTableModel updateSubjectAndTeacher(String timeTableId,
 			TimeTableModel timeTableModel);
 
 	List<TimeTableModel> getCompleteTimeTable();
+
+	List<TimeTableModel> getCompleteTimeTableBasedOnClassAndSection(
+			String classId, String sectionId);
+
+	List<TimeTableModel> deleteTimeTableBasedOnClassAndSection(String classId,
+			String sectionId);
 
 }

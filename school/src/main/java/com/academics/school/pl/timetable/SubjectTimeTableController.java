@@ -61,6 +61,11 @@ public class SubjectTimeTableController {
 		return subjectTimeTableFacade.getTimeTableBasedOnClass(classId);
 	}
 	
+	@RequestMapping(value = "/class/{classId}/section/{sectionId}" ,method = RequestMethod.DELETE)
+	public List<TimeTableModel> deleteTimeTableBasedOnClassAndSection(@PathVariable("classId") String classId, @PathVariable("sectionId") String sectionId){
+		return subjectTimeTableFacade.deleteTimeTableBasedOnClassAndSection(classId, sectionId);
+	}
+	
 	private void validate(TimeTable timeTable){
 		TimeTableValidator.validate(timeTable);
 	}

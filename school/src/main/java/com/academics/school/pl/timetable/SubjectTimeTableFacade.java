@@ -34,11 +34,15 @@ public class SubjectTimeTableFacade {
 	}
 
 	public List<TimeTableModel> getTimeTableBasedOnClassAndSection(String classId,	String sectionId) {
-		return subjectTimeTableServiceImpl.getCompleteTimeTable();
+		return subjectTimeTableServiceImpl.getCompleteTimeTableBasedOnClassAndSection(classId, sectionId);
 	}
 
 	public List<TimeTableModel> getTimeTableBasedOnClass(String classId) {
 		return getTimeTableBasedOnClassAndSection(classId, null);
+	}
+
+	public List<TimeTableModel> deleteTimeTableBasedOnClassAndSection(String classId, String sectionId) {
+		return subjectTimeTableServiceImpl.deleteTimeTableBasedOnClassAndSection(classId, sectionId);
 	}
 
 }
