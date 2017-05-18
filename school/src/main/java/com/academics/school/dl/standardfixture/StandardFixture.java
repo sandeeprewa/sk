@@ -13,8 +13,8 @@ import javax.persistence.Table;
 public class StandardFixture {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "student_sequence")
-	@SequenceGenerator(name = "student_sequence", sequenceName = "student_sequence_db",allocationSize=1, initialValue= 1)	
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "student_sequence_fix")
+	@SequenceGenerator(name = "student_sequence_fix", sequenceName = "student_sequence_fix_db",allocationSize=1, initialValue= 1)	
 	@Column(name = "STANDARD_FIXTURE_TABLE_ID")
 	Long id;
 	

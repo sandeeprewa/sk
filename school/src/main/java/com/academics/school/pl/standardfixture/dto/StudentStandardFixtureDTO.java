@@ -1,5 +1,11 @@
 package com.academics.school.pl.standardfixture.dto;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+
+@Entity
+@Table( name = "STUDENT_FIXTURE")
 public class StudentStandardFixtureDTO {
 	
      String standard;

@@ -3,6 +3,7 @@ package com.academics.school.pl.controller.standardfixture;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,8 +22,8 @@ public class StandardFixtureController {
 		StandardFixtureServiceImp standardFixtureServiceImp;
 		
 		
-		@RequestMapping(value = "/setdetails", method= RequestMethod.POST)
-		public StandardFixture getStudentBasedOnStudentId(@ModelAttribute StudentStandardFixtureDTO studentStandardFixtureDTO){
+		@RequestMapping(value = "/setdetails", method= RequestMethod.POST, consumes= "application/json", produces = "application/json")
+		public StandardFixture getStudentBasedOnStudentId(@RequestBody StandardFixture studentStandardFixtureDTO){
 			
 			return standardFixtureServiceImp.addDefaultFixture(studentStandardFixtureDTO);
 		}
