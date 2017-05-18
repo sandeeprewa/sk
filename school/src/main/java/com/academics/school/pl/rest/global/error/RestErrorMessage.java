@@ -10,7 +10,12 @@ public class RestErrorMessage {
 	public static final String STUDENT_DOES_NOT_EXIST = "student.does.not.exist.message";
 	public static final String INPUT_IS_INVALID = "input.invalid";
 	
-	
+	//related to class Allocation
+	public static final String ALREADY_ALLOCATED = "classallocation.alreadyallocated.message";
+	public static final String CLASSWITHSECTION_DOES_NOT_EXIST = "classallocation.classwithsectiondoesnotexist.message";
+	public static final String CLASSWITHSUBJECT_DOES_NOT_EXIST = "classallocation.classwithsubjectdoesnotexist.message";
+	public static final String SECTIONWITHCLASS_REQUIRE = "classallocation.sectionwithclassrequire.message";
+	public static final String SECTION_ALREADY_EXIST = "classallocation.sectionalreadyexist.message";
 	public static final String ALREADY_ADMITTED = "Admission.alreadyadmitted.message";
 	
 }

@@ -14,6 +14,7 @@ import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.academics.school.dl.standardfixture.StandardFixture;
 import com.academics.school.pl.controller.registration.dto.Address;
 import com.academics.school.pl.controller.registration.dto.Category;
 import com.academics.school.pl.controller.registration.dto.CurrentClass;
@@ -118,6 +119,7 @@ public class DataBaseConfiguration {
     	sessionBuilder.addAnnotatedClass(StudentLoginModel.class);
     	sessionBuilder.addAnnotatedClass(Credential.class);
     	sessionBuilder.addAnnotatedClass(TimeTableModel.class);
+    	sessionBuilder.addAnnotatedClass(StandardFixture.class);
     	System.out.println("END :Mark Hibernate Class");
 
     }

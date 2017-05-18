@@ -31,6 +31,30 @@ public class CurrentClass {
 	private String c_Class;
 	@Column(name = "CURRENT_SCHOOL")
 	private String school;
+	@Column (name = "SECTION")
+	private String section;
+	
+	private String rollNumber;
+	private String stream;
+	
+	public String getSection() {
+		return section;
+	}
+	public void setSection(String section) {
+		this.section = section;
+	}
+	public String getRollNumber() {
+		return rollNumber;
+	}
+	public void setRollNumber(String rollNumber) {
+		this.rollNumber = rollNumber;
+	}
+	public String getStream() {
+		return stream;
+	}
+	public void setStream(String stream) {
+		this.stream = stream;
+	}
 	@OneToMany(mappedBy = "currentClass", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Subject> listOfSubject = new ArrayList<Subject>();
 	
