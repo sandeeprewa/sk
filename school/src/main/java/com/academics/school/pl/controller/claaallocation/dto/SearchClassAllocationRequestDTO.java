@@ -3,28 +3,21 @@ package com.academics.school.pl.controller.claaallocation.dto;
 public class SearchClassAllocationRequestDTO {
    
 	String studentclass;
-	String subject;
-	String section;
+	String stream;
 	String percentage;
-	//String allocated;
-	
-	/*public String getAllocated() {
-		return allocated;
-	}
-	public void setAllocated(String allocated) {
-		this.allocated = allocated;
-	}*/
+	String section;
+
 	public String getStudentclass() {
 		return studentclass;
 	}
 	public void setStudentclass(String studentclass) {
 		this.studentclass = studentclass;
 	}
-	public String getSubject() {
-		return subject;
+	public String getStream() {
+		return stream;
 	}
-	public void setSubject(String subject) {
-		this.subject = subject;
+	public void setStream(String stream) {
+		this.stream = stream;
 	}
 	public String getSection() {
 		return section;

@@ -37,7 +37,7 @@ public class StudentClassAllocationRecordValidator implements Validator{
 						  	
 	}
 	
-public static void validate(StudentClassAllocationRecordDTO studentClassAllocationRecordDTO) throws StudentClassAllocationFieldValidationException{
+    public static void validate(StudentClassAllocationRecordDTO studentClassAllocationRecordDTO) throws StudentClassAllocationFieldValidationException{
 		
 		validateIsEmptyOrNullOrValidAlphanumericClass(studentClassAllocationRecordDTO.getStudentclass(), "classname");
 		validateIsEmptyOrNullOrContainsOnlyAlphnumeric(studentClassAllocationRecordDTO.getSection(), "section");
@@ -52,8 +52,11 @@ public static void validate( FakeStudentClassAllocationRecord  fakeStudentClassA
 	}
 	
 public static void validate(StudentClassAllocationRecord studentClassAllocationRecord) throws StudentClassAllocationFieldValidationException{
-		
-	    validateIsEmptyOrNullOrContainsOnlyNumber(studentClassAllocationRecord.getAdmissionid(), "classallocationadmisionid");
+		List<String> listofStudentId=studentClassAllocationRecord.getStudentid();
+		for (String list : listofStudentId) {
+			validateIsEmptyOrNullOrContainsOnlyNumber(list, "classallocationadmisionid");
+		}
+	    
 		validateIsEmptyOrNullOrContainsOnlyAlphnumeric(studentClassAllocationRecord.getSection(), "classallocationsection");
 						  	
 	}
@@ -62,10 +65,15 @@ public static void validate(StudentClassAllocationRecord studentClassAllocationR
 
 public static void validate(SectionCreationDTO sectionCreationDTO, String input) throws StudentClassAllocationFieldValidationException, StudentClassAllocationFieldValidationException{
 	
+	if(input=="POST"){
 	validateIsEmptyOrNullOrValidAlphanumericClass(sectionCreationDTO.getClassname(), "classname");
     validateIsEmptyOrNullOrContainsOnlyAlphnumeric(sectionCreationDTO.getSectionname(), "sectionname") ;
-    if(input=="UPT")
+	}
+    if(input=="UPT"){
+    validateIsEmptyOrNullOrValidAlphanumericClass(sectionCreationDTO.getClassname(), "classname");
+    validateIsEmptyOrNullOrContainsOnlyAlphnumeric(sectionCreationDTO.getSectionname(), "sectionname") ;
 	validateIsEmptyOrNullOrContainsOnlyAlphnumeric(sectionCreationDTO.getUpdatesectionname(), "updatesectionname");
+    }
     if(input=="GET")
     	validateIsEmptyOrNullOrValidAlphanumericClass(sectionCreationDTO.getClassname(), "classname");
         
@@ -75,7 +83,7 @@ public static void validate(SectionCreationDTO sectionCreationDTO, String input)
 
 public static void validate(List<StudentClassAllocationRecord> statusDTOList) {
 	for (StudentClassAllocationRecord statusDTO : statusDTOList) {
-		validateIsEmptyOrNullOrContainsOnlyNumber(String.valueOf(statusDTO.getAdmissionid()), "admissionid");
+		validateIsEmptyOrNullOrContainsOnlyNumber(String.valueOf(statusDTO.getStudentid()), "admissionid");
 		validateIsEmptyOrNullOrContainsOnlyAlphnumeric(String.valueOf(statusDTO.getSection()), "section");
 		   /*if(ValidationUtil.isEmptyOrNull(String.valueOf(statusDTO.getAdmissionid())))
 			   throw new StudentRegistrationFieldValidationException("Registration Id", "input.admissionid.invalid");

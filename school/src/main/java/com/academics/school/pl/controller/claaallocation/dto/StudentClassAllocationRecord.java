@@ -1,58 +1,37 @@
 package com.academics.school.pl.controller.claaallocation.dto;
 
+import java.util.List;
+
+import org.springframework.stereotype.Component;
+@Component
 public class StudentClassAllocationRecord {
 	
-	public StudentClassAllocationRecord(){
+   public StudentClassAllocationRecord(){
 		
-	}
+	}	
+   
+	List<String> studentid;   //1,2,3
+	String section;           //A
+	String studentclass;
 	
-	String admissionid="101";
-	String studentclass="01";
-	String subject=null;
-	String section=null;
-	String percentage="75%";
-	
-	public String getStudentclass() {
-		return studentclass;
+	public List<String> getStudentid() {
+		return studentid;
 	}
-
-	public void setStudentclass(String studentclass) {
-		this.studentclass = studentclass;
+	public void setStudentid(List<String> studentid) {
+		this.studentid = studentid;
 	}
-
-	public String getSubject() {
-		return subject;
-	}
-
-	public void setSubject(String subject) {
-		this.subject = subject;
-	}
-
-	public String getPercentage() {
-		return percentage;
-	}
-
-	public void setPercentage(String percentage) {
-		this.percentage = percentage;
-	}
-
-	
-	
-	public String getAdmissionid() {
-			return admissionid;
-		}
-
-	public void setAdmissionid(String admissionid) {
-			this.admissionid = admissionid;
-		}
-
-	
 	public String getSection() {
 		return section;
 	}
-
 	public void setSection(String section) {
 		this.section = section;
 	}
-
+	public String getStudentclass() {
+		return studentclass;
+	}
+	public void setStudentclass(String studentclass) {
+		this.studentclass = studentclass;
+	}
+	
+	
 }

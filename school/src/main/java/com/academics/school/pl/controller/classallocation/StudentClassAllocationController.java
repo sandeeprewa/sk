@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.academics.school.dl.standardfixture.StandardFixture;
 import com.academics.school.pl.controller.claaallocation.dto.SearchClassAllocationRequestDTO;
 import com.academics.school.pl.controller.claaallocation.dto.SectionCreationDTO;
 import com.academics.school.pl.controller.claaallocation.dto.StudentClassAllocationRecord;
@@ -35,13 +36,14 @@ public class StudentClassAllocationController {
 	@Autowired
 	StudentClassAllocationFacade studentClassAllocationFacade;
 	
-	StudentClassAllocationRecordDTO studentClassAllocationDTO;
+	@Autowired
+	StudentClassAllocationRecord studentClassAllocationRecord;
 	 /*
 	 *Search Admission Record based on Different Parameter
 	 */
 		@RequiredPrivilage({PrivilageEnum.EDITOR})
 		@RequestMapping(value = "/search", method = RequestMethod.POST)
-		public List<Student> getStudentAdmissionRecordByStudentClass(@RequestBody SearchClassAllocationRequestDTO searchClassAllocationRequestDTO)throws StudentClassAllocationFieldValidationException 
+		public List<Student> getClassAllocationRecordBasedOnClass(@RequestBody SearchClassAllocationRequestDTO searchClassAllocationRequestDTO)throws StudentClassAllocationFieldValidationException 
 		{
 			 validate(searchClassAllocationRequestDTO);
 			 return studentClassAllocationFacade.getClassAllocationRecordBasedOnClass(searchClassAllocationRequestDTO);
@@ -51,11 +53,11 @@ public class StudentClassAllocationController {
 		 * creating section
 		 */
 		@RequiredPrivilage({PrivilageEnum.EDITOR})
-		@RequestMapping(value = "/section", method = RequestMethod.POST)
-		public SectionCreationDTO createSection(@RequestBody SectionCreationDTO sectionCreationDTO) 
+		@RequestMapping(value = "/createsection", method = RequestMethod.POST)
+		public StandardFixture createSection(@RequestBody SectionCreationDTO sectionCreationDTO) 
 				throws SectionAlredyExistException ,StudentClassAllocationFieldValidationException{
 			validate(sectionCreationDTO,"POST");
-			SectionCreationDTO sectionCreationDTOResult=studentClassAllocationFacade.createSection(sectionCreationDTO);
+			StandardFixture sectionCreationDTOResult=studentClassAllocationFacade.createSection(sectionCreationDTO);
 			return sectionCreationDTOResult;
 		}
 		
@@ -63,36 +65,37 @@ public class StudentClassAllocationController {
 	/*
 	 * updating admission record with section or allocating section
 	 */
-		@RequestMapping(value = "/alocate_seaction", method = RequestMethod.POST)
+		@RequestMapping(value = "/allocateseaction", method = RequestMethod.POST)
 		@RequiredPrivilage({PrivilageEnum.EDITOR})
 		public StudentClassAllocationRecord allocateSection(@RequestBody FakeStudentClassAllocationRecord   fakeStudentClassAllocationRecord) 
 				throws  StudentAlreadyAllocatedException, JsonParseException, JsonMappingException, IOException, StudentClassAllocationFieldValidationException {
-			ArrayList<StudentClassAllocationRecord> allocationList = (ArrayList<StudentClassAllocationRecord>) fakeStudentClassAllocationRecord.getListOfStudent();
-			studentClassAllocationDTO.setListOfStudent(allocationList);
-			studentClassAllocationDTO.setStudentclass(fakeStudentClassAllocationRecord.getStudentclass());
-			studentClassAllocationDTO.setSection(fakeStudentClassAllocationRecord.getSection());
-			validate(studentClassAllocationDTO);
-			return studentClassAllocationFacade.updateAdmissionRecord(studentClassAllocationDTO);
+			//ArrayList<String> allocationList = (ArrayList<String>) fakeStudentClassAllocationRecord.getStudentid();
+			studentClassAllocationRecord.setStudentid(fakeStudentClassAllocationRecord.getStudentid());
+			studentClassAllocationRecord.setSection(fakeStudentClassAllocationRecord.getSection());
+			studentClassAllocationRecord.setStudentclass(fakeStudentClassAllocationRecord.getStudentclass());
+			
+			validate(studentClassAllocationRecord);
+			return studentClassAllocationFacade.allocateSection(studentClassAllocationRecord);
 		}
 		
 		/*
 		 * updating  section
 		 */
 		@RequiredPrivilage({PrivilageEnum.EDITOR})
-		@RequestMapping(value = "/update", method = RequestMethod.PUT)
-		public SectionCreationDTO updateSection(@RequestBody SectionCreationDTO sectionCreationDTO) 
+		@RequestMapping(value = "/updatesection", method = RequestMethod.PUT)
+		public StandardFixture updateSection(@RequestBody SectionCreationDTO sectionCreationDTO) 
 				throws SectionAlredyExistException ,StudentClassAllocationFieldValidationException{
 			validate(sectionCreationDTO,"PUT");
-			SectionCreationDTO sectionCreationDTOResult=studentClassAllocationFacade.createSection(sectionCreationDTO);
+			StandardFixture sectionCreationDTOResult=studentClassAllocationFacade.updateSection(sectionCreationDTO);
 			return sectionCreationDTOResult;
 		}
 		
 		@RequiredPrivilage({PrivilageEnum.EDITOR})
 		@RequestMapping(value = "/getsection", method = RequestMethod.POST)
-		public List<SectionCreationDTO> getSection(@RequestBody SectionCreationDTO sectionCreationDTO) 
+		public StandardFixture getSection(@RequestBody SectionCreationDTO sectionCreationDTO) 
 				throws StudentSectionDoesNotExistException ,StudentClassAllocationFieldValidationException{
 			validate(sectionCreationDTO,"GET");
-			List<SectionCreationDTO> sectionCreationDTOResult=studentClassAllocationFacade.getSection(sectionCreationDTO);
+			StandardFixture sectionCreationDTOResult=studentClassAllocationFacade.getSection(sectionCreationDTO);
 			return sectionCreationDTOResult;
 		}
 

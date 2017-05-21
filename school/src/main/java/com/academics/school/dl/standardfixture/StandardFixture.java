@@ -21,20 +21,9 @@ public class StandardFixture {
 	@Column (name = "STANDARD")
 	String standard;
 	
-	@Column(name="SECTION1")
-	String section1;
-	@Column(name="SECTION2")
-	String section2;
-	@Column(name="SECTION3")
-	String section3;
-	@Column(name="SECTION4")
-	String section4;
-	@Column(name="SECTION5")
-	String section5;
-	@Column(name="SECTION6")
-	String section6;
-	@Column(name="SECTION7")
-	String section7;
+	@Column(name="SECTION")
+	String section;
+	
 	@Column(name="SUBJECT1")
 	String subject1;
 	@Column(name="SUBJECT2")
@@ -65,48 +54,12 @@ public class StandardFixture {
 	public void setStandard(String standard) {
 		this.standard = standard;
 	}
-	public String getSection1() {
-		return section1;
-	}
-	public void setSection1(String section1) {
-		this.section1 = section1;
-	}
-	public String getSection2() {
-		return section2;
-	}
-	public void setSection2(String section2) {
-		this.section2 = section2;
-	}
-	public String getSection3() {
-		return section3;
-	}
-	public void setSection3(String section3) {
-		this.section3 = section3;
-	}
-	public String getSection4() {
-		return section4;
-	}
-	public void setSection4(String section4) {
-		this.section4 = section4;
-	}
-	public String getSection5() {
-		return section5;
-	}
-	public void setSection5(String section5) {
-		this.section5 = section5;
-	}
 	
-	public String getSection6() {
-		return section6;
+	public String getSection() {
+		return section;
 	}
-	public void setSection6(String section6) {
-		this.section6 = section6;
-	}
-	public String getSection7() {
-		return section7;
-	}
-	public void setSection7(String section7) {
-		this.section7 = section7;
+	public void setSection(String section) {
+		this.section = section;
 	}
 	
 	public String getSubject1() {

@@ -6,16 +6,18 @@ import com.academics.school.pl.controller.claaallocation.dto.StudentClassAllocat
 
 public class FakeStudentClassAllocationRecord {
 	
-	List<StudentClassAllocationRecord> listOfStudent;
-	String studentclass;
+	List<String> studentid;
 	String section;
+	String studentclass;
+	
 
-	public List<StudentClassAllocationRecord> getListOfStudent() {
-		return listOfStudent;
+
+	public List<String> getStudentid() {
+		return studentid;
 	}
 
-	public void setListOfStudent(List<StudentClassAllocationRecord> listOfStudent) {
-		this.listOfStudent = listOfStudent;
+	public void setStudentid(List<String> studentid) {
+		this.studentid = studentid;
 	}
 
 	public String getStudentclass() {

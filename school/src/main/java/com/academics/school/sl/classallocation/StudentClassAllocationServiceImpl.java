@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.academics.school.dl.classallocation.StudentClassAllocationDao;
+import com.academics.school.dl.standardfixture.StandardFixture;
+import com.academics.school.pl.controller.claaallocation.dto.SearchClassAllocationRequestDTO;
 import com.academics.school.pl.controller.claaallocation.dto.SectionCreationDTO;
 import com.academics.school.pl.controller.claaallocation.dto.StudentClassAllocationRecord;
 import com.academics.school.pl.controller.classallocation.StudentClassAllocationRecordDTO;
@@ -20,22 +22,30 @@ public class StudentClassAllocationServiceImpl implements StudentClassAllocation
 	@Qualifier("studentClassAllocationDaoImpl")
 	StudentClassAllocationDao studentClassAllocationDaoImpl;
 
-	public List<Student> getClassAllocationRecordBasedOnClass(String studentclass) {
+	public List<Student> getClassAllocationRecordBasedOnClass(SearchClassAllocationRequestDTO searchClassAllocationRequestDTO ) {
 		
-		 return studentClassAllocationDaoImpl.getClassAllocationRecordBasedOnClass(studentclass);
+		 return studentClassAllocationDaoImpl.getClassAllocationRecordBasedOnClass(searchClassAllocationRequestDTO);
 	}
 
-	public SectionCreationDTO createSection(SectionCreationDTO sectionCreationDTO) {
+	public StandardFixture createSection(SectionCreationDTO sectionCreationDTO) {
 		
 		return studentClassAllocationDaoImpl.createSection(sectionCreationDTO);
 	}
 
-	public StudentClassAllocationRecord updateAdmissionRecord(StudentClassAllocationRecordDTO studentClassAllocationDTO) {
+	public StandardFixture updateSection(SectionCreationDTO sectionCreationDTO) {
 		
-		return studentClassAllocationDaoImpl.updateAdmissionRecord(studentClassAllocationDTO);
+		return studentClassAllocationDaoImpl.updateSection(sectionCreationDTO);
 	}
 	
+  public StandardFixture getSection(SectionCreationDTO sectionCreationDTO) {
+		
+		return studentClassAllocationDaoImpl.getSection(sectionCreationDTO);
+	}
 	
+  public StudentClassAllocationRecord allocateSection( StudentClassAllocationRecord studentClassAllocationRecord) {
+		
+		return studentClassAllocationDaoImpl.allocateSection(studentClassAllocationRecord);
+	}
 	
 	
 
